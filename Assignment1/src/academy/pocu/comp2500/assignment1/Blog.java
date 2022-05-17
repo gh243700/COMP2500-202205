@@ -1,8 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 
 public class Blog {
@@ -11,7 +9,7 @@ public class Blog {
 
     private User filter_author;
     private ArrayList<String> filter_tags;
-    private Sort filter_sort = Sort.SORT_BY_CREATED_DESC;
+    private SortingType filter_sortingType = SortingType.SORT_BY_CREATED_DESC;
 
     public User getUser() {
         return user;
@@ -31,7 +29,7 @@ public class Blog {
                 Article article00 = articles.get(i);
                 Article article01 = articles.get(j + i);
                 int compare = 0;
-                switch (filter_sort) {
+                switch (filter_sortingType) {
                     case SORT_BY_CREATED_DESC:
                         compare = article01.getCreatedAt().compareTo(article00.getCreatedAt());
                         break;
@@ -82,7 +80,7 @@ public class Blog {
         filter_author = author;
     }
 
-    public void orderFilterSetter(Sort sort) {
-        this.filter_sort = sort;
+    public void orderFilterSetter(SortingType sortingType) {
+        this.filter_sortingType = sortingType;
     }
 }
