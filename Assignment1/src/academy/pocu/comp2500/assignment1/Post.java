@@ -30,6 +30,9 @@ public class Post {
         return true;
     }
 
+    public User getAuthor() {
+        return author;
+    }
     public String getTitle() {
         return title;
     }
