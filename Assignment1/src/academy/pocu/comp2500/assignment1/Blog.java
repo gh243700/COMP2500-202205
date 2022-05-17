@@ -19,8 +19,8 @@ public class Blog {
         this.user = user;
         this.articles = new ArrayList<>();
     }
-    public void registerArticle(Article article) {
-        articles.add(article);
+    public void registerArticle(User user, String title, String content) {
+        articles.add(new Article(user, title, content));
     }
 
     public ArrayList<Article> readArticles() {

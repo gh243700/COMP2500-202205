@@ -65,7 +65,6 @@ public class Article {
     public OffsetDateTime getModifiedAt() {
         return modifiedAt;
     }
-
     public boolean hasTag(ArrayList<String> tagsOrNull) {
         if (tagsOrNull == null) {
             return false;
