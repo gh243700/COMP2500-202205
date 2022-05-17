@@ -43,8 +43,7 @@ public class ListItem {
     public void removeSublistItem(int index) {
         sublistItems.remove(index);
     }
-
-    @Override
+    
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%c %s\r\n", bulletStyle, text));
