@@ -19,7 +19,6 @@ public class Post {
         this.createdAt = OffsetDateTime.now();
         this.comments = new ArrayList<>();
     }
-
     public Post(User user, String title, String content, OffsetDateTime createdDateTime) {
         this(user, title, content);
         this.createdAt = createdDateTime;

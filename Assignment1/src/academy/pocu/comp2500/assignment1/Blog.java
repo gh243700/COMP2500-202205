@@ -1,5 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 
@@ -17,8 +18,8 @@ public class Blog {
         this.user = user;
         this.posts = new ArrayList<>();
     }
-    public void registerArticle(Post post) {
-        posts.add(post);
+    public void registerArticle(User user, String title, String content, OffsetDateTime createdDateTime) {
+        posts.add(new Post(user, title, content, createdDateTime));
     }
 
     public ArrayList<Post> readArticles() {
