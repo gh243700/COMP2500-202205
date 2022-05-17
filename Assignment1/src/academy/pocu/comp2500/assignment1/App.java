@@ -9,7 +9,7 @@ public class App {
 
         registry.registerBlogCreator("Blog");
         registry.registerTagFilterSetter("Blog", "tagsFilterSetter");
-        registry.registerAuthorFilterSetter("Blog", "registerAuthorFilterSetter");
+        registry.registerAuthorFilterSetter("Blog", "authorFilterSetter");
         registry.registerPostOrderSetter("Blog", "orderFilterSetter");
         registry.registerPostListGetter("Blog", "readArticles");
         registry.registerPostAdder("Blog", "registerArticle");
