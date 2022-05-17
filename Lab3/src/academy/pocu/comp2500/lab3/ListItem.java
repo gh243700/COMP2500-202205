@@ -32,7 +32,7 @@ public class ListItem {
         return bulletStyle;
     }
 
-    public ArrayList<ListItem> getSublistItems() {
+    public ArrayList<ListItem> getSublistItem() {
         return sublistItems;
     }
 
@@ -60,7 +60,7 @@ public class ListItem {
         for (int i = 0; i < sublistItems.size(); i++) {
             ListItem listItem = sublistItems.get(i);
             builder.append(String.format("%s%c %s\n", tab, listItem.getBulletStyle() , listItem.getText()));
-            getSublistRecursive(listItem.getSublistItems(), builder, depth + 1);
+            getSublistRecursive(listItem.getSublistItem(), builder, depth + 1);
         }
     }
 
