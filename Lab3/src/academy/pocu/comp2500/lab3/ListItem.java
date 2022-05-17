@@ -59,7 +59,7 @@ public class ListItem {
         String tab = sb.toString();
         for (int i = 0; i < sublistItems.size(); i++) {
             ListItem listItem = sublistItems.get(i);
-            builder.append(String.format("%s%c %s\r\n", tab, listItem.getBulletStyle() , listItem.getText()));
+            builder.append(String.format("%s%c %s\r\n", tab, listItem.getBulletStyle(), listItem.getText()));
             getSublistRecursive(listItem.getSublistItems(), builder, depth + 1);
         }
     }
