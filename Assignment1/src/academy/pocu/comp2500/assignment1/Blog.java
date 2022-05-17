@@ -6,19 +6,19 @@ import java.util.LinkedList;
 
 
 public class Blog {
-    private User owner;
+    private User user;
     private ArrayList<Article> articles;
 
     private User filter_author;
     private ArrayList<String> filter_tags;
     private Sort filter_sort = Sort.SORT_BY_CREATED_DESC;
 
-    public User getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
-    public Blog(User owner) {
-        this.owner = owner;
+    public Blog(User user) {
+        this.user = user;
         this.articles = new ArrayList<>();
     }
     public void registerArticle(Article article) {
