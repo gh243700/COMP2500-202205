@@ -17,6 +17,7 @@ public class Post {
         this.content = content;
         this.tags = new ArrayList<>();
         this.createdAt = OffsetDateTime.now();
+        this.modifiedAt = OffsetDateTime.now();
         this.comments = new ArrayList<>();
     }
     public boolean changeTitle(String title, User user) {
