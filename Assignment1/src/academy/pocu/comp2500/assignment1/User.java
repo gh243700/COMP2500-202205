@@ -20,4 +20,9 @@ public class User {
 
         return userId.equals(tar.getUserId());
     }
+
+    @Override
+    public int hashCode() {
+        return userId.hashCode();
+    }
 }
