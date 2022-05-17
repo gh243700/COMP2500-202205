@@ -18,10 +18,9 @@ public class Blog {
         this.user = user;
         this.posts = new ArrayList<>();
     }
-    public void registerArticle(User user, String title, String content, OffsetDateTime createdDateTime) {
-        posts.add(new Post(user, title, content, createdDateTime));
+    public void registerArticle(User user, String title, String content) {
+        posts.add(new Post(user, title, content));
     }
-
     public ArrayList<Post> readArticles() {
         for (int i = 0; i < posts.size(); i++) {
             for (int j = 0; j < posts.size() - i; j++) {
