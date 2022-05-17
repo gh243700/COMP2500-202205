@@ -11,19 +11,14 @@ public class Post {
     private OffsetDateTime modifiedAt;
     private ArrayList<Comment> comments;
 
-    public Post(User user, String title, String content) {
-        this.author = user;
+    public Post(User author, String title, String content) {
+        this.author = author;
         this.title = title;
         this.content = content;
         this.tags = new ArrayList<>();
         this.createdAt = OffsetDateTime.now();
         this.comments = new ArrayList<>();
     }
-    public Post(User user, String title, String content, OffsetDateTime createdDateTime) {
-        this(user, title, content);
-        this.createdAt = createdDateTime;
-    }
-
     public boolean changeTitle(String title, User user) {
         if (!user.equals(this.author)) {
             return false;

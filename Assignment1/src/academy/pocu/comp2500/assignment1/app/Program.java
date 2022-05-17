@@ -17,6 +17,8 @@ public class Program {
 
         Post post01 = new Post(user01, "title01", "content 01", OffsetDateTime.of(2020, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC));
 
+        blog01.registerPost(post01);
+
         Comment comment01 = new Comment(user02, "comment01");
         Comment comment02 = new Comment(user02, "comment02");
         Comment comment03 = new Comment(user02, "comment03");
