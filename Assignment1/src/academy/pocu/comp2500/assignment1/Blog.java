@@ -5,68 +5,66 @@ import java.util.ArrayList;
 
 public class Blog {
     private User user;
-    private ArrayList<Article> articles;
+    private ArrayList<Post> posts;
 
     private User filter_author;
     private ArrayList<String> filter_tags;
     private SortingType filter_sortingType = SortingType.SORT_BY_CREATED_DESC;
-
     public User getUser() {
         return user;
     }
-
     public Blog(User user) {
         this.user = user;
-        this.articles = new ArrayList<>();
+        this.posts = new ArrayList<>();
     }
-    public void registerArticle(User user, String title, String content) {
-        articles.add(new Article(user, title, content));
+    public void registerArticle(Post post) {
+        posts.add(post);
     }
 
-    public ArrayList<Article> readArticles() {
-        for (int i = 0; i < articles.size(); i++) {
-            for (int j = 0; j < articles.size() - i; j++) {
-                Article article00 = articles.get(i);
-                Article article01 = articles.get(j + i);
+    public ArrayList<Post> readArticles() {
+        for (int i = 0; i < posts.size(); i++) {
+            for (int j = 0; j < posts.size() - i; j++) {
+                Post post00 = posts.get(i);
+                Post post01 = posts.get(j + i);
                 int compare = 0;
                 switch (filter_sortingType) {
                     case SORT_BY_CREATED_DESC:
-                        compare = article01.getCreatedAt().compareTo(article00.getCreatedAt());
+                        compare = post01.getCreatedAt().compareTo(post00.getCreatedAt());
                         break;
                     case SORT_BY_CREATED_ASC:
-                        compare = article00.getCreatedAt().compareTo(article01.getCreatedAt());
+                        compare = post00.getCreatedAt().compareTo(post01.getCreatedAt());
                         break;
                     case SORT_BY_MODIFIED_DESC:
-                        compare = article01.getModifiedAt().compareTo(article00.getModifiedAt());
+                        compare = post01.getModifiedAt().compareTo(post00.getModifiedAt());
                         break;
                     case SORT_BY_MODIFIED_ASC:
-                        compare = article00.getModifiedAt().compareTo(article01.getModifiedAt());
+                        compare = post00.getModifiedAt().compareTo(post01.getModifiedAt());
                         break;
                     case SORT_BY_TITLE_ASC:
-                        compare = article00.getTitle().compareTo(article01.getTitle());
+                        compare = post00.getTitle().compareTo(post01.getTitle());
                         break;
                 }
                 if (compare > 0) {
-                    articles.remove(i);
-                    articles.add(i, article01);
-                    articles.remove(j + i);
-                    articles.add(j + i, article00);
+                    posts.remove(i);
+                    posts.add(i, post01);
+                    posts.remove(j + i);
+                    posts.add(j + i, post00);
                 }
             }
         }
 
-        ArrayList<Article> result = null;
+        ArrayList<Post> result = null;
 
         if (filter_tags != null || filter_author != null) {
             result = new ArrayList<>();
-            for (int i = 0; i < articles.size(); i++) {
-                Article article = articles.get(i);
-                if(article.hasTag(filter_tags) || article.hasSameAuthor(filter_author)) {
-                    result.add(article);
+            for (int i = 0; i < posts.size(); i++) {
+                Post post = posts.get(i);
+                if(post.hasTag(filter_tags) || post.hasSameAuthor(filter_author)) {
+                    result.add(post);
                 }
             }
         } else {
-            result = articles;
+            result = posts;
         }
 
         return result;

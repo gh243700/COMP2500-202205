@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-public class Article {
+public class Post {
     private String title;
     private String content;
     private User author;
@@ -11,7 +11,7 @@ public class Article {
     private OffsetDateTime modifiedAt;
     private ArrayList<Comment> comments;
 
-    public Article(User user, String title, String content) {
+    public Post(User user, String title, String content) {
         this.author = user;
         this.title = title;
         this.content = content;
@@ -20,7 +20,7 @@ public class Article {
         this.comments = new ArrayList<>();
     }
 
-    public Article(User user, String title, String content, OffsetDateTime createdDateTime) {
+    public Post(User user, String title, String content, OffsetDateTime createdDateTime) {
         this(user, title, content);
         this.createdAt = createdDateTime;
     }
