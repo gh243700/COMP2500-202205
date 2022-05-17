@@ -20,9 +20,9 @@ public class Article {
         this.comments = new ArrayList<>();
     }
 
-    public Article(User user, String title, String content, OffsetDateTime offsetDateTime) {
+    public Article(User user, String title, String content, OffsetDateTime createdDateTime) {
         this(user, title, content);
-        this.createdAt = offsetDateTime;
+        this.createdAt = createdDateTime;
     }
 
     public boolean changeTitle(String title, User user) {

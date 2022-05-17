@@ -54,7 +54,7 @@ public class ListItem {
     private void getSublistRecursive(ArrayList<ListItem> sublistItems, StringBuilder builder, int depth) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < depth; i++) {
-            sb.append("\t");
+            sb.append("    ");
         }
         String tab = sb.toString();
         for (int i = 0; i < sublistItems.size(); i++) {
