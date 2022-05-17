@@ -25,18 +25,29 @@ public class Article {
         this.createdAt = offsetDateTime;
     }
 
-    public void setTitle(String title) {
+    public boolean changeTitle(String title, User user) {
+        if (!user.equals(this.author)) {
+            return false;
+        }
+
         modifiedAt = OffsetDateTime.now();
         this.title = title;
+        return true;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setContent(String content) {
+    public boolean changeContent(String content, User user) {
+        if (!user.equals(this.author)) {
+            return false;
+        }
+
+
         modifiedAt = OffsetDateTime.now();
         this.content = content;
+        return true;
     }
 
     public String getContent() {

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Comment {
     private User user;
-    private String comment;
+    private String text;
     private int upVote;
     private int downVote;
     private ArrayList<Comment> subComments;
 
-    public Comment(User user, String comment) {
-        this.user = user;
-        this.comment = comment = comment;
-    }
+    private ArrayList<Emoji> emojis;
 
-    public String getComment() {
-        return comment;
+    public Comment(User user, String text) {
+        this.user = user;
+        this.text = text;
+        this.subComments = new ArrayList<>();
+        this.emojis = new ArrayList<>();
     }
 
     public int getUpVote() {
@@ -32,6 +32,70 @@ public class Comment {
 
     public void increaseDownVote(){
         downVote++;
+    }
+
+    public void registerSubComment(Comment comment) {
+        subComments.add(comment);
+    }
+
+    public boolean changeComment(User user, String text) {
+        if (!this.user.equals(user)) {
+            return false;
+        }
+
+        this.text = text;
+        return true;
+    }
+
+    public boolean registerEmoji(Emoji emoji) {
+        for (int i = 0; i < emojis.size(); i++) {
+            Emoji emoji0 = emojis.get(i);
+            if (emoji0.getUser().equals(emoji.getUser())) {
+                if (emoji0.getType() == emoji.getType()) {
+                    return false;
+                }
+                else {
+                    emojis.add(emoji);
+                    return true;
+                }
+            }
+        }
+
+        emojis.add(emoji);
+        return true;
+    }
+
+
+    public boolean removeEmoji(Emoji emoji) {
+        for (int i = 0; i < emojis.size(); i++) {
+            Emoji emoji0 = emojis.get(i);
+            if (emoji0.getType() == emoji.getType() && emoji.getUser().equals(emoji0.getUser())) {
+                emojis.remove(emoji0);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public ArrayList<Comment> readSubComments() {
+        for (int i = 0; i < subComments.size(); i++) {
+            for(int j = 0; j < subComments.size() - i; j++) {
+                Comment comment00 = subComments.get(i);
+                Comment comment01 = subComments.get(j + i);
+                if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
+                    subComments.remove(i);
+                    subComments.add(i, comment01);
+                    subComments.remove(j + i);
+                    subComments.add(j + i, comment00);
+                }
+            }
+
+        }
+
+        return subComments;
     }
 
 }

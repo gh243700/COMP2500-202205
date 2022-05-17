@@ -21,7 +21,6 @@ public class Blog {
         this.owner = owner;
         this.articles = new ArrayList<>();
     }
-
     public void registerArticle(Article article) {
         articles.add(article);
     }
