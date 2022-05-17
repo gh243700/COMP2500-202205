@@ -29,7 +29,6 @@ public class Post {
         this.title = title;
         return true;
     }
-
     public User getAuthor() {
         return author;
     }

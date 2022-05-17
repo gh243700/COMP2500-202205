@@ -10,8 +10,7 @@ public class User {
     public User(String userId) {
         this.userId = userId;
     }
-
-    @Override
+    
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -21,8 +20,4 @@ public class User {
         return userId.equals(tar.getUserId());
     }
 
-    @Override
-    public int hashCode() {
-        return userId.hashCode();
-    }
 }
