@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Blog {
     private User user;
     private ArrayList<Post> posts;
-
     private User filter_author;
     private ArrayList<String> filter_tags;
     private SortingType filter_sortingType = SortingType.SORT_BY_CREATED_DESC;
