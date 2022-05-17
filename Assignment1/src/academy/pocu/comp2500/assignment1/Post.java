@@ -25,10 +25,6 @@ public class Post {
         return tags;
     }
 
-    public ArrayList<Comment> getComments() {
-        return comments;
-    }
-
     public boolean changeTitle(String title, User user) {
         if (!user.equals(this.author)) {
             return false;
@@ -92,7 +88,7 @@ public class Post {
         comments.add(comment);
     }
 
-    public ArrayList<Comment> readComments() {
+    public ArrayList<Comment> getComments() {
        for (int i = 0; i < comments.size(); i++) {
            for(int j = 0; j < comments.size() - i; j++) {
                Comment comment00 = comments.get(i);
