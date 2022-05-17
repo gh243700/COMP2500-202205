@@ -18,10 +18,10 @@ public class Blog {
         this.user = user;
         this.posts = new ArrayList<>();
     }
-    public void registerArticle(User user, String title, String content) {
+    public void registerPost(User user, String title, String content) {
         posts.add(new Post(user, title, content));
     }
-    public ArrayList<Post> readArticles() {
+    public ArrayList<Post> readPosts() {
         for (int i = 0; i < posts.size(); i++) {
             for (int j = 0; j < posts.size() - i; j++) {
                 Post post00 = posts.get(i);
