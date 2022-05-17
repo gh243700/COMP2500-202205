@@ -14,10 +14,10 @@ public class App {
         registry.registerPostListGetter("Blog", "readArticles");
         registry.registerPostAdder("Blog", "registerArticle");
 
-        registry.registerPostTitleUpdater("Article", "changeTitle");
-        registry.registerPostBodyUpdater("Article", "changeContent");
-        registry.registerPostTagAdder("Article", "addTag");
-        registry.registerCommentAdder("Article", "registerComment");
+        registry.registerPostTitleUpdater("Post", "changeTitle");
+        registry.registerPostBodyUpdater("Post", "changeContent");
+        registry.registerPostTagAdder("Post", "addTag");
+        registry.registerCommentAdder("Post", "registerComment");
 
         registry.registerSubcommentAdder("Comment", "registerSubComment");
         registry.registerCommentUpdater("Comment", "changeComment");
@@ -28,7 +28,7 @@ public class App {
         registry.registerCommentUpvoter("Comment", "increaseUpVote");
         registry.registerCommentDownvoter("Comment", "increaseDownVote");
 
-        registry.registerCommentListGetter("Article", "readComments");
+        registry.registerCommentListGetter("Post", "readComments");
         registry.registerSubcommentListGetter("Comment", "readSubComments");
 
         registry.registerSubcommentUpvoter("Comment", "increaseUpVote");
