@@ -7,6 +7,110 @@ import java.util.ArrayList;
 public class Program {
 
     public static void main(String[] args) {
+
+        {
+            ListItem item1 = new ListItem("This is item1");
+        }
+
+        {
+            ListItem item1 = new ListItem("This is item1");
+
+            String s = item1.getText(); // s: This is item1
+        }
+
+        {
+            ListItem item1 = new ListItem("This is item1");
+            String s = item1.getText(); // s: This is item1
+
+            item1.setText("This is updated item1");
+
+            s = item1.getText(); // s: This is updated item1
+        }
+
+        {
+            ListItem item1 = new ListItem("This is item1");
+
+            char c = item1.getBulletStyle(); // c: *
+        }
+
+        {
+            ListItem item1 = new ListItem("This is item1");
+
+            item1.addSublistItem(new ListItem("This is sublist item1"));
+        }
+
+        {
+            ListItem item1 = new ListItem("This is item1");
+
+            item1.addSublistItem(new ListItem("This is sublist item1"));
+
+            ListItem sublistItem1 = item1.getSublistItem(0);
+            String s = sublistItem1.getText(); // s: This is sublist item1
+        }
+        {
+            ListItem item1 = new ListItem("This is item1");
+            ListItem sublistItem1 = new ListItem("This is sublist item1");
+            ListItem subSublistItem1 = new ListItem("This is sub-sublist item1");
+            ListItem subSublistItem2 = new ListItem("This is sub-sublist item2");
+
+            sublistItem1.addSublistItem(subSublistItem1);
+            sublistItem1.addSublistItem(subSublistItem2);
+            item1.addSublistItem(sublistItem1);
+
+            String s = item1.toString();
+// s:
+            /*
+             * This is item1
+             * This is sublist item1
+             * This is sub-sublist item1
+             * This is sub-sublist item2
+
+             */
+        }
+
+        {
+            ListItem item1 = new ListItem("This is item1", '1');
+            ListItem item2 = new ListItem("This is item2", '2');
+
+            item1.toString();
+/*
+1 This is item1
+
+*/
+
+            item2.toString();
+/*
+2 This is item2
+
+*/
+        }
+
+        {
+
+            ListItem item = new ListItem("This is item");
+
+            item.addSublistItem(new ListItem("This is sublist item1"));
+            item.addSublistItem(new ListItem("This is sublist item2"));
+
+            item.toString();
+            /*
+             * This is item
+             * This is sublist item1
+             * This is sublist item2
+
+             */
+
+            item.removeSublistItem(0);
+
+            item.toString();
+            /*
+             * This is item
+             * This is sublist item2
+
+             */
+        }
+
+
         ArrayList<ListItem> list = new ArrayList<>();
 
         ListItem listItem1 = new ListItem("My first item");

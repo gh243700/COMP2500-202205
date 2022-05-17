@@ -32,8 +32,8 @@ public class ListItem {
         return bulletStyle;
     }
 
-    public ArrayList<ListItem> getSublistItem() {
-        return sublistItems;
+    public ListItem getSublistItem(int index) {
+        return sublistItems.get(index);
     }
 
     public void addSublistItem(ListItem sublistItem) {
@@ -43,7 +43,7 @@ public class ListItem {
     public void removeSublistItem(int index) {
         sublistItems.remove(index);
     }
-    
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%c %s\r\n", bulletStyle, text));
@@ -60,8 +60,12 @@ public class ListItem {
         for (int i = 0; i < sublistItems.size(); i++) {
             ListItem listItem = sublistItems.get(i);
             builder.append(String.format("%s%c %s\r\n", tab, listItem.getBulletStyle() , listItem.getText()));
-            getSublistRecursive(listItem.getSublistItem(), builder, depth + 1);
+            getSublistRecursive(listItem.getSublistItems(), builder, depth + 1);
         }
+    }
+
+    private ArrayList<ListItem> getSublistItems() {
+        return sublistItems;
     }
 
 }
