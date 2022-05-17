@@ -10,7 +10,6 @@ public class Post {
     private OffsetDateTime createdAt;
     private OffsetDateTime modifiedAt;
     private ArrayList<Comment> comments;
-
     public Post(User author, String title, String content) {
         this.author = author;
         this.title = title;
@@ -20,6 +19,16 @@ public class Post {
         this.modifiedAt = OffsetDateTime.now();
         this.comments = new ArrayList<>();
     }
+
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
     public boolean changeTitle(String title, User user) {
         if (!user.equals(this.author)) {
             return false;
@@ -76,11 +85,9 @@ public class Post {
 
          return false;
     }
-
     public boolean hasSameAuthor(User author) {
         return this.author.equals(author);
     }
-
     public void registerComment(Comment comment) {
         comments.add(comment);
     }

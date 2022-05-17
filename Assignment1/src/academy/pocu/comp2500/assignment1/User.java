@@ -10,7 +10,7 @@ public class User {
     public User(String userId) {
         this.userId = userId;
     }
-    
+
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
