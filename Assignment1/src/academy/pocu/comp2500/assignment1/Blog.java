@@ -1,22 +1,23 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 
 public class Blog {
     private User user;
     private ArrayList<Post> posts;
-    private User filter_author;
+    private User filterAuthorOrNull;
     private ArrayList<String> filter_tags;
     private SortingType filter_sortingType = SortingType.SORT_BY_CREATED_DESC;
 
     public User getUser() {
         return user;
     }
+
     public Blog(User user) {
         this.user = user;
         this.posts = new ArrayList<>();
+        this.filter_tags = new ArrayList<>();
     }
 
     public ArrayList<String> getFilter_tags() {
@@ -27,11 +28,9 @@ public class Blog {
         return filter_sortingType;
     }
 
-    public User getFilter_author() {
-        return filter_author;
+    public User getFilterAuthorOrNull() {
+        return filterAuthorOrNull;
     }
-
-
 
     public void registerPost(Post post) {
         posts.add(post);
@@ -71,11 +70,11 @@ public class Blog {
 
         ArrayList<Post> result = null;
 
-        if (filter_tags != null || filter_author != null) {
+        if (filter_tags != null || filterAuthorOrNull != null) {
             result = new ArrayList<>();
             for (int i = 0; i < posts.size(); i++) {
                 Post post = posts.get(i);
-                if(post.hasTag(filter_tags) || post.getAuthor().equals(filter_author)) {
+                if(post.hasTag(filter_tags) || post.getAuthor().equals(filterAuthorOrNull)) {
                     result.add(post);
                 }
             }
@@ -91,7 +90,7 @@ public class Blog {
     }
 
     public void authorFilterSetter(User author) {
-        filter_author = author;
+        filterAuthorOrNull = author;
     }
 
     public void orderFilterSetter(SortingType sortingType) {
