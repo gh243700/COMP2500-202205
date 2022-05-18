@@ -64,8 +64,14 @@ public class Post {
         return comments;
     }
 
-    public ArrayList<ReactionType> getReactions() {
-        return reactions;
+    public int getReactions(ReactionType reactionType) {
+        int count = 0;
+        for(int i = 0; i < reactions.size(); i++) {
+            if (reactions.get(i) == reactionType) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public boolean changeTitle(String title, User user) {
