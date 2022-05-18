@@ -23,7 +23,6 @@ public class Program {
         blog01.registerPost(post02);
         blog01.registerPost(post03);
 
-        blog01.authorFilterSetter(user02);
 
         ArrayList<Post> list = blog01.getPosts();
 

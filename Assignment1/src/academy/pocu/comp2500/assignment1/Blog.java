@@ -54,7 +54,7 @@ public class Blog {
 
         ArrayList<Post> result = null;
 
-        if (filter_tags.size() <= 0 || filterAuthorOrNull != null) {
+        if (filter_tags.size() > 0 || filterAuthorOrNull != null) {
             result = new ArrayList<>();
             for (int i = 0; i < posts.size(); i++) {
                 Post post = posts.get(i);
