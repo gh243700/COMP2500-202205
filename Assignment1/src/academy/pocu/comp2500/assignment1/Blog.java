@@ -62,10 +62,8 @@ public class Blog {
                     if(post.hasTag(filter_tags) && post.getAuthor().isSame(filterAuthorOrNull)) {
                         result.add(post);
                     }
-                } else {
-                    if(post.hasTag(filter_tags) || post.getAuthor().isSame(filterAuthorOrNull)) {
-                        result.add(post);
-                    }
+                } else if(post.hasTag(filter_tags) || post.getAuthor().isSame(filterAuthorOrNull)) {
+                    result.add(post);
                 }
             }
         } else {
