@@ -10,24 +10,17 @@ public class Post {
     private OffsetDateTime createdAt;
     private OffsetDateTime modifiedAt;
     private ArrayList<Comment> comments;
+
+    private ArrayList<Reaction> reactions;
     public Post(User author, String title, String content) {
         this.author = author;
         this.title = title;
         this.content = content;
         this.tags = new ArrayList<>();
         this.createdAt = OffsetDateTime.now();
-        /*int year, int month, int dayOfMonth,
-            int hour, int minute, int second, int nanoOfSecond, ZoneOffset offset*/
-        this.modifiedAt = OffsetDateTime.of(
-                createdAt.getYear(),
-                createdAt.getMonthValue(),
-                createdAt.getDayOfMonth(),
-                createdAt.getHour(),
-                createdAt.getMinute(),
-                createdAt.getSecond(),
-                createdAt.getNano(),
-                createdAt.getOffset());
+        this.modifiedAt = createdAt;
         this.comments = new ArrayList<>();
+        this.reactions = new ArrayList<>();
     }
     public String getTitle() {
         return title;
@@ -71,6 +64,10 @@ public class Post {
         return comments;
     }
 
+    public ArrayList<Reaction> getReactions() {
+        return reactions;
+    }
+
     public boolean changeTitle(String title, User user) {
         if (!user.isSame(this.author)) {
             return false;
@@ -92,6 +89,9 @@ public class Post {
     }
 
     public void addTag(String tag) {
+        if(tags.contains(tag)) {
+            return;
+        }
         tags.add(tag);
     }
 
@@ -110,5 +110,40 @@ public class Post {
     public void registerComment(Comment comment) {
         comments.add(comment);
     }
+
+
+    public boolean registerReaction(Reaction reaction) {
+        for (int i = 0; i < reactions.size(); i++) {
+            Reaction reaction0 = reactions.get(i);
+            if (reaction0.getUser().isSame(reaction.getUser())) {
+                if (reaction0.getType() == reaction.getType()) {
+                    return false;
+                }
+                else {
+                    reactions.add(reaction);
+                    return true;
+                }
+            }
+        }
+
+        reactions.add(reaction);
+        return true;
+    }
+
+
+    public boolean removeReaction(Reaction reaction) {
+        for (int i = 0; i < reactions.size(); i++) {
+            Reaction reaction0 = reactions.get(i);
+            if (reaction0.getType() == reaction.getType() && reaction.getUser().isSame(reaction0.getUser())) {
+                reactions.remove(reaction0);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
 
 }

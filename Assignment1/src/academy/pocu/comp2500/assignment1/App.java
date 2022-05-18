@@ -23,8 +23,8 @@ public class App {
         registry.registerCommentUpdater("Comment", "changeComment");
         registry.registerSubcommentUpdater("Comment", "changeComment");
 
-        registry.registerReactionAdder("Comment" ,"registerEmoji");
-        registry.registerReactionRemover("Comment", "removeEmoji");
+        registry.registerReactionAdder("Post" ,"registerReaction");
+        registry.registerReactionRemover("Post", "removeReaction");
         registry.registerCommentUpvoter("Comment", "increaseUpVote");
         registry.registerCommentDownvoter("Comment", "increaseDownVote");
 
