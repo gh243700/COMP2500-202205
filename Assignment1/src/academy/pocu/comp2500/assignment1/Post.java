@@ -64,7 +64,7 @@ public class Post {
         return comments;
     }
 
-    public int getReactions(ReactionType reactionType) {
+    public int getReaction(ReactionType reactionType) {
         int count = 0;
         for(int i = 0; i < reactions.size(); i++) {
             if (reactions.get(i) == reactionType) {
