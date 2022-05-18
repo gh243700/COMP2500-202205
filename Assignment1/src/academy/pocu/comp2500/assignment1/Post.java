@@ -19,8 +19,46 @@ public class Post {
         this.modifiedAt = OffsetDateTime.now();
         this.comments = new ArrayList<>();
     }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
     public ArrayList<String> getTags() {
         return tags;
+    }
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public OffsetDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public ArrayList<Comment> getComments() {
+        for (int i = 0; i < comments.size(); i++) {
+            for(int j = 0; j < comments.size() - i; j++) {
+                Comment comment00 = comments.get(i);
+                Comment comment01 = comments.get(j + i);
+                if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
+                    comments.remove(i);
+                    comments.add(i, comment01);
+                    comments.remove(j + i);
+                    comments.add(j + i, comment00);
+                }
+            }
+
+        }
+
+        return comments;
     }
 
     public boolean changeTitle(String title, User user) {
@@ -32,47 +70,26 @@ public class Post {
         this.title = title;
         return true;
     }
-    public User getAuthor() {
-        return author;
-    }
-    public String getTitle() {
-        return title;
-    }
 
     public boolean changeContent(String content, User user) {
         if (!user.isSame(this.author)) {
             return false;
         }
 
-
         modifiedAt = OffsetDateTime.now();
         this.content = content;
         return true;
-    }
-
-    public String getContent() {
-        return content;
     }
 
     public void addTag(String tag) {
         tags.add(tag);
     }
 
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public boolean hasTag(ArrayList<String> tags) {
 
-    public OffsetDateTime getModifiedAt() {
-        return modifiedAt;
-    }
-    public boolean hasTag(ArrayList<String> tagsOrNull) {
-        if (tagsOrNull == null) {
-            return false;
-        }
-
-         for(int i = 0; i < tags.size(); i++) {
+         for(int i = 0; i < this.tags.size(); i++) {
              String t = this.tags.get(i);
-             if(tagsOrNull.contains(t)) {
+             if(tags.contains(t)) {
                  return true;
              }
          }
@@ -84,22 +101,6 @@ public class Post {
         comments.add(comment);
     }
 
-    public ArrayList<Comment> getComments() {
-       for (int i = 0; i < comments.size(); i++) {
-           for(int j = 0; j < comments.size() - i; j++) {
-               Comment comment00 = comments.get(i);
-               Comment comment01 = comments.get(j + i);
-               if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
-                   comments.remove(i);
-                   comments.add(i, comment01);
-                   comments.remove(j + i);
-                   comments.add(j + i, comment00);
-               }
-           }
 
-       }
-
-        return comments;
-    }
 
 }

@@ -10,30 +10,14 @@ public class Blog {
     private ArrayList<String> filter_tags;
     private SortingType filter_sortingType = SortingType.SORT_BY_CREATED_DESC;
 
-    public User getUser() {
-        return user;
-    }
-
     public Blog(User user) {
         this.user = user;
         this.posts = new ArrayList<>();
         this.filter_tags = new ArrayList<>();
     }
 
-    public ArrayList<String> getFilter_tags() {
-        return filter_tags;
-    }
-
-    public SortingType getFilter_sortingType() {
-        return filter_sortingType;
-    }
-
-    public User getFilterAuthorOrNull() {
-        return filterAuthorOrNull;
-    }
-
-    public void registerPost(Post post) {
-        posts.add(post);
+    public User getUser() {
+        return user;
     }
 
     public ArrayList<Post> getPosts() {
@@ -70,7 +54,7 @@ public class Blog {
 
         ArrayList<Post> result = null;
 
-        if (filter_tags != null || filterAuthorOrNull != null) {
+        if (filter_tags.size() <= 0 || filterAuthorOrNull != null) {
             result = new ArrayList<>();
             for (int i = 0; i < posts.size(); i++) {
                 Post post = posts.get(i);
@@ -85,14 +69,27 @@ public class Blog {
         return result;
     }
 
+    public User getFilterAuthorOrNull() {
+        return filterAuthorOrNull;
+    }
+
+    public ArrayList<String> getFilter_tags() {
+        return filter_tags;
+    }
+
+    public SortingType getFilter_sortingType() {
+        return filter_sortingType;
+    }
+
+    public void registerPost(Post post) {
+        posts.add(post);
+    }
     public void tagsFilterSetter(ArrayList<String> tags) {
         filter_tags = tags;
     }
-
     public void authorFilterSetter(User author) {
         filterAuthorOrNull = author;
     }
-
     public void orderFilterSetter(SortingType sortingType) {
         this.filter_sortingType = sortingType;
     }

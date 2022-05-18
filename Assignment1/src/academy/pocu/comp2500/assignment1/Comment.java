@@ -8,6 +8,7 @@ public class Comment {
     private int upVote;
     private int downVote;
     private ArrayList<Comment> subComments;
+
     private ArrayList<Emoji> emojis;
 
     public Comment(User user, String text) {
@@ -17,12 +18,12 @@ public class Comment {
         this.emojis = new ArrayList<>();
     }
 
-    public String getText() {
-        return text;
+    public User getUser() {
+        return user;
     }
 
-    public ArrayList<Emoji> getEmojis() {
-        return emojis;
+    public String getText() {
+        return text;
     }
 
     public int getUpVote() {
@@ -31,6 +32,24 @@ public class Comment {
 
     public int getDownVote() {
         return downVote;
+    }
+
+    public ArrayList<Comment> getSubComments() {
+        for (int i = 0; i < subComments.size(); i++) {
+            for(int j = 0; j < subComments.size() - i; j++) {
+                Comment comment00 = subComments.get(i);
+                Comment comment01 = subComments.get(j + i);
+                if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
+                    subComments.remove(i);
+                    subComments.add(i, comment01);
+                    subComments.remove(j + i);
+                    subComments.add(j + i, comment00);
+                }
+            }
+
+        }
+
+        return subComments;
     }
 
     public void increaseUpVote(){
@@ -45,6 +64,10 @@ public class Comment {
         subComments.add(comment);
     }
 
+    public ArrayList<Emoji> getEmojis() {
+        return emojis;
+    }
+
     public boolean changeComment(User user, String text) {
         if (!this.user.isSame(user)) {
             return false;
@@ -54,9 +77,6 @@ public class Comment {
         return true;
     }
 
-    public User getUser() {
-        return user;
-    }
 
     public boolean registerEmoji(Emoji emoji) {
         for (int i = 0; i < emojis.size(); i++) {
@@ -75,6 +95,7 @@ public class Comment {
         emojis.add(emoji);
         return true;
     }
+
     public boolean removeEmoji(Emoji emoji) {
         for (int i = 0; i < emojis.size(); i++) {
             Emoji emoji0 = emojis.get(i);
@@ -86,22 +107,6 @@ public class Comment {
 
         return false;
     }
-    public ArrayList<Comment> getSubComments() {
-        for (int i = 0; i < subComments.size(); i++) {
-            for(int j = 0; j < subComments.size() - i; j++) {
-                Comment comment00 = subComments.get(i);
-                Comment comment01 = subComments.get(j + i);
-                if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
-                    subComments.remove(i);
-                    subComments.add(i, comment01);
-                    subComments.remove(j + i);
-                    subComments.add(j + i, comment00);
-                }
-            }
 
-        }
-
-        return subComments;
-    }
 
 }
