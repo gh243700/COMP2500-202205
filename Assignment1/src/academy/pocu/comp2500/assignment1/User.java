@@ -10,8 +10,13 @@ public class User {
         this.userId = userId;
     }
 
-    public boolean isSame(User user) {
-        return userId.equals(user.getUserId());
+    public boolean isSame(User userOrNull) {
+        if (userOrNull == null) {
+            return false;
+        }
+
+        System.out.printf("this.userId : %s && userId : %s\n", this.getUserId(), userOrNull.getUserId());
+        return userId.equals(userOrNull.getUserId());
     }
 
 }

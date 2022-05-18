@@ -16,28 +16,16 @@ public class Program {
         Blog blog01 = new Blog(user01);
 
         Post post01 = new Post(user01, "title01", "content 01");
+        Post post02 = new Post(user02, "title02", "content 02");
+        Post post03 = new Post(user01, "title03", "content 03");
 
         blog01.registerPost(post01);
+        blog01.registerPost(post02);
+        blog01.registerPost(post03);
 
-        Comment comment01 = new Comment(user02, "comment01");
-        Comment comment02 = new Comment(user02, "comment02");
-        Comment comment03 = new Comment(user02, "comment03");
+        blog01.authorFilterSetter(user02);
 
-        post01.registerComment(comment01);
-        post01.registerComment(comment02);
-        post01.registerComment(comment03);
-
-        comment01.increaseUpVote();
-        comment01.increaseUpVote();
-        comment01.increaseUpVote();
-
-        comment03.increaseUpVote();
-
-        ArrayList<Comment> comments = post01.getComments();
-
-
-
-
+        ArrayList<Post> list = blog01.getPosts();
 
 
         System.out.printf("fin\n");
