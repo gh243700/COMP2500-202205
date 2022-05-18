@@ -15,7 +15,6 @@ public class User {
             return false;
         }
 
-        System.out.printf("this.userId : %s && userId : %s\n", this.getUserId(), userOrNull.getUserId());
         return userId.equals(userOrNull.getUserId());
     }
 

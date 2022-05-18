@@ -58,8 +58,14 @@ public class Blog {
             result = new ArrayList<>();
             for (int i = 0; i < posts.size(); i++) {
                 Post post = posts.get(i);
-                if(post.hasTag(filter_tags) || post.getAuthor().isSame(filterAuthorOrNull)) {
-                    result.add(post);
+                if (filter_tags.size() > 0 && filterAuthorOrNull != null) {
+                    if(post.hasTag(filter_tags) && post.getAuthor().isSame(filterAuthorOrNull)) {
+                        result.add(post);
+                    }
+                } else {
+                    if(post.hasTag(filter_tags) || post.getAuthor().isSame(filterAuthorOrNull)) {
+                        result.add(post);
+                    }
                 }
             }
         } else {
@@ -87,8 +93,8 @@ public class Blog {
     public void tagsFilterSetter(ArrayList<String> tags) {
         filter_tags = tags;
     }
-    public void authorFilterSetter(User author) {
-        filterAuthorOrNull = author;
+    public void authorFilterSetter(User authorOrNull) {
+        filterAuthorOrNull = authorOrNull;
     }
     public void orderFilterSetter(SortingType sortingType) {
         this.filter_sortingType = sortingType;

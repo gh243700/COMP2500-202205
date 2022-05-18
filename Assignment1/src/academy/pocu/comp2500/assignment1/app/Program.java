@@ -9,35 +9,48 @@ import java.util.Timer;
 
 public class Program {
 
-    public static void main(String[] args) throws  Exception{
+    public static void main(String[] args) {
 	    // write your code here
-        User user01 = new User("123");
-        User user02 = new User("1234");
+        User user01 = new User("user01");
 
-        Blog blog01 = new Blog(user01);
+        User a1 = new User("a1");
+        User a2 = new User("a2");
 
-        Post post01 = new Post(user01, "title01", "content 01");
-        Thread.sleep(2000);
-        Post post02 = new Post(user02, "title02", "content 02");
-        Thread.sleep(2000);
-        Post post03 = new Post(user01, "title03", "content 03");
-        Thread.sleep(2000);
+        Blog blog = new Blog(user01);
 
-        post03.addTag("tag1");
+        Post p1 = new Post(a1,"p1", "body");
+        Post p2 = new Post(a1,"p2", "body");
+        Post p3 = new Post(a2,"p3", "body");
+        Post p4 = new Post(a2,"p4", "body");
 
-        blog01.registerPost(post02);
-        blog01.registerPost(post01);
-        blog01.registerPost(post03);
+        p1.addTag("t1");
+        p2.addTag("t2");
+        p3.addTag("t1");
+        p4.addTag("t2");
 
-        blog01.authorFilterSetter(user02);
+        blog.registerPost(p1);
+        blog.registerPost(p2);
+        blog.registerPost(p3);
+        blog.registerPost(p4);
 
+        ArrayList tags = new ArrayList();
+        tags.add("t1");
+        blog.tagsFilterSetter(tags);
 
+        ArrayList<Post> list = blog.getPosts();
 
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("tag1");
-        blog01.tagsFilterSetter(tags);
+        blog.tagsFilterSetter(new ArrayList<>());
 
-        ArrayList<Post> list = blog01.getPosts();
+        blog.authorFilterSetter(a1);
+
+        list = blog.getPosts();
+
+        blog.authorFilterSetter(null);
+
+        blog.tagsFilterSetter(tags);
+        blog.authorFilterSetter(a2);
+        list = blog.getPosts();
+
 
         System.out.printf("fin\n");
 
