@@ -18,10 +18,26 @@ public class Blog {
         this.user = user;
         this.posts = new ArrayList<>();
     }
+
+    public ArrayList<String> getFilter_tags() {
+        return filter_tags;
+    }
+
+    public SortingType getFilter_sortingType() {
+        return filter_sortingType;
+    }
+
+    public User getFilter_author() {
+        return filter_author;
+    }
+
+
+
     public void registerPost(Post post) {
         posts.add(post);
     }
-    public ArrayList<Post> readPosts() {
+
+    public ArrayList<Post> getPosts() {
         for (int i = 0; i < posts.size(); i++) {
             for (int j = 0; j < posts.size() - i; j++) {
                 Post post00 = posts.get(i);
