@@ -60,7 +60,6 @@ public class Blog {
                 Post post = posts.get(i);
                 if(post.hasTag(filter_tags) || post.getAuthor().isSame(filterAuthorOrNull)) {
                     result.add(post);
-                    System.out.printf("ssss\n");
                 }
             }
         } else {

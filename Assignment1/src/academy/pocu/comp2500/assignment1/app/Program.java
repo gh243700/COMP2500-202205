@@ -23,13 +23,21 @@ public class Program {
         Post post03 = new Post(user01, "title03", "content 03");
         Thread.sleep(2000);
 
+        post03.addTag("tag1");
+
         blog01.registerPost(post02);
         blog01.registerPost(post01);
         blog01.registerPost(post03);
 
+        blog01.authorFilterSetter(user02);
+
+
+
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("tag1");
+        blog01.tagsFilterSetter(tags);
 
         ArrayList<Post> list = blog01.getPosts();
-
 
         System.out.printf("fin\n");
 

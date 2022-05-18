@@ -103,10 +103,13 @@ public class Post {
 
     public boolean hasTag(ArrayList<String> tags) {
 
-         for(int i = 0; i < this.tags.size(); i++) {
-             String t = this.tags.get(i);
-             if(tags.contains(t)) {
-                 return true;
+         for (int i = 0; i < tags.size(); i++) {
+             String t0 = tags.get(i);
+             for (int j = 0; j < this.tags.size(); j++) {
+                 String t1 = this.tags.get(j);
+                 if (t0.equals(t1)) {
+                     return true;
+                 }
              }
          }
 
