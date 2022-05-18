@@ -18,6 +18,14 @@ public class Comment {
         this.emojis = new ArrayList<>();
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public ArrayList<Emoji> getEmojis() {
+        return emojis;
+    }
+
     public int getUpVote() {
         return upVote;
     }
@@ -80,7 +88,7 @@ public class Comment {
 
 
 
-    public ArrayList<Comment> readSubComments() {
+    public ArrayList<Comment> getSubComments() {
         for (int i = 0; i < subComments.size(); i++) {
             for(int j = 0; j < subComments.size() - i; j++) {
                 Comment comment00 = subComments.get(i);
