@@ -15,7 +15,7 @@ public class Program {
 
         Blog blog01 = new Blog(user01);
 
-        Post post01 = new Post(user01, "title01", "content 01", OffsetDateTime.of(2020, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC));
+        Post post01 = new Post(user01, "title01", "content 01");
 
         blog01.registerPost(post01);
 
@@ -33,7 +33,7 @@ public class Program {
 
         comment03.increaseUpVote();
 
-        ArrayList<Comment> comments = post01.readComments();
+        ArrayList<Comment> comments = post01.getComments();
 
 
 

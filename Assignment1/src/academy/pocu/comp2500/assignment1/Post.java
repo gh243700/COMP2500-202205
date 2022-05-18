@@ -79,9 +79,7 @@ public class Post {
 
          return false;
     }
-    public boolean hasSameAuthor(User author) {
-        return this.author.equals(author);
-    }
+
     public void registerComment(Comment comment) {
         comments.add(comment);
     }

@@ -10,6 +10,7 @@ public class Blog {
     private User filter_author;
     private ArrayList<String> filter_tags;
     private SortingType filter_sortingType = SortingType.SORT_BY_CREATED_DESC;
+
     public User getUser() {
         return user;
     }
@@ -58,7 +59,7 @@ public class Blog {
             result = new ArrayList<>();
             for (int i = 0; i < posts.size(); i++) {
                 Post post = posts.get(i);
-                if(post.hasTag(filter_tags) || post.hasSameAuthor(filter_author)) {
+                if(post.hasTag(filter_tags) || post.getAuthor().equals(filter_author)) {
                     result.add(post);
                 }
             }
