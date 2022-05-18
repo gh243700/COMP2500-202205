@@ -19,8 +19,6 @@ public class Post {
         this.modifiedAt = OffsetDateTime.now();
         this.comments = new ArrayList<>();
     }
-
-
     public ArrayList<String> getTags() {
         return tags;
     }
