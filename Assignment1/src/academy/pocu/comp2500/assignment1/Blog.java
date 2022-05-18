@@ -74,7 +74,7 @@ public class Blog {
             result = new ArrayList<>();
             for (int i = 0; i < posts.size(); i++) {
                 Post post = posts.get(i);
-                if(post.hasTag(filter_tags) || post.getAuthor().equals(filterAuthorOrNull)) {
+                if(post.hasTag(filter_tags) || post.getAuthor().isSame(filterAuthorOrNull)) {
                     result.add(post);
                 }
             }

@@ -46,7 +46,7 @@ public class Comment {
     }
 
     public boolean changeComment(User user, String text) {
-        if (!this.user.equals(user)) {
+        if (!this.user.isSame(user)) {
             return false;
         }
 
@@ -61,7 +61,7 @@ public class Comment {
     public boolean registerEmoji(Emoji emoji) {
         for (int i = 0; i < emojis.size(); i++) {
             Emoji emoji0 = emojis.get(i);
-            if (emoji0.getUser().equals(emoji.getUser())) {
+            if (emoji0.getUser().isSame(emoji.getUser())) {
                 if (emoji0.getType() == emoji.getType()) {
                     return false;
                 }
@@ -78,7 +78,7 @@ public class Comment {
     public boolean removeEmoji(Emoji emoji) {
         for (int i = 0; i < emojis.size(); i++) {
             Emoji emoji0 = emojis.get(i);
-            if (emoji0.getType() == emoji.getType() && emoji.getUser().equals(emoji0.getUser())) {
+            if (emoji0.getType() == emoji.getType() && emoji.getUser().isSame(emoji0.getUser())) {
                 emojis.remove(emoji0);
                 return true;
             }

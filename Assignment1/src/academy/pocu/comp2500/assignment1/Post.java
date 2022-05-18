@@ -24,7 +24,7 @@ public class Post {
     }
 
     public boolean changeTitle(String title, User user) {
-        if (!user.equals(this.author)) {
+        if (!user.isSame(this.author)) {
             return false;
         }
 
@@ -40,7 +40,7 @@ public class Post {
     }
 
     public boolean changeContent(String content, User user) {
-        if (!user.equals(this.author)) {
+        if (!user.isSame(this.author)) {
             return false;
         }
 
