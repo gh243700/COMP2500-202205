@@ -5,10 +5,11 @@ import academy.pocu.comp2500.assignment1.*;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class Program {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws  Exception{
 	    // write your code here
         User user01 = new User("123");
         User user02 = new User("1234");
@@ -16,11 +17,14 @@ public class Program {
         Blog blog01 = new Blog(user01);
 
         Post post01 = new Post(user01, "title01", "content 01");
+        Thread.sleep(2000);
         Post post02 = new Post(user02, "title02", "content 02");
+        Thread.sleep(2000);
         Post post03 = new Post(user01, "title03", "content 03");
+        Thread.sleep(2000);
 
-        blog01.registerPost(post01);
         blog01.registerPost(post02);
+        blog01.registerPost(post01);
         blog01.registerPost(post03);
 
 

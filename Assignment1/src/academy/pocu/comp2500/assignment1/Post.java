@@ -16,7 +16,17 @@ public class Post {
         this.content = content;
         this.tags = new ArrayList<>();
         this.createdAt = OffsetDateTime.now();
-        this.modifiedAt = OffsetDateTime.now();
+        /*int year, int month, int dayOfMonth,
+            int hour, int minute, int second, int nanoOfSecond, ZoneOffset offset*/
+        this.modifiedAt = OffsetDateTime.of(
+                createdAt.getYear(),
+                createdAt.getMonthValue(),
+                createdAt.getDayOfMonth(),
+                createdAt.getHour(),
+                createdAt.getMinute(),
+                createdAt.getSecond(),
+                createdAt.getNano(),
+                createdAt.getOffset());
         this.comments = new ArrayList<>();
     }
     public String getTitle() {
@@ -100,7 +110,5 @@ public class Post {
     public void registerComment(Comment comment) {
         comments.add(comment);
     }
-
-
 
 }
