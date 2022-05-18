@@ -11,7 +11,7 @@ public class Post {
     private OffsetDateTime modifiedAt;
     private ArrayList<Comment> comments;
 
-    private ArrayList<Reaction> reactions;
+    private ArrayList<ReactionType> reactions;
     public Post(User author, String title, String content) {
         this.author = author;
         this.title = title;
@@ -64,7 +64,7 @@ public class Post {
         return comments;
     }
 
-    public ArrayList<Reaction> getReactions() {
+    public ArrayList<ReactionType> getReactions() {
         return reactions;
     }
 
@@ -112,35 +112,16 @@ public class Post {
     }
 
 
-    public boolean registerReaction(Reaction reaction) {
-        for (int i = 0; i < reactions.size(); i++) {
-            Reaction reaction0 = reactions.get(i);
-            if (reaction0.getUser().isSame(reaction.getUser())) {
-                if (reaction0.getType() == reaction.getType()) {
-                    return false;
-                }
-                else {
-                    reactions.add(reaction);
-                    return true;
-                }
-            }
-        }
-
+    public void registerReaction(ReactionType reaction) {
         reactions.add(reaction);
-        return true;
     }
 
 
-    public boolean removeReaction(Reaction reaction) {
-        for (int i = 0; i < reactions.size(); i++) {
-            Reaction reaction0 = reactions.get(i);
-            if (reaction0.getType() == reaction.getType() && reaction.getUser().isSame(reaction0.getUser())) {
-                reactions.remove(reaction0);
-                return true;
-            }
+    public void removeReaction(ReactionType reaction) {
+        if (reactions.contains(reaction)) {
+            reactions.remove(reaction);
         }
 
-        return false;
     }
 
 
