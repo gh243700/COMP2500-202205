@@ -35,7 +35,7 @@ public class Comment {
 
     public ArrayList<Comment> getSubComments() {
         for (int i = 0; i < subComments.size(); i++) {
-            for(int j = 0; j < subComments.size() - i; j++) {
+            for (int j = 0; j < subComments.size() - i; j++) {
                 Comment comment00 = subComments.get(i);
                 Comment comment01 = subComments.get(j + i);
                 if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
@@ -50,12 +50,11 @@ public class Comment {
 
         return subComments;
     }
-
-    public void increaseUpVote(){
+    public void increaseUpVote() {
         upVote++;
     }
 
-    public void increaseDownVote(){
+    public void increaseDownVote() {
         downVote++;
     }
 

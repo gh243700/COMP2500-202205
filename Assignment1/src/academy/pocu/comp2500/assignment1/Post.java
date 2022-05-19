@@ -48,7 +48,7 @@ public class Post {
 
     public ArrayList<Comment> getComments() {
         for (int i = 0; i < comments.size(); i++) {
-            for(int j = 0; j < comments.size() - i; j++) {
+            for (int j = 0; j < comments.size() - i; j++) {
                 Comment comment00 = comments.get(i);
                 Comment comment01 = comments.get(j + i);
                 if (comment00.getUpVote() - comment00.getDownVote() < comment01.getUpVote() - comment01.getDownVote()) {
@@ -66,7 +66,7 @@ public class Post {
 
     public int getReactions(Reaction reactionType) {
         int count = 0;
-        for(int i = 0; i < reactions.size(); i++) {
+        for (int i = 0; i < reactions.size(); i++) {
             if (reactions.get(i) == reactionType) {
                 count++;
             }
@@ -95,25 +95,24 @@ public class Post {
     }
 
     public void addTag(String tag) {
-        if(tags.contains(tag)) {
+        if (tags.contains(tag)) {
             return;
         }
         tags.add(tag);
     }
 
     public boolean hasTag(ArrayList<String> tags) {
+        for (int i = 0; i < tags.size(); i++) {
+            String t0 = tags.get(i);
+            for (int j = 0; j < this.tags.size(); j++) {
+                String t1 = this.tags.get(j);
+                if (t0.equals(t1)) {
+                    return true;
+                }
+            }
+        }
 
-         for (int i = 0; i < tags.size(); i++) {
-             String t0 = tags.get(i);
-             for (int j = 0; j < this.tags.size(); j++) {
-                 String t1 = this.tags.get(j);
-                 if (t0.equals(t1)) {
-                     return true;
-                 }
-             }
-         }
-
-         return false;
+        return false;
     }
 
     public void registerComment(Comment comment) {
