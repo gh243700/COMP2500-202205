@@ -23,10 +23,10 @@ public class Barbarian {
         if (hp <= 0 || this == other) {
             return;
         }
-        other.hp = Math.max(0, other.hp - Math.max(1, (int)((attack - other.defence) / 2.0)));
+        other.hp = Math.max(0, other.hp - Math.max(1, (int) ((attack - other.defence) / 2.0)));
     }
 
     public boolean isAlive() {
-        return (hp > 0) ? true : false;
+        return hp > 0;
     }
 }

@@ -2,7 +2,7 @@ package academy.pocu.comp2500.lab5;
 
 import java.util.ArrayList;
 
-public class Gladiator extends  Barbarian{
+public class Gladiator extends Barbarian {
 
     private final int MAX_MOVES = 4;
     private ArrayList<Move> moves;
@@ -43,7 +43,7 @@ public class Gladiator extends  Barbarian{
             return;
         }
 
-        other.hp = Math.max(0, other.hp - Math.max(1, (int)((attack / (double)other.defence * moves.get(moveIndex).getPower()) / 2.0)));
+        other.hp = Math.max(0, other.hp - Math.max(1, (int) ((attack / (double) other.defence * moves.get(moveIndex).getPower()) / 2.0)));
     }
 
     public void rest() {
@@ -54,8 +54,8 @@ public class Gladiator extends  Barbarian{
     }
 
     private int hasMoveAt(String name) {
-        for(int i = 0; i < moves.size(); i++) {
-            if(moves.get(i).getName().equals(name))  {
+        for (int i = 0; i < moves.size(); i++) {
+            if (moves.get(i).getName().equals(name)) {
                 return i;
             }
         }

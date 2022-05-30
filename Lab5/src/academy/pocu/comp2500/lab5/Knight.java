@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.lab5;
 
-public class Knight extends Gladiator{
+public class Knight extends Gladiator {
 
     private Pet petOrNull;
 
@@ -18,6 +18,6 @@ public class Knight extends Gladiator{
             return;
         }
 
-        other.hp = Math.max(0 ,other.hp - Math.max(1, (int)((attack + petOrNull.getAttack() - other.defence) / 2.0)));
+        other.hp = Math.max(0, other.hp - Math.max(1, (int) ((attack + petOrNull.getAttack() - other.defence) / 2.0)));
     }
 }
