@@ -13,10 +13,11 @@ public class Knight extends Gladiator{
     }
 
     public void attackTogether(Barbarian other) {
-        if (petOrNull == null) {
+
+        if (hp <= 0 || this == other || petOrNull == null) {
             return;
         }
 
-        other.hp = Math.max(0 ,other.hp - Math.max (1, (int)((getAttack() + petOrNull.getAttack() - other.getDefence()) / 2.0)));
+        other.hp = Math.max(0 ,other.hp - Math.max(1, (int)((attack + petOrNull.getAttack() - other.defence) / 2.0)));
     }
 }

@@ -32,13 +32,18 @@ public class Gladiator extends  Barbarian{
     }
 
     public void attack(String moveName, Barbarian other) {
+        if (hp <= 0 || this == other) {
+            return;
+        }
+
+
         int moveIndex = hasMoveAt(moveName);
 
         if (moveIndex == -1 || !moves.get(moveIndex).canUseMove()) {
             return;
         }
 
-        other.hp = Math.max(0, other.hp - Math.max(1, (int)((getAttack() / (double)other.getDefence() * moves.get(moveIndex).getPower()) / 2.0)));
+        other.hp = Math.max(0, other.hp - Math.max(1, (int)((attack / (double)other.defence * moves.get(moveIndex).getPower()) / 2.0)));
     }
 
     public void rest() {
