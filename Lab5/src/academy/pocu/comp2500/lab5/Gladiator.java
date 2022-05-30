@@ -13,7 +13,7 @@ public class Gladiator extends  Barbarian{
     }
 
     public boolean addMove(Move move) {
-        if (moves.size() >= MAX_MOVES || moves.contains(move)) {
+        if (moves.size() >= MAX_MOVES || hasMoveAt(move.getName()) != -1) {
             return false;
         }
 
