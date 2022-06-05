@@ -25,7 +25,7 @@ public class BusinessCard extends CustomizableProduct{
         this.paperColor = paperColor;
         switch (businessCardType) {
             case LINEN:
-                this.name = "린넨커버(Linen) 명함";
+                this.name = "Linen Business Card";
                 switch (businessCardSides) {
                     case SINGLE_SIDED:
                         this.price = 110;
@@ -36,7 +36,7 @@ public class BusinessCard extends CustomizableProduct{
                 }
                 break;
             case LAID:
-                this.name = "레이드지(Laid) 명함";
+                this.name = "Laid Business Card";
                 switch (businessCardSides) {
                     case SINGLE_SIDED:
                         this.price = 120;
@@ -47,7 +47,7 @@ public class BusinessCard extends CustomizableProduct{
                 }
                 break;
             case SMOOTH:
-                this.name = "스노우지(Smooth) 명함";
+                this.name = "Smooth Business Card";
                 switch (businessCardSides) {
                     case SINGLE_SIDED:
                         this.price = 100;

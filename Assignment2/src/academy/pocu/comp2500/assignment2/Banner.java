@@ -20,7 +20,7 @@ public class Banner extends CustomizableProduct{
         this.bannerSize = bannerSize;
         switch (bannerType) {
             case GLOSS:
-                name = "반사(Gloss) 배너";
+                name = "Gloss Banner";
                 switch (bannerSize) {
                     case SIZE_ONE:
                         width = 1000;
@@ -45,7 +45,7 @@ public class Banner extends CustomizableProduct{
                 }
                 break;
             case SCRIM:
-                name = "스크림(Scrim) 배너";
+                name = "Scrim Banner";
                 switch (bannerSize) {
                     case SIZE_ONE:
                         width = 1000;
@@ -70,7 +70,7 @@ public class Banner extends CustomizableProduct{
                 }
                 break;
             case MESH:
-                name = "메쉬(Mesh) 배너";
+                name = "Mesh Banner";
                 switch (bannerSize) {
                     case SIZE_ONE:
                         width = 1000;

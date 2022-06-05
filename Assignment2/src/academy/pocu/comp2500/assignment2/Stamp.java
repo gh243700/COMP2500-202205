@@ -3,7 +3,6 @@ package academy.pocu.comp2500.assignment2;
 public class Stamp extends Product{
     private String text;
     private StampColor stampColor;
-
     private StampSize stampSize;
     public String getText() {
         return text;
@@ -11,7 +10,6 @@ public class Stamp extends Product{
     public StampColor getStampColor() {
         return stampColor;
     }
-
     public StampSize getStampSize() {
         return stampSize;
     }
@@ -20,18 +18,16 @@ public class Stamp extends Product{
         this.stampColor = stampColor;
         this.text = text;
         this.stampSize = stampSize;
+        name = "Stamp";
         switch (stampColor) {
             case RED:
                 color = new Color(0xFF, 0x00, 0x00);
-                name = "스탬프(잉크: 빨강)";
                 break;
             case BLUE:
                 color = new Color(0x00, 0x00, 0xFF);
-                name = "스탬프(잉크: 파랑)";
                 break;
             case GREEN:
                 color = new Color(0x00, 0x80, 0x00);
-                name = "스탬프(잉크: 녹색)";
                 break;
         }
 
