@@ -3,6 +3,10 @@ package academy.pocu.comp2500.assignment2;
 public class BusinessCard extends CustomizableProduct{
     private BusinessCardSides businessCardSides;
 
+    public BusinessCardSides getBusinessCardSides() {
+        return businessCardSides;
+    }
+
     public BusinessCard(BusinessCardType businessCardType, OrientationType orientation, BusinessCardSides businessCardSides, BusinessCardColor businessCardColor, DeliveryMethod deliveryMethod) {
         super(orientation, deliveryMethod);
         switch (businessCardType) {

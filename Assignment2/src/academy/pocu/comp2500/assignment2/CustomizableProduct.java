@@ -21,12 +21,20 @@ public class CustomizableProduct extends Product {
         return orientation;
     }
 
-    public boolean addAperture(Aperture aperture) {
-        if (aperture.getX() + aperture.getLength() > length || aperture.getY() + aperture.getHeight() > height) {
+    public boolean addImageAperture(ImageAperture imageAperture) {
+        if (imageAperture.getX() + imageAperture.getLength() > length || imageAperture.getY() + imageAperture.getHeight() > height) {
             return false;
         }
         this.price += 5;
-        return apertures.add(aperture);
+        return apertures.add(imageAperture);
+    }
+
+    public boolean addTextAperture(TextAperture textAperture) {
+        if (textAperture.getX() + textAperture.getLength() > length || textAperture.getY() + textAperture.getHeight() > height) {
+            return false;
+        }
+        this.price += 5;
+        return apertures.add(textAperture);
     }
 
 }

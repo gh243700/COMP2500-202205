@@ -2,6 +2,10 @@ package academy.pocu.comp2500.assignment2;
 
 public class Stamp extends Product{
     private String text;
+
+    public String getText() {
+        return text;
+    }
     public Stamp(StampType stampType, StampSize stampSize, String text, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
         this.text = text;
