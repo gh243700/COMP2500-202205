@@ -3,7 +3,6 @@ package academy.pocu.comp2500.assignment2;
 public class Calendar extends Product{
 
     private CalendarType calendarType;
-
     public CalendarType getCalendarType() {
         return calendarType;
     }

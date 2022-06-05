@@ -6,8 +6,6 @@ public class ShoppingCart {
     private ArrayList<Product> products;
 
     private int totalPrice;
-
-
     public ArrayList<Product> getProducts() {
         return products;
     }

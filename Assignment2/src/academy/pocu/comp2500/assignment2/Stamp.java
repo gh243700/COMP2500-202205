@@ -3,27 +3,20 @@ package academy.pocu.comp2500.assignment2;
 public class Stamp extends Product{
     private String text;
 
-    private StampType stampType;
-
-    private StampSize stampSize;
+    private StampColor stampColor;
 
     public String getText() {
         return text;
     }
 
-    public StampType getStampType() {
-        return stampType;
+    public StampColor getStampColor() {
+        return stampColor;
     }
-
-    public StampSize getStampSize() {
-        return stampSize;
-    }
-    public Stamp(StampType stampType, StampSize stampSize, String text, DeliveryMethod deliveryMethod) {
+    public Stamp(StampColor stampColor, StampSize stampSize, String text, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
-        this.stampType = stampType;
-        this.stampSize = stampSize;
+        this.stampColor = stampColor;
         this.text = text;
-        switch (stampType) {
+        switch (stampColor) {
             case RED:
                 color = new Color(0xFF, 0x00, 0x00);
                 name = "스탬프(잉크: 빨강)";
