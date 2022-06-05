@@ -7,8 +7,8 @@ public class Aperture {
     public Aperture(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
-        this.width = 0;
-        this.height = 0;
+        this.width = width;
+        this.height = height;
     }
     public int getX() {
         return x;
