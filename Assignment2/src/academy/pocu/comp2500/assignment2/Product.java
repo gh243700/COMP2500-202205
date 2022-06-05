@@ -29,7 +29,7 @@ public class Product {
     public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
-    public Product(DeliveryMethod deliveryMethod) {
+    protected Product(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
 }
