@@ -1,0 +1,30 @@
+package academy.pocu.comp2500.assignment2;
+
+public class Calendar extends Product{
+    public Calendar(CalendarType calendarType, DeliveryMethod deliveryMethod) {
+        super(deliveryMethod);
+        switch (calendarType) {
+            case WALL:
+                name = "벽걸이(Wall) 달력";
+                price = 1000;
+                length = 400;
+                height = 400;
+                break;
+            case DESK:
+                name = "탁상(Desk) 달력";
+                price = 1000;
+                length = 200;
+                height = 150;
+                break;
+            case MAGNET:
+                name = "자석(Magnet) 달력";
+                price = 1500;
+                length = 100;
+                height = 200;
+                break;
+        }
+
+        color = new Color(0xFF, 0xFF, 0xFF);
+
+    }
+}
