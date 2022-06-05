@@ -5,10 +5,10 @@ public class Aperture {
     private int width;
     private int height;
     public Aperture(int x, int y, int width, int height) {
-        this.x = Math.max(0, x);
-        this.y = Math.max(0, y);
-        this.width = Math.max(0, width);
-        this.height = Math.max(0, height);
+        this.x = x;
+        this.y = y;
+        this.width = 0;
+        this.height = 0;
     }
     public int getX() {
         return x;

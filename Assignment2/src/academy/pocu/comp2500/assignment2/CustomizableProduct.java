@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CustomizableProduct extends Product {
     private ArrayList<Aperture> apertures;
     private OrientationType orientation;
-    public CustomizableProduct(OrientationType orientation, DeliveryMethod deliveryMethod) {
+    protected CustomizableProduct(OrientationType orientation, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
         apertures = new ArrayList<>();
         this.orientation = orientation;
@@ -18,9 +18,10 @@ public class CustomizableProduct extends Product {
     }
 
     public boolean addAperture(Aperture aperture) {
-        if (aperture.getWidth() == 0 || aperture.getHeight() == 0 || aperture.getX() + aperture.getWidth() > width || aperture.getY() + aperture.getHeight() > height || !apertures.add(aperture)) {
+        if (aperture.getX() < 0 || aperture.getY() < 0 || aperture.getX() + aperture.getWidth() > width || aperture.getY() + aperture.getHeight() > height) {
             return false;
         }
+        apertures.add(aperture);
         this.price += 5;
         return true;
     }
