@@ -5,17 +5,22 @@ public class Stamp extends Product{
 
     private StampColor stampColor;
 
+    private StampSize stampSize;
     public String getText() {
         return text;
     }
-
     public StampColor getStampColor() {
         return stampColor;
+    }
+
+    public StampSize getStampSize() {
+        return stampSize;
     }
     public Stamp(StampColor stampColor, StampSize stampSize, String text, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
         this.stampColor = stampColor;
         this.text = text;
+        this.stampSize = stampSize;
         switch (stampColor) {
             case RED:
                 color = new Color(0xFF, 0x00, 0x00);
