@@ -1,8 +1,15 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product{
+
+    private CalendarType calendarType;
+
+    public CalendarType getCalendarType() {
+        return calendarType;
+    }
     public Calendar(CalendarType calendarType, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
+        this.calendarType = calendarType;
         switch (calendarType) {
             case WALL:
                 name = "벽걸이(Wall) 달력";

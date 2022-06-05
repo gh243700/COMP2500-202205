@@ -6,7 +6,6 @@ public class Product {
     protected Color color;
     protected int length;
     protected int height;
-
     private DeliveryMethod deliveryMethod;
 
     public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
@@ -30,6 +29,10 @@ public class Product {
 
     public int getHeight() {
         return height;
+    }
+
+    public DeliveryMethod getDeliveryMethod() {
+        return deliveryMethod;
     }
 
     public Product(DeliveryMethod deliveryMethod) {

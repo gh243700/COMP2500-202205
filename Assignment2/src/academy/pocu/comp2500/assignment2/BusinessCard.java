@@ -3,12 +3,18 @@ package academy.pocu.comp2500.assignment2;
 public class BusinessCard extends CustomizableProduct{
     private BusinessCardSides businessCardSides;
 
+    private BusinessCardType businessCardType;
+
     public BusinessCardSides getBusinessCardSides() {
         return businessCardSides;
     }
 
+    public BusinessCardType getBusinessCardType() {
+        return businessCardType;
+    }
     public BusinessCard(BusinessCardType businessCardType, OrientationType orientation, BusinessCardSides businessCardSides, BusinessCardColor businessCardColor, DeliveryMethod deliveryMethod) {
         super(orientation, deliveryMethod);
+        this.businessCardType = businessCardType;
         switch (businessCardType) {
             case LINEN:
                 this.name = "린넨커버(Linen) 명함";

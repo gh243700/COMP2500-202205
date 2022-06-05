@@ -1,9 +1,17 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Banner extends CustomizableProduct{
-    public Banner(Color color,BannerType bannerType, BannerSize bannerSize, OrientationType orientation, DeliveryMethod deliveryMethod) {
+
+    private BannerType bannerType;
+
+    public BannerType getBannerType() {
+        return bannerType;
+    }
+
+    public Banner(Color color, BannerType bannerType, BannerSize bannerSize, OrientationType orientation, DeliveryMethod deliveryMethod) {
         super(orientation, deliveryMethod);
         this.color = color;
+        this.bannerType = bannerType;
         switch (bannerType) {
             case GLOSS:
                 name = "반사(Gloss) 배너";

@@ -12,29 +12,19 @@ public class CustomizableProduct extends Product {
         apertures = new ArrayList<>();
         this.orientation = orientation;
     }
-
     public ArrayList<Aperture> getApertures() {
         return apertures;
     }
-
     public OrientationType getOrientation() {
         return orientation;
     }
 
-    public boolean addImageAperture(ImageAperture imageAperture) {
-        if (imageAperture.getX() + imageAperture.getLength() > length || imageAperture.getY() + imageAperture.getHeight() > height) {
+    public boolean addAperture(Aperture aperture) {
+        if (aperture.getX() + aperture.getLength() > length || aperture.getY() + aperture.getHeight() > height) {
             return false;
         }
         this.price += 5;
-        return apertures.add(imageAperture);
-    }
-
-    public boolean addTextAperture(TextAperture textAperture) {
-        if (textAperture.getX() + textAperture.getLength() > length || textAperture.getY() + textAperture.getHeight() > height) {
-            return false;
-        }
-        this.price += 5;
-        return apertures.add(textAperture);
+        return apertures.add(aperture);
     }
 
 }

@@ -3,8 +3,14 @@ package academy.pocu.comp2500.assignment2;
 public class Stamp extends Product{
     private String text;
 
+    private StampType stampType;
+
     public String getText() {
         return text;
+    }
+
+    public StampType getStampType() {
+        return stampType;
     }
 
     public void setStampSize(StampSize stampSize) {
@@ -28,6 +34,7 @@ public class Stamp extends Product{
     }
     public Stamp(StampType stampType, StampSize stampSize, String text, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
+        this.stampType = stampType;
         this.text = text;
         switch (stampType) {
             case RED:
