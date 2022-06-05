@@ -70,7 +70,7 @@ public class BusinessCard extends CustomizableProduct{
                 this.color = new Color(0xFF, 0xFF, 0xFF);
                 break;
         }
-        this.length = 90;
+        this.width = 90;
         this.height = 50;
         this.businessCardSides = businessCardSides;
     }

@@ -20,7 +20,7 @@ public class CustomizableProduct extends Product {
     }
 
     public boolean addAperture(Aperture aperture) {
-        if (aperture.getX() + aperture.getLength() > length || aperture.getY() + aperture.getHeight() > height) {
+        if (aperture.getX() + aperture.getLength() > width || aperture.getY() + aperture.getHeight() > height) {
             return false;
         }
         this.price += 5;

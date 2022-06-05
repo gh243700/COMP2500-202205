@@ -14,19 +14,19 @@ public class Calendar extends Product{
             case WALL:
                 name = "벽걸이(Wall) 달력";
                 price = 1000;
-                length = 400;
+                width = 400;
                 height = 400;
                 break;
             case DESK:
                 name = "탁상(Desk) 달력";
                 price = 1000;
-                length = 200;
+                width = 200;
                 height = 150;
                 break;
             case MAGNET:
                 name = "자석(Magnet) 달력";
                 price = 1500;
-                length = 100;
+                width = 100;
                 height = 200;
                 break;
         }

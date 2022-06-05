@@ -11,10 +11,6 @@ public class Stamp extends Product{
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public StampType getStampType() {
         return stampType;
     }
@@ -44,17 +40,17 @@ public class Stamp extends Product{
 
         switch (stampSize) {
             case SIZE_ONE:
-                length = 40;
+                width = 40;
                 height = 30;
                 price = 2300;
                 break;
             case SIZE_TWO:
-                length = 50;
+                width = 50;
                 height = 20;
                 price = 2300;
                 break;
             case SIZE_THREE:
-                length = 70;
+                width = 70;
                 height = 40;
                 price = 2600;
                 break;
