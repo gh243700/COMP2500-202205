@@ -5,6 +5,8 @@ public class BusinessCard extends CustomizableProduct{
 
     private BusinessCardType businessCardType;
 
+    private BusinessCardColor businessCardColor;
+
     public BusinessCardSides getBusinessCardSides() {
         return businessCardSides;
     }
@@ -12,9 +14,15 @@ public class BusinessCard extends CustomizableProduct{
     public BusinessCardType getBusinessCardType() {
         return businessCardType;
     }
+
+    public BusinessCardColor getBusinessCardColor() {
+        return businessCardColor;
+    }
+
     public BusinessCard(BusinessCardType businessCardType, OrientationType orientation, BusinessCardSides businessCardSides, BusinessCardColor businessCardColor, DeliveryMethod deliveryMethod) {
         super(orientation, deliveryMethod);
         this.businessCardType = businessCardType;
+        this.businessCardColor = businessCardColor;
         switch (businessCardType) {
             case LINEN:
                 this.name = "린넨커버(Linen) 명함";

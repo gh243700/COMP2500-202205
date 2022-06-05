@@ -5,36 +5,27 @@ public class Stamp extends Product{
 
     private StampType stampType;
 
+    private StampSize stampSize;
+
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public StampType getStampType() {
         return stampType;
     }
 
-    public void setStampSize(StampSize stampSize) {
-        switch (stampSize) {
-            case SIZE_ONE:
-                length = 40;
-                height = 30;
-                price = 2300;
-                break;
-            case SIZE_TWO:
-                length = 50;
-                height = 20;
-                price = 2300;
-                break;
-            case SIZE_THREE:
-                length = 70;
-                height = 40;
-                price = 2600;
-                break;
-        }
+    public StampSize getStampSize() {
+        return stampSize;
     }
     public Stamp(StampType stampType, StampSize stampSize, String text, DeliveryMethod deliveryMethod) {
         super(deliveryMethod);
         this.stampType = stampType;
+        this.stampSize = stampSize;
         this.text = text;
         switch (stampType) {
             case RED:

@@ -4,14 +4,20 @@ public class Banner extends CustomizableProduct{
 
     private BannerType bannerType;
 
+    private BannerSize bannerSize;
+
     public BannerType getBannerType() {
         return bannerType;
     }
 
+    public BannerSize getBannerSize() {
+        return bannerSize;
+    }
     public Banner(Color color, BannerType bannerType, BannerSize bannerSize, OrientationType orientation, DeliveryMethod deliveryMethod) {
         super(orientation, deliveryMethod);
         this.color = color;
         this.bannerType = bannerType;
+        this.bannerSize = bannerSize;
         switch (bannerType) {
             case GLOSS:
                 name = "반사(Gloss) 배너";
