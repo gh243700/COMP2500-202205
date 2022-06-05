@@ -7,27 +7,6 @@ public class Stamp extends Product{
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void setColor(StampType stampType) {
-        switch (stampType) {
-            case RED:
-                color = new Color(0xFF, 0x00, 0x00);
-                name = "스탬프(잉크: 빨강)";
-                break;
-            case BLUE:
-                color = new Color(0x00, 0x00, 0xFF);
-                name = "스탬프(잉크: 파랑)";
-                break;
-            case GREEN:
-                color = new Color(0x00, 0x80, 0x00);
-                name = "스탬프(잉크: 녹색)";
-                break;
-        }
-    }
-
     public void setStampSize(StampSize stampSize) {
         switch (stampSize) {
             case SIZE_ONE:

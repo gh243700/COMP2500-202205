@@ -9,10 +9,9 @@ public class Product {
 
     private DeliveryMethod deliveryMethod;
 
-    public Product(DeliveryMethod deliveryMethod) {
+    public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
-
     public String getName() {
         return name;
     }
@@ -31,5 +30,9 @@ public class Product {
 
     public int getHeight() {
         return height;
+    }
+
+    public Product(DeliveryMethod deliveryMethod) {
+        this.deliveryMethod = deliveryMethod;
     }
 }
