@@ -25,11 +25,10 @@ public class Product {
     public DeliveryMethod getDeliveryMethod() {
         return deliveryMethod;
     }
-
     public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
-    protected Product(DeliveryMethod deliveryMethod) {
+    public Product(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
 }
