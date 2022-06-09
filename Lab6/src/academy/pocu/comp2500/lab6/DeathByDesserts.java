@@ -1,5 +1,4 @@
-package academy.pocu.comp2500.lab6.app;
-import java.util.ArrayList;
+package academy.pocu.comp2500.lab6;
 public class DeathByDesserts extends SetMenu{
     private static final int PRICE = 20;
     private boolean isValid;

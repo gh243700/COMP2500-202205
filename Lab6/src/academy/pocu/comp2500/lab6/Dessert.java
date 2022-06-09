@@ -1,4 +1,4 @@
-package academy.pocu.comp2500.lab6.app;
+package academy.pocu.comp2500.lab6;
 
 public enum Dessert {
     MANGO_PUDDING,

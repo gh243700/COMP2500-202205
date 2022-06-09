@@ -1,6 +1,5 @@
-package academy.pocu.comp2500.lab6.app;
+package academy.pocu.comp2500.lab6;
 
-import academy.pocu.comp2500.lab6.app.Topping;
 
 import java.util.ArrayList;
 
