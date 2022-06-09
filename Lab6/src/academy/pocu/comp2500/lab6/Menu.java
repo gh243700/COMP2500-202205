@@ -4,7 +4,7 @@ public class Menu {
     protected int price;
 
     protected Menu() {
-        
+
     }
 
     public int getPrice() {

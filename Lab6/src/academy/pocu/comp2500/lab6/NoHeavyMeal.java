@@ -14,5 +14,13 @@ public class NoHeavyMeal extends Meal {
         this.appetizers.add(appetizer1);
         this.appetizers.add(appetizer2);
     }
+/*----------------------------------------------------------------*/
+    public Dessert getDessert() {
+        return Dessert.APPLE_PIE;
+    }
+
+    public ArrayList<Appetizer> getAppetizers() {
+        return this.appetizers;
+    }
 
 }

@@ -24,5 +24,14 @@ public class ThreeCourseMeal extends Meal {
         this.appetizers.clear();
         appetizers.add(appetizer);
     }
+/*--------------------------------------------------*/
+    public Dessert getDessert() {
+        return Dessert.APPLE_PIE;
+    }
+
+    public Appetizer getAppetizer() {
+        return Appetizer.CALAMARI;
+    }
+
 
 }

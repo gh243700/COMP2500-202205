@@ -9,9 +9,9 @@ public class SetMenu extends Menu{
     protected SetMenu() {
 
     }
-
+/*
     public ArrayList<Dessert> getDesserts() {
         return this.desserts;
     }
-
+*/
 }
