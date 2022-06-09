@@ -10,7 +10,7 @@ public class ThreeCourseMeal extends Meal {
         price = PRICE;
     }
     public boolean isValid() {
-        return this.appetizers.size() != 0 && this.mainCourse != null && this.desserts.size() != 0;
+        return this.appetizers.size() != 0 && mainCourses.size() != 0 && this.desserts.size() != 0;
     }
 
     public ArrayList<MainCourse> getMainCourses() {
