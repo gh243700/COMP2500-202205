@@ -24,8 +24,4 @@ public class DeathByDesserts extends SetMenu{
         this.isValid = true;
     }
 
-    //---------------------------
-    public ArrayList<Dessert> getDesserts() {
-        return this.desserts;
-    }
 }

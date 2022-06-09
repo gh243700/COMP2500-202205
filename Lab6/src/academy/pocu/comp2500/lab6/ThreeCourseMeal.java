@@ -15,23 +15,12 @@ public class ThreeCourseMeal extends Meal {
         assert (this.mainCourse != null) : "call isValid() first!";
         return this.mainCourse;
     }
-
     public void setMainCourse(MainCourse mainCourse) {
         this.mainCourse = mainCourse;
     }
-
     public void setAppetizer(Appetizer appetizer) {
         this.appetizers.clear();
         appetizers.add(appetizer);
     }
-/*--------------------------------------------------*/
-    public Dessert getDessert() {
-        return Dessert.APPLE_PIE;
-    }
-
-    public Appetizer getAppetizer() {
-        return Appetizer.CALAMARI;
-    }
-
 
 }

@@ -12,10 +12,10 @@ public class Meal extends SetMenu{
         this.desserts.clear();
         desserts.add(dessert);
     }
-/*
+
     public ArrayList<Appetizer> getAppetizers() {
         return this.appetizers;
     }
 
- */
+
 }
