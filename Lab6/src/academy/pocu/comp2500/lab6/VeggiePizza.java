@@ -16,10 +16,6 @@ public class VeggiePizza extends Pizza{
         return this.cheeseCount == MAX_CHEESE_COUNT;
     }
 
-    public ArrayList<Topping> getToppings() {
-        return this.toppings;
-    }
-
     public boolean addMozzarellaCheese() {
         if (isValid()) {
             return false;

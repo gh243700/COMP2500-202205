@@ -18,10 +18,6 @@ public class FreeSoulPizza extends Pizza {
                 && this.isCheeseAdded;
     }
 
-    public ArrayList<Topping> getToppings() {
-        return this.toppings;
-    }
-
     public boolean addTopping(Topping topping) {
         if ((isMeat(topping) && this.meatCount >= MAX_MEAT_COUNT)
                 || (isVeggie(topping) && this.veggieCount >= MAX_VEGGIE_COUNT)

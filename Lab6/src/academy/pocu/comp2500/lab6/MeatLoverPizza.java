@@ -17,10 +17,6 @@ public class MeatLoverPizza extends Pizza {
         return this.isVeggieAdded;
     }
 
-    public ArrayList<Topping> getToppings() {
-        return this.toppings;
-    }
-
     public boolean addBlackOlives() {
         if (isValid()) {
             return false;

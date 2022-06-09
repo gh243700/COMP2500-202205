@@ -11,8 +11,6 @@ public class HousePizza extends Pizza {
         this.toppings.add(Topping.GREEN_PEPPERS);
         this.toppings.add(Topping.MOZZARELLA_CHEESE);
     }
-
-
     public boolean isValid() {
         return this.meatCount == MAX_MEAT_COUNT;
     }
