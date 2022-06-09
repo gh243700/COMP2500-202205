@@ -15,10 +15,6 @@ public class HousePizza extends Pizza {
         return this.meatCount == MAX_MEAT_COUNT;
     }
 
-    public ArrayList<Topping> getToppings() {
-        return this.toppings;
-    }
-
     public boolean addBacon() {
         if (isValid()) {
             return false;
