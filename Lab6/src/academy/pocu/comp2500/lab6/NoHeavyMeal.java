@@ -1,5 +1,8 @@
 package academy.pocu.comp2500.lab6;
-public class NoHeavyMeal extends Meal {
+
+import java.util.ArrayList;
+
+public class NoHeavyMeal extends SetMenu {
 
     private static final int PRICE = 15;
 
@@ -13,6 +16,8 @@ public class NoHeavyMeal extends Meal {
         this.appetizers.add(appetizer1);
         this.appetizers.add(appetizer2);
         isValid = this.appetizers.size() == 2 && this.desserts.size() != 0;
+
+
     }
 
     public void setDessert(Dessert dessert) {
