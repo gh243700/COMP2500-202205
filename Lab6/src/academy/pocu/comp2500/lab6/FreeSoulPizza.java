@@ -14,12 +14,6 @@ public class FreeSoulPizza extends Pizza {
         price = PRICE;
     }
 
-    public boolean isValid() {
-        return this.meatCount == MAX_MEAT_COUNT
-                && this.veggieCount == MAX_VEGGIE_COUNT
-                && this.isCheeseAdded;
-    }
-
     public boolean addTopping(Topping topping) {
         if ((isMeat(topping) && this.meatCount >= MAX_MEAT_COUNT)
                 || (isVeggie(topping) && this.veggieCount >= MAX_VEGGIE_COUNT)
@@ -41,6 +35,12 @@ public class FreeSoulPizza extends Pizza {
             this.isCheeseAdded = true;
         }
 
+        if (this.meatCount == MAX_MEAT_COUNT &&
+                this.veggieCount == MAX_VEGGIE_COUNT &&
+                this.isCheeseAdded) {
+            isValid = true;
+        }
+
         return true;
     }
 
@@ -59,6 +59,7 @@ public class FreeSoulPizza extends Pizza {
             if (isCheese(topping)) {
                 this.isCheeseAdded = false;
             }
+            isValid = false;
         }
 
         return isRemoved;

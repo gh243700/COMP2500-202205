@@ -14,8 +14,8 @@ public class VeggiePizza extends Pizza {
 
     }
 
-    public boolean isValid() {
-        return this.cheeseCount == MAX_CHEESE_COUNT;
+    private void setValid() {
+        isValid = this.cheeseCount == MAX_CHEESE_COUNT;
     }
 
     public boolean addMozzarellaCheese() {
@@ -25,6 +25,7 @@ public class VeggiePizza extends Pizza {
 
         this.toppings.add(Topping.MOZZARELLA_CHEESE);
         ++this.cheeseCount;
+        setValid();
         return true;
     }
 
@@ -33,6 +34,7 @@ public class VeggiePizza extends Pizza {
 
         if (isRemoved) {
             --this.cheeseCount;
+            setValid();
         }
 
         return isRemoved;
@@ -45,13 +47,16 @@ public class VeggiePizza extends Pizza {
 
         this.toppings.add(Topping.CHEDDAR_CHEESE);
         ++this.cheeseCount;
+        setValid();
         return true;
     }
+
     public boolean removeCheddarCheese() {
         boolean isRemoved = this.toppings.remove(Topping.CHEDDAR_CHEESE);
 
         if (isRemoved) {
             --this.cheeseCount;
+            setValid();
         }
 
         return isRemoved;
@@ -64,13 +69,16 @@ public class VeggiePizza extends Pizza {
 
         this.toppings.add(Topping.FETA_CHEESE);
         ++this.cheeseCount;
+        setValid();
         return true;
     }
+
     public boolean removeFetaCheese() {
         boolean isRemoved = this.toppings.remove(Topping.FETA_CHEESE);
 
         if (isRemoved) {
             --this.cheeseCount;
+            setValid();
         }
 
         return isRemoved;

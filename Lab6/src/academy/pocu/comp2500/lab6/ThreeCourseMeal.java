@@ -7,24 +7,24 @@ public class ThreeCourseMeal extends SetMenu {
         price = PRICE;
     }
 
-    public boolean isValid() {
-        return appetizers.size() !=0 && mainCourses.size() != 0 && desserts.size() != 0;
-    }
     public void setMainCourse(MainCourse mainCourse) {
         mainCourses.clear();
 
         this.mainCourses.add(mainCourse);
+        isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
     }
 
     public void setAppetizer(Appetizer appetizer) {
         appetizers.clear();
 
         this.appetizers.add(appetizer);
+        isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
     }
 
     public void setDessert(Dessert dessert) {
         desserts.clear();
         this.desserts.add(dessert);
+        isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
     }
 
 

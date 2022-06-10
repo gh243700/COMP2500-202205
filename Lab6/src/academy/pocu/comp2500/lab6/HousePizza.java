@@ -14,8 +14,8 @@ public class HousePizza extends Pizza {
         toppings.add(Topping.MOZZARELLA_CHEESE);
     }
 
-    public boolean isValid() {
-        return this.meatCount == MAX_MEAT_COUNT;
+    private void setValid() {
+        isValid = this.meatCount == MAX_MEAT_COUNT;
     }
 
     public boolean addBacon() {
@@ -25,18 +25,20 @@ public class HousePizza extends Pizza {
 
         this.toppings.add(Topping.BACON);
         ++this.meatCount;
+        setValid();
         return true;
     }
+
     public boolean removeBacon() {
         boolean isRemoved = this.toppings.remove(Topping.BACON);
 
         if (isRemoved) {
             --this.meatCount;
+            setValid();
         }
 
         return isRemoved;
     }
-
 
     public boolean addPeperoni() {
         if (isValid()) {
@@ -45,6 +47,7 @@ public class HousePizza extends Pizza {
 
         this.toppings.add(Topping.PEPERONI);
         ++this.meatCount;
+        setValid();
         return true;
     }
 
@@ -53,6 +56,7 @@ public class HousePizza extends Pizza {
 
         if (isRemoved) {
             --this.meatCount;
+            setValid();
         }
 
         return isRemoved;
@@ -65,15 +69,16 @@ public class HousePizza extends Pizza {
 
         this.toppings.add(Topping.SAUSAGES);
         ++this.meatCount;
+        setValid();
         return true;
     }
-
 
     public boolean removeSausages() {
         boolean isRemoved = this.toppings.remove(Topping.SAUSAGES);
 
         if (isRemoved) {
             --this.meatCount;
+            setValid();
         }
 
         return isRemoved;

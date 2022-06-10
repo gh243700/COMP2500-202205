@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Pizza extends Menu {
     protected ArrayList<Topping> toppings = new ArrayList<>();
+
     protected Pizza() {
     }
 
