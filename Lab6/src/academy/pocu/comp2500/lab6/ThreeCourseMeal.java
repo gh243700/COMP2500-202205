@@ -1,8 +1,10 @@
 package academy.pocu.comp2500.lab6;
 
-public class ThreeCourseMeal extends SetMenu {
-    private static final int PRICE = 25;
+import java.util.ArrayList;
 
+public class ThreeCourseMeal extends Meal {
+    private static final int PRICE = 25;
+    protected ArrayList<MainCourse> mainCourses = new ArrayList<>();
     public ThreeCourseMeal() {
         price = PRICE;
     }
@@ -25,6 +27,10 @@ public class ThreeCourseMeal extends SetMenu {
         desserts.clear();
         this.desserts.add(dessert);
         isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
+    }
+
+    public ArrayList<MainCourse> getMainCourses() {
+        return this.mainCourses;
     }
 
 
