@@ -1,24 +1,31 @@
 package academy.pocu.comp2500.lab6;
 
-public class ThreeCourseMeal extends Meal {
+public class ThreeCourseMeal extends SetMenu {
     private static final int PRICE = 25;
-    private MainCourse mainCourse;
+
     public ThreeCourseMeal() {
-        price = PRICE;
-    }
-    public boolean isValid() {
-        return this.appetizers.size() != 0 && mainCourse != null && this.desserts.size() != 0;
+        super(PRICE);
     }
 
-    public MainCourse getMainCourse() {
-        return this.mainCourse;
-    }
     public void setMainCourse(MainCourse mainCourse) {
-        this.mainCourse = mainCourse;
+        mainCourses.clear();
+
+        this.mainCourses.add(mainCourse);
+        isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
     }
+
     public void setAppetizer(Appetizer appetizer) {
-        this.appetizers.clear();
-        appetizers.add(appetizer);
+        appetizers.clear();
+
+        this.appetizers.add(appetizer);
+        isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
     }
+
+    public void setDessert(Dessert dessert) {
+        desserts.clear();
+        this.desserts.add(dessert);
+        isValid = this.appetizers.size() != 0 && this.mainCourses.size() != 0 && this.desserts.size() != 0;
+    }
+
 
 }

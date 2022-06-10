@@ -1,21 +1,18 @@
 package academy.pocu.comp2500.lab6;
-
-public class VeggiePizza extends Pizza {
+public class VeggiePizza extends Pizza{
     private static final int PRICE = 17;
     private static final int MAX_CHEESE_COUNT = 2;
-
     private int cheeseCount;
 
     public VeggiePizza() {
-        super(PRICE);
+        price = PRICE;
         this.toppings.add(Topping.BLACK_OLIVES);
         this.toppings.add(Topping.RED_ONIONS);
         this.toppings.add(Topping.GREEN_PEPPERS);
-
     }
 
-    private void setValid() {
-        isValid = this.cheeseCount == MAX_CHEESE_COUNT;
+    public boolean isValid() {
+        return this.cheeseCount == MAX_CHEESE_COUNT;
     }
 
     public boolean addMozzarellaCheese() {
@@ -25,7 +22,6 @@ public class VeggiePizza extends Pizza {
 
         this.toppings.add(Topping.MOZZARELLA_CHEESE);
         ++this.cheeseCount;
-        setValid();
         return true;
     }
 
@@ -34,7 +30,6 @@ public class VeggiePizza extends Pizza {
 
         if (isRemoved) {
             --this.cheeseCount;
-            setValid();
         }
 
         return isRemoved;
@@ -47,7 +42,6 @@ public class VeggiePizza extends Pizza {
 
         this.toppings.add(Topping.CHEDDAR_CHEESE);
         ++this.cheeseCount;
-        setValid();
         return true;
     }
 
@@ -56,7 +50,6 @@ public class VeggiePizza extends Pizza {
 
         if (isRemoved) {
             --this.cheeseCount;
-            setValid();
         }
 
         return isRemoved;
@@ -69,7 +62,6 @@ public class VeggiePizza extends Pizza {
 
         this.toppings.add(Topping.FETA_CHEESE);
         ++this.cheeseCount;
-        setValid();
         return true;
     }
 
@@ -78,10 +70,8 @@ public class VeggiePizza extends Pizza {
 
         if (isRemoved) {
             --this.cheeseCount;
-            setValid();
         }
 
         return isRemoved;
     }
-
 }

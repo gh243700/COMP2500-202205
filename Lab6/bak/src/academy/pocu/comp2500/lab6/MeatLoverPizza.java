@@ -1,15 +1,20 @@
 package academy.pocu.comp2500.lab6;
 
+import java.util.ArrayList;
 public class MeatLoverPizza extends Pizza {
     private static final int PRICE = 21;
-
+    private boolean isVeggieAdded;
     public MeatLoverPizza() {
-        super(PRICE);
-        toppings.add(Topping.BACON);
-        toppings.add(Topping.PEPERONI);
-        toppings.add(Topping.HAM);
-        toppings.add(Topping.SAUSAGES);
-        toppings.add(Topping.CHEDDAR_CHEESE);
+        price = PRICE;
+        this.toppings.add(Topping.BACON);
+        this.toppings.add(Topping.PEPERONI);
+        this.toppings.add(Topping.HAM);
+        this.toppings.add(Topping.SAUSAGES);
+        this.toppings.add(Topping.CHEDDAR_CHEESE);
+    }
+
+    public boolean isValid() {
+        return this.isVeggieAdded;
     }
 
     public boolean addBlackOlives() {
@@ -18,7 +23,7 @@ public class MeatLoverPizza extends Pizza {
         }
 
         this.toppings.add(Topping.BLACK_OLIVES);
-        isValid = true;
+        this.isVeggieAdded = true;
         return true;
     }
 
@@ -26,7 +31,7 @@ public class MeatLoverPizza extends Pizza {
         boolean isRemoved = this.toppings.remove(Topping.BLACK_OLIVES);
 
         if (isRemoved) {
-            isValid = false;
+            this.isVeggieAdded = false;
         }
 
         return isRemoved;
@@ -38,7 +43,7 @@ public class MeatLoverPizza extends Pizza {
         }
 
         this.toppings.add(Topping.RED_ONIONS);
-        isValid = true;
+        this.isVeggieAdded = true;
         return true;
     }
 
@@ -46,7 +51,7 @@ public class MeatLoverPizza extends Pizza {
         boolean isRemoved = this.toppings.remove(Topping.RED_ONIONS);
 
         if (isRemoved) {
-            isValid = false;
+            this.isVeggieAdded = false;
         }
 
         return isRemoved;
@@ -58,7 +63,7 @@ public class MeatLoverPizza extends Pizza {
         }
 
         this.toppings.add(Topping.GREEN_PEPPERS);
-        isValid = true;
+        this.isVeggieAdded = true;
         return true;
     }
 
@@ -66,11 +71,9 @@ public class MeatLoverPizza extends Pizza {
         boolean isRemoved = this.toppings.remove(Topping.GREEN_PEPPERS);
 
         if (isRemoved) {
-            isValid = false;
+            this.isVeggieAdded = false;
         }
 
         return isRemoved;
     }
-
-
 }
