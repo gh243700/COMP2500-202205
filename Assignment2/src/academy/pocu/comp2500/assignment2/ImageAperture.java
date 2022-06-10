@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment2;
 
-public class ImageAperture extends Aperture{
+public class ImageAperture extends Aperture {
     private String imagePath;
 
     public String getImagePath() {

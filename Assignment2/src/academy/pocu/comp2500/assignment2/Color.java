@@ -5,7 +5,7 @@ public class Color {
     private int green;
     private int blue;
 
-    public Color(int red, int green ,int blue) {
+    public Color(int red, int green , int blue) {
         if (red < 0x00) {
             this.red = 0x00;
         } else if (red > 0xFF) {

@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment2;
 
-public class Banner extends CustomizableProduct{
+public class Banner extends CustomizableProduct {
 
     private BannerType bannerType;
 
