@@ -10,12 +10,14 @@ public class NoHeavyMeal extends SetMenu {
         price = PRICE;
     }
 
+    public boolean isValid() {
+        return this.appetizers.size() == 2 && desserts.size() != 0;
+    }
     public void setAppetizers(Appetizer appetizer1, Appetizer appetizer2) {
         this.appetizers.clear();
 
         this.appetizers.add(appetizer1);
         this.appetizers.add(appetizer2);
-        isValid = this.appetizers.size() == 2 && this.desserts.size() != 0;
 
 
     }
@@ -23,7 +25,6 @@ public class NoHeavyMeal extends SetMenu {
     public void setDessert(Dessert dessert) {
         this.desserts.clear();
         this.desserts.add(dessert);
-        isValid = this.appetizers.size() == 2 && this.desserts.size() != 0;
     }
 
 }

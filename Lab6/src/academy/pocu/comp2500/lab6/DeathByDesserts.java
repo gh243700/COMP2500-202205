@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 public class DeathByDesserts extends SetMenu {
     private static final int PRICE = 20;
-
+    private boolean isValid;
     public DeathByDesserts() {
         price = PRICE;
+    }
+
+    public boolean isValid() {
+        return this.isValid;
     }
 
     public void setDesserts(Dessert dessert1, Dessert dessert2, Dessert dessert3, Dessert dessert4) {
