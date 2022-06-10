@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Pizza extends Menu {
     protected ArrayList<Topping> toppings = new ArrayList<>();
 
-    protected Pizza(int price) {
-        super(price);
+    protected Pizza() {
     }
 
     public ArrayList<Topping> getToppings() {

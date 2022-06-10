@@ -4,7 +4,7 @@ public class MeatLoverPizza extends Pizza {
     private static final int PRICE = 21;
 
     public MeatLoverPizza() {
-        super(PRICE);
+        price = PRICE;
         toppings.add(Topping.BACON);
         toppings.add(Topping.PEPERONI);
         toppings.add(Topping.HAM);

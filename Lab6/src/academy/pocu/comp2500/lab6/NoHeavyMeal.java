@@ -7,7 +7,7 @@ public class NoHeavyMeal extends SetMenu {
     private static final int PRICE = 15;
 
     public NoHeavyMeal() {
-        super(PRICE);
+        price = PRICE;
     }
 
     public void setAppetizers(Appetizer appetizer1, Appetizer appetizer2) {

@@ -6,7 +6,7 @@ public class DeathByDesserts extends SetMenu {
     private static final int PRICE = 20;
 
     public DeathByDesserts() {
-        super(PRICE);
+        price = PRICE;
     }
 
     public void setDesserts(Dessert dessert1, Dessert dessert2, Dessert dessert3, Dessert dessert4) {

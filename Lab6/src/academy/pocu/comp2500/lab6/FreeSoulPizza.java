@@ -11,7 +11,7 @@ public class FreeSoulPizza extends Pizza {
     private boolean isCheeseAdded;
 
     public FreeSoulPizza() {
-        super(PRICE);
+        price = PRICE;
     }
 
     public boolean addTopping(Topping topping) {

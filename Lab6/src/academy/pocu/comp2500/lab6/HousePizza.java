@@ -7,7 +7,7 @@ public class HousePizza extends Pizza {
 
 
     public HousePizza() {
-        super(PRICE);
+        price = PRICE;
         toppings.add(Topping.BLACK_OLIVES);
         toppings.add(Topping.RED_ONIONS);
         toppings.add(Topping.GREEN_PEPPERS);

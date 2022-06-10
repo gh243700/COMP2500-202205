@@ -4,7 +4,7 @@ public class ThreeCourseMeal extends SetMenu {
     private static final int PRICE = 25;
 
     public ThreeCourseMeal() {
-        super(PRICE);
+        price = PRICE;
     }
 
     public void setMainCourse(MainCourse mainCourse) {

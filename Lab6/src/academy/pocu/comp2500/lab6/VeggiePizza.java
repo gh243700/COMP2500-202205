@@ -7,7 +7,7 @@ public class VeggiePizza extends Pizza {
     private int cheeseCount;
 
     public VeggiePizza() {
-        super(PRICE);
+        price = PRICE;
         this.toppings.add(Topping.BLACK_OLIVES);
         this.toppings.add(Topping.RED_ONIONS);
         this.toppings.add(Topping.GREEN_PEPPERS);

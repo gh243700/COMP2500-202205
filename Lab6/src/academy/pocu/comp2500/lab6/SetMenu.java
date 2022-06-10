@@ -19,7 +19,7 @@ public class SetMenu extends Menu {
         return this.mainCourses;
     }
 
-    protected SetMenu(int price) {
-        super(price);
+    protected SetMenu() {
+
     }
 }
