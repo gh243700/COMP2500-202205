@@ -1,24 +1,20 @@
 package academy.pocu.comp2500.lab6;
 
-import java.util.ArrayList;
-
 public class ThreeCourseMeal extends Meal {
     private static final int PRICE = 25;
-    private ArrayList<MainCourse> mainCourses = new ArrayList<>();
-
+    private MainCourse mainCourse;
     public ThreeCourseMeal() {
         price = PRICE;
     }
     public boolean isValid() {
-        return this.appetizers.size() != 0 && mainCourses.size() != 0 && this.desserts.size() != 0;
+        return this.appetizers.size() != 0 && mainCourse != null && this.desserts.size() != 0;
     }
 
-    public ArrayList<MainCourse> getMainCourses() {
-        return mainCourses;
+    public MainCourse getMainCourse() {
+        return this.mainCourse;
     }
     public void setMainCourse(MainCourse mainCourse) {
-        mainCourses.clear();
-        mainCourses.add(mainCourse);
+        this.mainCourse = mainCourse;
     }
     public void setAppetizer(Appetizer appetizer) {
         this.appetizers.clear();

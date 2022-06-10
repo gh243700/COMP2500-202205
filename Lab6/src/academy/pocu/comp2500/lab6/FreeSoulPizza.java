@@ -1,5 +1,4 @@
 package academy.pocu.comp2500.lab6;
-import java.util.ArrayList;
 public class FreeSoulPizza extends Pizza {
     private static final int PRICE = 25;
     private static final int MAX_MEAT_COUNT = 2;

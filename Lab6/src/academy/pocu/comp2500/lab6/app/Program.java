@@ -149,6 +149,7 @@ public class Program {
             threeCourseMeal.getPrice();
             threeCourseMeal.getAppetizers();
             threeCourseMeal.getDesserts();
+            threeCourseMeal.getMainCourse();
             threeCourseMeal.setMainCourse(MainCourse.AHI_TUNA_POKE);
             threeCourseMeal.setAppetizer(Appetizer.CALAMARI);
             threeCourseMeal.setDessert(Dessert.APPLE_PIE);
