@@ -1,21 +1,18 @@
 package academy.pocu.comp2500.lab6;
-
+import java.util.ArrayList;
 public class HousePizza extends Pizza {
     private static final int PRICE = 20;
     private static final int MAX_MEAT_COUNT = 2;
     private int meatCount;
-
-
     public HousePizza() {
         price = PRICE;
-        toppings.add(Topping.BLACK_OLIVES);
-        toppings.add(Topping.RED_ONIONS);
-        toppings.add(Topping.GREEN_PEPPERS);
-        toppings.add(Topping.MOZZARELLA_CHEESE);
+        this.toppings.add(Topping.BLACK_OLIVES);
+        this.toppings.add(Topping.RED_ONIONS);
+        this.toppings.add(Topping.GREEN_PEPPERS);
+        this.toppings.add(Topping.MOZZARELLA_CHEESE);
     }
-
-    private void setValid() {
-        isValid = this.meatCount == MAX_MEAT_COUNT;
+    public boolean isValid() {
+        return this.meatCount == MAX_MEAT_COUNT;
     }
 
     public boolean addBacon() {
@@ -25,7 +22,6 @@ public class HousePizza extends Pizza {
 
         this.toppings.add(Topping.BACON);
         ++this.meatCount;
-        setValid();
         return true;
     }
 
@@ -34,7 +30,6 @@ public class HousePizza extends Pizza {
 
         if (isRemoved) {
             --this.meatCount;
-            setValid();
         }
 
         return isRemoved;
@@ -47,7 +42,6 @@ public class HousePizza extends Pizza {
 
         this.toppings.add(Topping.PEPERONI);
         ++this.meatCount;
-        setValid();
         return true;
     }
 
@@ -56,7 +50,6 @@ public class HousePizza extends Pizza {
 
         if (isRemoved) {
             --this.meatCount;
-            setValid();
         }
 
         return isRemoved;
@@ -69,7 +62,6 @@ public class HousePizza extends Pizza {
 
         this.toppings.add(Topping.SAUSAGES);
         ++this.meatCount;
-        setValid();
         return true;
     }
 
@@ -78,7 +70,6 @@ public class HousePizza extends Pizza {
 
         if (isRemoved) {
             --this.meatCount;
-            setValid();
         }
 
         return isRemoved;

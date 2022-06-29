@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment2;
 
-public class BusinessCard extends CustomizableProduct{
+public class BusinessCard extends CustomizableProduct {
     private BusinessCardSides businessCardSides;
 
     private BusinessCardType businessCardType;

@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment2;
 
-public class TextAperture extends Aperture{
+public class TextAperture extends Aperture {
     private String text;
 
     public String getText() {

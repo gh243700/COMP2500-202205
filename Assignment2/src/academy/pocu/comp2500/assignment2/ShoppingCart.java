@@ -24,7 +24,7 @@ public class ShoppingCart {
     }
 
     public boolean removeProduct(Product product) {
-        if(products.remove(product)){
+        if (products.remove(product)) {
             totalPrice -= product.getPrice();
             return true;
         }

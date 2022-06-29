@@ -138,5 +138,77 @@ public class Program {
         }
 
 
+        {
+            DeathByDesserts deathByDesserts = new DeathByDesserts();
+            deathByDesserts.getPrice();
+            deathByDesserts.isValid();
+            deathByDesserts.getDesserts();
+            deathByDesserts.setDesserts(Dessert.APPLE_PIE, Dessert.APPLE_PIE, Dessert.APPLE_PIE, Dessert.APPLE_PIE);
+
+            ThreeCourseMeal threeCourseMeal = new ThreeCourseMeal();
+            threeCourseMeal.getPrice();
+            threeCourseMeal.getAppetizers();
+            threeCourseMeal.getDesserts();
+            threeCourseMeal.getMainCourse();
+            threeCourseMeal.setMainCourse(MainCourse.AHI_TUNA_POKE);
+            threeCourseMeal.setAppetizer(Appetizer.CALAMARI);
+            threeCourseMeal.setDessert(Dessert.APPLE_PIE);
+
+            NoHeavyMeal noHeavyMeal = new NoHeavyMeal();
+            noHeavyMeal.getPrice();
+            noHeavyMeal.isValid();
+            noHeavyMeal.getAppetizers();
+            noHeavyMeal.getDesserts();
+            noHeavyMeal.setAppetizers(Appetizer.CALAMARI, Appetizer.CALAMARI);
+            noHeavyMeal.setDessert(Dessert.APPLE_PIE);
+
+        }
+
+        {
+            FreeSoulPizza freeSoulPizza = new FreeSoulPizza();
+            freeSoulPizza.getPrice();
+            freeSoulPizza.isValid();
+            freeSoulPizza.addTopping(Topping.BACON);
+            freeSoulPizza.removeTopping(Topping.BACON);
+
+            VeggiePizza veggiePizza = new VeggiePizza();
+            veggiePizza.getPrice();
+            veggiePizza.isValid();
+            veggiePizza.getToppings();
+            veggiePizza.addCheddarCheese();
+            veggiePizza.removeMozzarellaCheese();
+            veggiePizza.addCheddarCheese();
+            veggiePizza.removeCheddarCheese();
+            veggiePizza.addFetaCheese();
+            veggiePizza.removeFetaCheese();
+
+            MeatLoverPizza meatLoverPizza = new MeatLoverPizza();
+            meatLoverPizza.getPrice();
+            meatLoverPizza.isValid();
+            meatLoverPizza.getToppings();
+            meatLoverPizza.addBlackOlives();
+            meatLoverPizza.removeBlackOlives();
+            meatLoverPizza.addRedOnions();
+            meatLoverPizza.removeRedOnions();
+            meatLoverPizza.addGreenPeppers();
+            meatLoverPizza.removeGreenPeppers();
+
+            HousePizza housePizza = new HousePizza();
+            housePizza.getPrice();
+            housePizza.isValid();
+            housePizza.getToppings();
+            housePizza.addBacon();
+            housePizza.removeBacon();
+            housePizza.addPeperoni();
+            housePizza.removePeperoni();
+            housePizza.addSausages();
+            housePizza.removeSausages();
+
+
+
+
+
+        }
+
     }
 }
