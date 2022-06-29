@@ -4,6 +4,8 @@ public enum Genre {
     SCIENCE_FICTION,
     ROMANCE,
     BIOGRAPHY,
+
+    FANTASY,
     MYSTERY,
     SUSPENSE
 
