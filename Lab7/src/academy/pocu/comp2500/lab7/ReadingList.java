@@ -30,7 +30,7 @@ public class ReadingList {
 
         int i = 1;
         for (Book b : books) {
-            sb.append(i).append('.').append(' ').append(b.toString()).append("\n");
+            sb.append(i).append('.').append(' ').append(b.toString()).append("\r\n");
             i++;
         }
 
