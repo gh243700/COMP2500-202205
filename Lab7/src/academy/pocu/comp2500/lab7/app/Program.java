@@ -8,9 +8,14 @@ public class Program {
         Book book0 = new Book("How to be the best", author, 1990, Genre.BIOGRAPHY);
         Bookshelf bookshelf = new Bookshelf(10);
 
+
+
+
+
         assert (bookshelf.add(book0));
         assert (bookshelf.remove(book0));
         assert (!bookshelf.remove(book0));
+
 
         Book book1 = new Book("C# for dummies", new Author("Jason", "Bourne"), 2005, Genre.ROMANCE);
         Book book2 = new Book("C# for dummies", new Author("Jason", "Bourne"), 2005, Genre.ROMANCE);

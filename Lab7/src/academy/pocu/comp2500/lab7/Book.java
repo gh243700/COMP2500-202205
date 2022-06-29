@@ -28,6 +28,7 @@ public class Book {
             return false;
         }
 
+
         Book other = (Book) obj;
         return this.title.equals(other.title) && this.author.equals(other.author) && this.from == other.from && this.genre == other.genre;
     }
