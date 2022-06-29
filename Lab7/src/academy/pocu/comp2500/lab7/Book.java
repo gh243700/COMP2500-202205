@@ -24,7 +24,7 @@ public class Book {
             return true;
         }
 
-        if (obj == null || !(obj instanceof Book)){
+        if (obj == null || !(obj instanceof Book)) {
             return false;
         }
 

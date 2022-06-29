@@ -19,7 +19,7 @@ public class Bookshelf {
     }
 
     public boolean remove(Book book) {
-        for(Book b : books) {
+        for (Book b : books) {
             if (b.equals(book)) {
                 return books.remove(b);
             }

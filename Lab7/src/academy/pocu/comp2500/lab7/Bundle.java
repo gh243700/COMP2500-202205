@@ -14,7 +14,7 @@ public class Bundle {
 
     public boolean add(Book book) {
         for (Book b : books) {
-            if(b.equals(book)) {
+            if (b.equals(book)) {
                 return false;
             }
         }
@@ -23,7 +23,7 @@ public class Bundle {
     }
 
     public boolean remove(Book book) {
-        for(Book b : books) {
+        for (Book b : books) {
             if (b.equals(book)) {
                 return books.remove(b);
             }
