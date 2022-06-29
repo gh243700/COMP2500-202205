@@ -66,6 +66,6 @@ public class Bundle {
         for (Book b : books) {
             hash = 65599 * hash + b.hashCode();
         }
-        return name.hashCode() ^ (hash ^ (hash >> 16) >> 16);
+        return name.hashCode() ^ (hash ^ (hash >> 16) << 16);
     }
 }
