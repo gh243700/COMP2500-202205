@@ -62,10 +62,10 @@ public class Bundle {
 
     @Override
     public int hashCode() {
-        int hash = name.hashCode();
+        int hash = 0;
         for (Book b : books) {
             hash = 65599 * hash + b.hashCode();
         }
-        return hash ^ (hash >> 16);
+        return name.hashCode() ^ (hash ^ (hash >> 16) >> 16);
     }
 }
