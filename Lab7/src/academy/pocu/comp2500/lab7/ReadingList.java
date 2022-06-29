@@ -10,8 +10,8 @@ public class ReadingList {
         this.name = name;
     }
 
-    public boolean add(Book book) {
-        return books.add(book);
+    public void add(Book book) {
+        books.add(book);
     }
 
     public boolean remove(Book book) {
