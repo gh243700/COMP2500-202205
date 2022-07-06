@@ -247,7 +247,7 @@ public class Program {
             planter.tick();
         }
     }
-/*
+
     public static void Test8() {
         Sprinkler sprinkler = new Sprinkler();
         sprinkler.addSchedule(new Schedule(1, 1));
@@ -287,7 +287,7 @@ public class Program {
             planter.tick();
         }
     }
-*/
+
     public static void Test9(){
         Sprinkler sprinkler = new Sprinkler();
 
