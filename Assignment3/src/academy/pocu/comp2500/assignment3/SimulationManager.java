@@ -13,7 +13,8 @@ public final class SimulationManager {
             return simulationManager;
         }
 
-        return new SimulationManager();
+        simulationManager = new SimulationManager();
+        return simulationManager;
     }
 
     public ArrayList<Unit> getUnits() {
@@ -21,14 +22,8 @@ public final class SimulationManager {
     }
 
     public void spawn(Unit unit) {
-        unit.onSpawn();
         units.add(unit);
-        if (unit.isMovable()) {
-            registerMovable((IMovable) unit);
-        }
-        if (unit.isThinkable()) {
-            registerThinkable((IThinkable) unit);
-        }
+        unit.onSpawn();
     }
 
     public void registerThinkable(IThinkable iThinkable) {
