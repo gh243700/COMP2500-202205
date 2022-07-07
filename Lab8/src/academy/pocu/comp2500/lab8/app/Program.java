@@ -9,6 +9,21 @@ public class Program {
 
     public static void main(String[] args) {
 
+        {
+            Drainer drainer = new Drainer(0);
+            Planter planter = new Planter(100);
+            planter.installSmartDevice(drainer);
+
+            assert (drainer.isOn() == false);
+            planter.tick();
+            int waterAmount = planter.getWaterAmount();
+            System.out.println(waterAmount);
+            assert (drainer.isOn() == true);
+            assert (drainer.getTicksSinceLastUpdate() == 1);
+
+
+
+        }
 
         {
             Sprinkler sprinkler = new Sprinkler();
@@ -23,11 +38,6 @@ public class Program {
             int[] sprinklerTicksSinceLastUpdate = new int[]{0, 0 ,1, 0, 0, 0, 1, 2, 3, 4, 5, 6 ,7};
 
             for (int i = 0; i < expectedIsOn.length; ++i) {
-                System.out.println(i + "\n");
-                System.out.println(sprinklerTicksSinceLastUpdate[i] + ":" + sprinkler.getTicksSinceLastUpdate());
-                if (i == 5) {
-                    System.out.println();
-                }
                 assert (expectedIsOn[i] == sprinkler.isOn());
                 assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate()) : i;
                 sprinkler.onTick();
@@ -83,8 +93,9 @@ public class Program {
                     6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
             for (int i = 0; i < expectedWaterAmount.length; ++i) {
-                System.out.println(i);
-                assert (expectedWaterAmount[i] == planter.getWaterAmount());
+                System.out.println(i + "\n");
+                System.out.println(drainerTicksSinceLastUpdate[i] + ":" + drainer.getTicksSinceLastUpdate() + "\n");
+                assert (expectedWaterAmount[i] == planter.getWaterAmount() && planter.getWaterAmount() == drainer.getWaterLevel());
                 assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate()) : i;
                 assert (drainerTicksSinceLastUpdate[i] == drainer.getTicksSinceLastUpdate()) : i;
                 planter.tick();
@@ -117,8 +128,6 @@ public class Program {
                 true, true, true, false, false, false};
 
         for (int i = 0; i < expectedIsOn.length; ++i) {
-            if (i == 5) {
-            }
             assert (expectedIsOn[i] == sprinkler.isOn());
             sprinkler.onTick();
         }
@@ -277,7 +286,6 @@ public class Program {
         };
 
         for (int i = 0; i < expectedIsOn.length; ++i) {
-            System.out.println(i + "\n");
             boolean b1 = expectedIsOn[i];
             boolean b2 = sprinkler.isOn();
             assert (b1 == b2) : i;
@@ -289,7 +297,6 @@ public class Program {
             int t1 = expectedTick[i];
             int t2 = sprinkler.getTicksSinceLastUpdate();
 
-            System.out.println(t1 + ":" + t2 + "\n");
             assert (t1 == t2) : i;
 
 
@@ -364,7 +371,6 @@ public class Program {
         for (int i = 0; i < expectedIsOn.length; ++i) {
             boolean b1 = expectedIsOn[i];
             boolean b2 = sprinkler.isOn();
-            System.out.printf(i + "\n");
             assert (b1 == b2) : i;
 
             int w1 = expectedWater[i];

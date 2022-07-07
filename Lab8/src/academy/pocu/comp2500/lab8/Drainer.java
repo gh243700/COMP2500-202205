@@ -9,21 +9,26 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
         OPERATE_AT = operate;
     }
 
+    public int getWaterLevel() {
+        return waterLevel;
+    }
+
     @Override
     public void onTick() {
-        tick++;
+
         if (waterLevel >= OPERATE_AT) {
             if (isOn == false) {
                 onAt = tick;
                 isOn = true;
             }
-
         } else {
             if (isOn == true) {
                 onAt = tick;
                 isOn = false;
             }
         }
+
+        tick++;
     }
 
     @Override
