@@ -8,6 +8,32 @@ import academy.pocu.comp2500.lab8.Sprinkler;
 public class Program {
 
     public static void main(String[] args) {
+
+
+        {
+            Sprinkler sprinkler = new Sprinkler();
+            sprinkler.addSchedule(new Schedule(1 ,2));
+            sprinkler.addSchedule(new Schedule(4 ,1));
+            sprinkler.addSchedule(new Schedule(2 ,7));
+            sprinkler.addSchedule(new Schedule(9 ,1));
+            sprinkler.addSchedule(new Schedule(10 ,2));
+
+            boolean[] expectedIsOn = new boolean[]{false, true, true, false, true, false, false,
+                    false, false, false, false, false, false};
+            int[] sprinklerTicksSinceLastUpdate = new int[]{0, 0 ,1, 0, 0, 0, 1, 2, 3, 4, 5, 6 ,7};
+
+            for (int i = 0; i < expectedIsOn.length; ++i) {
+                System.out.println(i + "\n");
+                System.out.println(sprinklerTicksSinceLastUpdate[i] + ":" + sprinkler.getTicksSinceLastUpdate());
+                if (i == 10) {
+                    System.out.println();
+                }
+                assert (expectedIsOn[i] == sprinkler.isOn());
+                assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate()) : i;
+                sprinkler.onTick();
+            }
+        }
+
         {
             Sprinkler sprinkler = new Sprinkler();
 
@@ -19,8 +45,12 @@ public class Program {
             boolean[] expectedIsOn = new boolean[]{false, true, true, true, true, false, true,
                     true, true, true, false, false, false};
 
+
+
             for (int i = 0; i < expectedIsOn.length; ++i) {
+
                 assert (expectedIsOn[i] == sprinkler.isOn());
+
                 sprinkler.onTick();
             }
         }
@@ -53,6 +83,7 @@ public class Program {
                     6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
             for (int i = 0; i < expectedWaterAmount.length; ++i) {
+                System.out.println(i);
                 assert (expectedWaterAmount[i] == planter.getWaterAmount());
                 assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate()) : i;
                 assert (drainerTicksSinceLastUpdate[i] == drainer.getTicksSinceLastUpdate()) : i;
