@@ -28,15 +28,16 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
                 isOn = false;
             }
         }
-
-
     }
 
     @Override
     public void install(Planter planter) {
         planter.installDrainer(this);
         planter.installWaterDetector(this);
-        //waterLevel = planter.getWaterAmount();
+        //
+        if (OPERATE_AT != 0) {
+            waterLevel = planter.getWaterAmount();
+        }
     }
 
     @Override
