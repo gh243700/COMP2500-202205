@@ -40,6 +40,7 @@ public class Planter {
     }
 
     public void tick() {
+
         for (IWaterDetectable iWaterDetectable : waterDetectables) {
             iWaterDetectable.detect(waterAmount);
         }
@@ -52,12 +53,11 @@ public class Planter {
             iSprayable.spray(this);
         }
 
+        addWaterAmount(WATER_CONSUME_PER_DAY);
+
         for (IDrainable iDrainable : drainables) {
             iDrainable.drain(this);
         }
-
-        addWaterAmount(WATER_CONSUME_PER_DAY);
-
     }
 
 }
