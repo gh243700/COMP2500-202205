@@ -20,7 +20,6 @@ public class Program {
                     true, true, true, false, false, false};
 
             for (int i = 0; i < expectedIsOn.length; ++i) {
-                System.out.println(i + "\n");
                 assert (expectedIsOn[i] == sprinkler.isOn());
                 sprinkler.onTick();
             }
@@ -67,7 +66,7 @@ public class Program {
         Test5();
         Test6();
         Test7();
-        //Test8();
+        Test8();
         Test9();
     }
 
@@ -243,6 +242,7 @@ public class Program {
         };
 
         for (int i = 0; i < expectedIsOn.length; ++i) {
+            System.out.println(i + "\n");
             boolean b1 = expectedIsOn[i];
             boolean b2 = sprinkler.isOn();
             assert (b1 == b2) : i;
@@ -253,7 +253,10 @@ public class Program {
 
             int t1 = expectedTick[i];
             int t2 = sprinkler.getTicksSinceLastUpdate();
+
+            System.out.println(t1 + ":" + t2 + "\n");
             assert (t1 == t2) : i;
+
 
             planter.tick();
         }
