@@ -14,19 +14,25 @@ public class Sprinkler extends SmartDevice implements ISprayable{
 
     @Override
     public void onTick() {
+        tick++;
         if (scheduleOrNull == null) {
             for (int i = schedules_index; i < schedules.size(); i++) {
                 Schedule s = schedules.get(i);
-                if (tick < s.getTickAt() && s.getTickAt() != 0) {
+                if (tick <= s.getTickAt() + s.getTickTill() && s.getTickAt() != 0) {
                     scheduleOrNull = s;
-                    onAt = tick;
+                    onAt = tick - 1;
                     schedules_index = i;
+                    if (tick <= s.getTickAt()) {
+                        scheduleOrNull.setValid(true);
+                    } else {
+                        tickCount = tick - scheduleOrNull.getTickAt() - 1;
+                    }
                     break;
                 }
             }
 
+
             if (schedules_index >= schedules.size() || scheduleOrNull == null) {
-                tick++;
                 if (isOn == true) {
                     onAt = tick;
                     isOn = false;
@@ -35,23 +41,27 @@ public class Sprinkler extends SmartDevice implements ISprayable{
             }
 
         }
-        tick++;
-        if (tick >= scheduleOrNull.getTickAt() && tickCount <= scheduleOrNull.getTickTill()) {
+
+        if (tick >= scheduleOrNull.getTickAt()  && scheduleOrNull.isValid() && tickCount <= scheduleOrNull.getTickTill()) {
+            tickCount++;
             if (isOn == false) {
                 onAt = tick;
                 isOn = true;
             }
-            tickCount++;
-            if (tickCount == scheduleOrNull.getTickTill()) {
-                scheduleOrNull = null;
-                tickCount = 0;
-                schedules_index++;
-            }
         } else {
+            if (scheduleOrNull.isValid() == false) {
+                tickCount++;
+            }
             if (isOn == true) {
                 onAt = tick;
                 isOn = false;
             }
+        }
+
+        if (tickCount == scheduleOrNull.getTickTill()) {
+            scheduleOrNull = null;
+            tickCount = 0;
+            schedules_index++;
         }
     }
 
