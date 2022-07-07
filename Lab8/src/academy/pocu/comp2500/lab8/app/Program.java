@@ -19,7 +19,6 @@ public class Program {
             int waterAmount = planter.getWaterAmount();
             System.out.println(waterAmount);
             assert (drainer.isOn() == true);
-            assert (drainer.getTicksSinceLastUpdate() == 1);
 
 
 
@@ -433,6 +432,9 @@ public class Program {
 
             int dt1 = drainerTicksSinceLastUpdate[i];
             int dt2 = drainer.getTicksSinceLastUpdate();
+            System.out.println("tick : "+ i + "\n");
+            System.out.println(dt1 + " : "+ dt2 + "\n");
+
             assert (dt1 == dt2) : i;
             planter.tick();
         }

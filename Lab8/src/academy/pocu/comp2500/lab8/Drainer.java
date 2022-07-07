@@ -4,6 +4,7 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
     private static final int FLUSH_AMOUNT = -7;
     private final int OPERATE_AT;
     private int waterLevel;
+    boolean isFirst = true;
 
     public Drainer(int operate) {
         OPERATE_AT = operate;
@@ -15,7 +16,7 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
 
     @Override
     public void onTick() {
-
+        tick++;
         if (waterLevel >= OPERATE_AT) {
             if (isOn == false) {
                 onAt = tick;
@@ -28,14 +29,14 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
             }
         }
 
-        tick++;
+
     }
 
     @Override
     public void install(Planter planter) {
         planter.installDrainer(this);
         planter.installWaterDetector(this);
-        waterLevel = planter.getWaterAmount();
+        //waterLevel = planter.getWaterAmount();
     }
 
     @Override
