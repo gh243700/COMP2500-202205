@@ -2,7 +2,6 @@ package academy.pocu.comp2500.lab8;
 
 public abstract class SmartDevice {
 
-    protected int ticksSinceLastUpdate;
     protected boolean isOn;
     protected int onAt;
     protected int tick;
