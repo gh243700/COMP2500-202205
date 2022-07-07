@@ -25,7 +25,7 @@ public class Program {
             for (int i = 0; i < expectedIsOn.length; ++i) {
                 System.out.println(i + "\n");
                 System.out.println(sprinklerTicksSinceLastUpdate[i] + ":" + sprinkler.getTicksSinceLastUpdate());
-                if (i == 10) {
+                if (i == 5) {
                     System.out.println();
                 }
                 assert (expectedIsOn[i] == sprinkler.isOn());

@@ -8,6 +8,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
     private int tickCount;
     private Schedule scheduleOrNull;
     private boolean isOff;
+    private boolean isValidSchedule;
 
     public void addSchedule(Schedule schedule) {
         schedules.add(schedule);
@@ -33,7 +34,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
                     //onAt = tick - 1;
                     schedules_index = i;
                     if (tick <= s.getTickAt()) {
-                        scheduleOrNull.setValid(true);
+                        isValidSchedule = true;
                     } else {
                         tickCount = tick - scheduleOrNull.getTickAt() - 1;
                     }
@@ -51,14 +52,14 @@ public class Sprinkler extends SmartDevice implements ISprayable{
 
         }
 
-        if (tick >= scheduleOrNull.getTickAt()  && scheduleOrNull.isValid() && tickCount <= scheduleOrNull.getTickTill()) {
+        if (tick >= scheduleOrNull.getTickAt()  && isValidSchedule == true && tickCount <= scheduleOrNull.getTickTill()) {
             tickCount++;
             if (isOn == false) {
                 onAt = tick;
                 isOn = true;
             }
         } else {
-            if (scheduleOrNull.isValid() == false) {
+            if (isValidSchedule == false) {
                 tickCount++;
             }
             if (isOn == true) {
@@ -72,6 +73,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
             tickCount = 0;
             schedules_index++;
             isOff = true;
+            isValidSchedule = false;
         }
     }
 
