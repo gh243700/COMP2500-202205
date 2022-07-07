@@ -40,7 +40,6 @@ public class Planter {
     }
 
     public void tick() {
-
         for (IWaterDetectable iWaterDetectable : waterDetectables) {
             iWaterDetectable.detect(waterAmount);
         }
