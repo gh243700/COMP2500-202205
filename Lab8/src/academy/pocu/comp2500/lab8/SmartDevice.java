@@ -6,7 +6,6 @@ public abstract class SmartDevice {
     protected int onAt;
     protected int tick;
 
-
     public abstract void onTick();
 
     public abstract void install(Planter planter);
