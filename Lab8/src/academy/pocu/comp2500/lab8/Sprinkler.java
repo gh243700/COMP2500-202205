@@ -37,6 +37,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
                         isValidSchedule = true;
                     } else {
                         tickCount = tick - scheduleOrNull.getTickAt() - 1;
+                        isValidSchedule = false;
                     }
                     break;
                 }
@@ -73,7 +74,6 @@ public class Sprinkler extends SmartDevice implements ISprayable{
             tickCount = 0;
             schedules_index++;
             isOff = true;
-            isValidSchedule = false;
         }
     }
 
