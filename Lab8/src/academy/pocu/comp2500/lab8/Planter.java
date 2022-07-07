@@ -40,11 +40,6 @@ public class Planter {
     }
 
     public void tick() {
-
-        for (IWaterDetectable iWaterDetectable : waterDetectables) {
-            iWaterDetectable.detect(waterAmount);
-        }
-
         for (SmartDevice smartDevice : smartDevices) {
             smartDevice.onTick();
         }
@@ -58,6 +53,10 @@ public class Planter {
         }
 
         addWaterAmount(WATER_CONSUME_PER_DAY);
+
+        for (IWaterDetectable iWaterDetectable : waterDetectables) {
+            iWaterDetectable.detect(waterAmount);
+        }
     }
 
 }
