@@ -35,7 +35,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
                     if (tick <= s.getTickAt()) {
                         isValidSchedule = true;
                     } else {
-                        tickCount = tick - scheduleOrNull.getTickAt() - 1;
+                        tickCount = tick - scheduleOrNull.getTickAt();
                         isValidSchedule = false;
                     }
                     break;
