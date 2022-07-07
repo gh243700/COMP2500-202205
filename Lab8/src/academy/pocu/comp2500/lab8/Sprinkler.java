@@ -1,10 +1,10 @@
 package academy.pocu.comp2500.lab8;
 
 import java.util.ArrayList;
-public class Sprinkler extends SmartDevice implements ISprayable{
+public class Sprinkler extends SmartDevice implements ISprayable {
     private static final int SPRAY_AMOUNT = 15;
     private ArrayList<Schedule> schedules = new ArrayList<>();
-    private int schedules_index;
+    private int schedulesIndex;
     private int tickCount;
     private Schedule scheduleOrNull;
     private boolean isOffNextTick;
@@ -27,11 +27,11 @@ public class Sprinkler extends SmartDevice implements ISprayable{
         }
 
         if (scheduleOrNull == null) {
-            for (int i = schedules_index; i < schedules.size(); i++) {
+            for (int i = schedulesIndex; i < schedules.size(); i++) {
                 Schedule s = schedules.get(i);
                 if (tick <= s.getTickAt() + s.getTickTill() && s.getTickAt() != 0) {
                     scheduleOrNull = s;
-                    schedules_index = i;
+                    schedulesIndex = i;
                     if (tick <= s.getTickAt()) {
                         isValidSchedule = true;
                     } else {
@@ -42,7 +42,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
                 }
             }
 
-            if (schedules_index >= schedules.size() || scheduleOrNull == null) {
+            if (schedulesIndex >= schedules.size() || scheduleOrNull == null) {
                 if (isOn == true) {
                     onAt = tick;
                     isOn = false;
@@ -51,7 +51,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
             }
         }
 
-        if (tick >= scheduleOrNull.getTickAt()  && isValidSchedule == true && tickCount <= scheduleOrNull.getTickTill()) {
+        if (tick >= scheduleOrNull.getTickAt() && isValidSchedule == true && tickCount <= scheduleOrNull.getTickTill()) {
             tickCount++;
             if (isOn == false) {
                 onAt = tick;
@@ -70,7 +70,7 @@ public class Sprinkler extends SmartDevice implements ISprayable{
         if (tickCount == scheduleOrNull.getTickTill()) {
             scheduleOrNull = null;
             tickCount = 0;
-            schedules_index++;
+            schedulesIndex++;
             isOffNextTick = true;
         }
     }

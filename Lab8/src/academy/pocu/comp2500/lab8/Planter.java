@@ -11,7 +11,7 @@ public class Planter {
     private ArrayList<IWaterDetectable> waterDetectables = new ArrayList<>();
 
     public void addWaterAmount(int waterAmount) {
-        this.waterAmount = Math.max(0 , this.waterAmount + waterAmount);
+        this.waterAmount = Math.max(0, this.waterAmount + waterAmount);
     }
 
     public int getWaterAmount() {
