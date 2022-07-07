@@ -3,30 +3,18 @@ package academy.pocu.comp2500.lab8;
 public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable {
     private static final int FLUSH_AMOUNT = -7;
     private final int OPERATE_AT;
-    private int waterLevel;
+    private boolean before;
 
     public Drainer(int operate) {
         OPERATE_AT = operate;
     }
 
-    public int getWaterLevel() {
-        return waterLevel;
-    }
-
     @Override
     public void onTick() {
         tick++;
-        if (waterLevel >= OPERATE_AT) {
-            if (isOn == false) {
-                onAt = tick;
-                isOn = true;
-            }
-        } else {
-            if (isOn == true) {
-                onAt = tick;
-                isOn = false;
-            }
-
+        if (before != isOn) {
+            onAt = tick;
+            before = isOn;
         }
     }
 
@@ -34,7 +22,6 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
     public void install(Planter planter) {
         planter.installDrainer(this);
         planter.installWaterDetector(this);
-        waterLevel = planter.getWaterAmount();
     }
 
     @Override
@@ -46,6 +33,10 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
 
     @Override
     public void detect(int waterLevel) {
-        this.waterLevel = waterLevel;
+        if (waterLevel >= OPERATE_AT) {
+            isOn = true;
+        } else {
+            isOn = false;
+        }
     }
 }

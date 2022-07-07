@@ -92,9 +92,9 @@ public class Program {
                     6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
             for (int i = 0; i < expectedWaterAmount.length; ++i) {
-                System.out.println(i + "\n");
                 System.out.println(drainerTicksSinceLastUpdate[i] + ":" + drainer.getTicksSinceLastUpdate() + "\n");
-                assert (expectedWaterAmount[i] == planter.getWaterAmount() && planter.getWaterAmount() == drainer.getWaterLevel());
+                System.out.println(expectedWaterAmount[i] + ":" + planter.getWaterAmount() + "\n");
+                assert (expectedWaterAmount[i] == planter.getWaterAmount());
                 assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate()) : i;
                 assert (drainerTicksSinceLastUpdate[i] == drainer.getTicksSinceLastUpdate()) : i;
                 planter.tick();
@@ -424,6 +424,7 @@ public class Program {
         for (int i = 0; i < expectedWater.length; ++i) {
             int w1 = expectedWater[i];
             int w2 = planter.getWaterAmount();
+            System.out.println("test : " + w1 + ":" + w2 + "\n");
             assert (w1 == w2) : i;
 
             int st1 = sprinklerTicksSinceLastUpdate[i];
@@ -432,8 +433,6 @@ public class Program {
 
             int dt1 = drainerTicksSinceLastUpdate[i];
             int dt2 = drainer.getTicksSinceLastUpdate();
-            System.out.println("tick : "+ i + "\n");
-            System.out.println(dt1 + " : "+ dt2 + "\n");
 
             assert (dt1 == dt2) : i;
             planter.tick();
