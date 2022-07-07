@@ -99,6 +99,10 @@ public class Program {
         Test7();
         Test8();
         Test9();
+        Test10();
+        Test11();
+        Test12();
+
     }
 
     public static void Test1() {
@@ -427,5 +431,60 @@ public class Program {
             planter.tick();
         }
     }
+
+    public static void Test10() {
+        Sprinkler sprinkler = new Sprinkler();
+        Planter planter = new Planter(0);
+        sprinkler.addSchedule(new Schedule(0, 4));
+        sprinkler.addSchedule(new Schedule(1, 4));
+        sprinkler.addSchedule(new Schedule(2, 3));
+        boolean[] expectedIsOn = new boolean[]{false, true, true, true, true};
+        for (boolean b : expectedIsOn) {
+            assert (b == sprinkler.isOn());
+            sprinkler.onTick();
+        }
+        planter.installSmartDevice(sprinkler);
+        expectedIsOn = new boolean[]{false, false, false, false, false, false, false, false};
+        for (boolean b : expectedIsOn) {
+            assert (b == sprinkler.isOn());
+            planter.tick();
+        }
+    }
+
+    public static void Test11() {
+        Sprinkler sprinkler = new Sprinkler();
+        sprinkler.addSchedule(new Schedule(0, 1));
+        sprinkler.addSchedule(new Schedule(2, 1));
+        sprinkler.addSchedule(new Schedule(1, 10));
+        sprinkler.addSchedule(new Schedule(3, 1));
+        sprinkler.addSchedule(new Schedule(6, 1));
+        sprinkler.addSchedule(new Schedule(9, 1));
+        boolean[] expectedIsOn = new boolean[]{false, false, true, false, false, false, false, false, false, false, false, false};
+        for (boolean b : expectedIsOn) {
+            assert (b == sprinkler.isOn());
+            sprinkler.onTick();
+        }
+    }
+
+    public static void Test12() {
+        Sprinkler sprinkler = new Sprinkler();
+        sprinkler.addSchedule(new Schedule(0, 4));
+        sprinkler.addSchedule(new Schedule(1, 4));
+        boolean[] expectedIsOn = new boolean[]{false, true, true, true, true};
+        for (int i = 0; i < expectedIsOn.length; ++i) {
+            assert (expectedIsOn[i] == sprinkler.isOn());
+            sprinkler.onTick();
+        }
+        sprinkler.addSchedule(new Schedule(2, 6));
+        sprinkler.addSchedule(new Schedule(6, 4));
+        boolean[] expectedIsOn1 = new boolean[]{false, false,
+                false, false, false, false, false, false};
+        for (int i = 0; i < expectedIsOn1.length; ++i) {
+            assert (expectedIsOn1[i] == sprinkler.isOn());
+            sprinkler.onTick();
+        }
+    }
+
+
 
 }
