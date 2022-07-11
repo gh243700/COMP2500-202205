@@ -6,11 +6,9 @@ import java.util.UUID;
 
 public class SkyIsTheLimit implements IGetPrice {
     private final int MIN_PRICE;
-
     public SkyIsTheLimit(int price) {
         this.MIN_PRICE = price;
     }
-
     @Override
     public int getTotalPrice(Collection<Book> collection) {
         ArrayList<Book> books = new ArrayList<>(collection);
