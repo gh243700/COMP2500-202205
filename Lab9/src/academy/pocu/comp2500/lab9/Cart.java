@@ -38,21 +38,6 @@ public final class Cart {
 
         return true;
     }
-
-
-    public int getTotalPrice() {
-        int sum = 0;
-
-        for (Book book : this.books) {
-            sum += book.getPrice();
-        }
-
-        return sum;
-    }
-
-    public int getTotalPrice(BuyOneGetOneFree buyOneGetOneFree) {
-        return buyOneGetOneFree.getTotalPrice(books);
-    }
     public int getTotalPrice(IGetPrice iGetPrice) {
         return iGetPrice.getTotalPrice(books);
     }
