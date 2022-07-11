@@ -34,6 +34,7 @@ public final class Cart {
         Book book = new Book(sku, title, price, publishedYear);
         this.books.add(book);
     }
+
     public boolean remove(final int index) {
         if (this.books.size() <= index) {
             return false;
