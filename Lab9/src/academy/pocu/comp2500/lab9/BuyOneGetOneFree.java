@@ -1,6 +1,10 @@
 package academy.pocu.comp2500.lab9;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.UUID;
+import java.util.Map;
 
 public class BuyOneGetOneFree implements IGetPrice {
     private HashSet<UUID> skuNumbers;
