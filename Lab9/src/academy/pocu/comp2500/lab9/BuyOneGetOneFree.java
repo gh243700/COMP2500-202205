@@ -33,7 +33,7 @@ public class BuyOneGetOneFree implements IGetPrice {
             }
         }
 
-        for (Map.Entry<UUID, Integer> entry: overlap.entrySet()) {
+        for (Map.Entry<UUID, Integer> entry : overlap.entrySet()) {
             int number = entry.getValue();
             number = number / 2 + number % 2;
             price += number * priceBySku.get(entry.getKey());

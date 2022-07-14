@@ -32,7 +32,7 @@ public class SkyIsTheLimit implements IGetPrice {
             price -= max1.getPrice() * 0.5f + max2.getPrice() * 0.5f;
         }
 
-        return (int)price;
+        return (int) price;
     }
 
 }

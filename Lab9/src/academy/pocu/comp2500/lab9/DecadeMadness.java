@@ -27,7 +27,7 @@ public class DecadeMadness implements IGetPrice {
         }
 
         for (Map.Entry<Integer, Integer> entry : kYearVPrice.entrySet()) {
-            if(kYearVExists.contains(entry.getKey())) {
+            if (kYearVExists.contains(entry.getKey())) {
                 totalPrice += entry.getValue() * 0.8f;
             } else {
                 totalPrice += entry.getValue();
@@ -35,7 +35,7 @@ public class DecadeMadness implements IGetPrice {
 
         }
 
-        return (int)totalPrice;
+        return (int) totalPrice;
     }
 
 }
