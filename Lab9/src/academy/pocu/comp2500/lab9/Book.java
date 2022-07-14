@@ -7,14 +7,12 @@ public final class Book {
     private final String title;
     private final int price;
     private final int publishedYear;
-
     public Book(final UUID sku, final String title, final int price, final int publishedYear) {
         this.sku = sku;
         this.title = title;
         this.price = price;
         this.publishedYear = publishedYear;
     }
-
     public int getPrice() {
         return this.price;
     }

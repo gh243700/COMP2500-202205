@@ -8,11 +8,9 @@ import java.util.Map;
 
 public class BuyOneGetOneFree implements IGetPrice {
     private HashSet<UUID> skuNumbers;
-
     public BuyOneGetOneFree(HashSet<UUID> skuNumbers) {
         this.skuNumbers = skuNumbers;
     }
-
     @Override
     public int getTotalPrice(Collection<Book> collection) {
         HashMap<UUID, Integer> overlap = new HashMap<>();
