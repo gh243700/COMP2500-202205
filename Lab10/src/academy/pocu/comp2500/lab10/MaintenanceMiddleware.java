@@ -11,7 +11,6 @@ public class MaintenanceMiddleware implements IRequestHandler {
         this.iRequestHandler = iRequestHandler;
         this.maintenanceTime = maintenanceTime;
     }
-
     @Override
     public ResultBase handle(Request request) {
         OffsetDateTime now = OffsetDateTime.now();
