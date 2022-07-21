@@ -29,7 +29,7 @@ public class CacheMiddleware implements IRequestHandler {
 
 
         ResultBase resultBase = iRequestHandler.handle(request);
-        if (resultBase instanceof OkResult && requestCount > 0) {
+        if (resultBase instanceof OkResult && requestCount > 1) {
             cachedResult = new CachedResult(requestCount);
             cachedResultHashMap.put(request, cachedResult);
             return resultBase;
