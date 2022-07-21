@@ -17,16 +17,9 @@ public class CacheMiddleware implements IRequestHandler {
 
     @Override
     public ResultBase handle(Request request) {
-        MovieStore movieStore = (MovieStore) iRequestHandler;
-        ResultBase resultBase = movieStore.handle(request);
 
-        if(resultBase instanceof OkResult) {
-            CachedResult cachedResult = cachedResultHashMap.get(request);
-            if (!cachedResultHashMap.containsKey(request)) {
-                cachedResult = new CachedResult(requestCount);
-                cachedResultHashMap.put(request, cachedResult);
-                return resultBase;
-            }
+        CachedResult cachedResult = cachedResultHashMap.get(request);
+        if (cachedResult != null) {
             cachedResult.decreesExpiryCount();
             if (cachedResult.getExpiryCount() <= 1) {
                 cachedResultHashMap.remove(request);
@@ -34,6 +27,13 @@ public class CacheMiddleware implements IRequestHandler {
             return cachedResult;
         }
 
-        return iRequestHandler.handle(request);
+
+        ResultBase resultBase = iRequestHandler.handle(request);
+        if (resultBase instanceof OkResult) {
+            cachedResult = new CachedResult(requestCount);
+            cachedResultHashMap.put(request, cachedResult);
+            return resultBase;
+        }
+        return resultBase;
     }
 }
