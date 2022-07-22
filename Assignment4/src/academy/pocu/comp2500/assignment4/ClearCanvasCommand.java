@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.assignment4;
 
 public class ClearCanvasCommand implements ICommand {
-
     private char[][] cBackupOrNull;
     private Canvas canvasOrNull;
 
