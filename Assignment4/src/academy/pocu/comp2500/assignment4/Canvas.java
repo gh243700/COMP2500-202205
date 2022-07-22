@@ -12,10 +12,10 @@ public class Canvas {
         }
     }
     public int getWidth() {
-        return canvas[0].length;
+        return canvas.length;
     }
     public int getHeight() {
-        return canvas.length;
+        return canvas[0].length;
     }
     public void drawPixel(int x, int y, char c) {
         if (isValidXY(x, y) == false || isValidLetter(c) == false) {
@@ -26,7 +26,7 @@ public class Canvas {
     }
 
     public char getPixel(int x, int y) {
-        if(isValidXY(x, y) == false) {
+        if (isValidXY(x, y) == false) {
             return INITIAL_PIXEL;
         }
 

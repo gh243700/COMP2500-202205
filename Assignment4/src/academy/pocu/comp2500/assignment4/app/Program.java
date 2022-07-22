@@ -9,7 +9,9 @@ public class Program {
         System.out.println(ClearCanvasCommand.class.getSimpleName());
 
         {
-            Canvas canvas = new Canvas(10, 10);
+            Canvas canvas = new Canvas(10, 5);
+            assert (canvas.getWidth() == 10);
+            assert (canvas.getHeight() == 5);
             canvas.drawPixel(0, 0, 'a');
             System.out.println(canvas.getDrawing());
             canvas.increasePixel(0, 0);
