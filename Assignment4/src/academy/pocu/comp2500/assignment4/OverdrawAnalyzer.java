@@ -29,9 +29,9 @@ public class OverdrawAnalyzer extends Canvas{
 
     public LinkedList<Character> getPixelHistory(int x, int y) {
         Vector vector = new Vector(x, y);
-        LinkedList linkedList;
+        LinkedList<Character> linkedList;
         if(!pixelHistory.containsKey(vector)) {
-            linkedList = new LinkedList();
+            linkedList = new LinkedList<>();
             return linkedList;
         }
 
