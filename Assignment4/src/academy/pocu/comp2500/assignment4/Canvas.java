@@ -27,7 +27,7 @@ public class Canvas {
 
     public char getPixel(int x, int y) {
         if (isValidXY(x, y) == false) {
-            return INITIAL_PIXEL;
+            return Character.MAX_VALUE;
         }
 
         return canvas[x][y];
@@ -36,7 +36,7 @@ public class Canvas {
     public boolean increasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (isValidLetter((int)pixel + 1) == false) {
+        if (pixel == Character.MAX_VALUE || isValidLetter((int)pixel + 1) == false) {
             return false;
         }
 
@@ -48,7 +48,7 @@ public class Canvas {
     public boolean decreasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (isValidLetter((int)pixel - 1) == false) {
+        if (pixel == Character.MAX_VALUE || isValidLetter((int)pixel - 1) == false) {
             return false;
         }
 
