@@ -14,6 +14,9 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
+        if (canvasOrNull != null) {
+            return false;
+        }
         canvasOrNull = canvas;
         before = new char[canvas.getWidth()];
         for (int i = 0; i < before.length; i++) {
@@ -25,6 +28,9 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean undo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(i, y, before[i]);
         }
@@ -33,6 +39,9 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean redo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         canvasOrNull.fillHorizontalLine(y, c);
         return true;
     }

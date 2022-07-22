@@ -15,6 +15,9 @@ public class DrawPixelCommand implements ICommand{
 
     @Override
     public boolean execute(Canvas canvas) {
+        if (canvasOrNull != null) {
+            return false;
+        }
         this.canvasOrNull = canvas;
         canvas.drawPixel(x, y, c);
         return true;
@@ -22,12 +25,18 @@ public class DrawPixelCommand implements ICommand{
 
     @Override
     public boolean undo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         canvasOrNull.drawPixel(x , y, INITIAL_PIXEL);
         return true;
     }
 
     @Override
     public boolean redo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         canvasOrNull.drawPixel(x, y, c);
         return true;
     }

@@ -13,6 +13,9 @@ public class ToLowercaseCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
+        if (canvasOrNull != null) {
+            return false;
+        }
         canvasOrNull = canvas;
         canvas.toLower(x, y);
         return true;
@@ -20,12 +23,18 @@ public class ToLowercaseCommand implements ICommand {
 
     @Override
     public boolean undo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         canvasOrNull.toUpper(x, y);
         return true;
     }
 
     @Override
     public boolean redo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         canvasOrNull.toUpper(x, y);
         return true;
     }

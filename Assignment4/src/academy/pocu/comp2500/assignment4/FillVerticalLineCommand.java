@@ -14,6 +14,9 @@ public class FillVerticalLineCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
+        if (canvasOrNull != null) {
+            return false;
+        }
         canvasOrNull = canvas;
         before = new char[canvas.getHeight()];
         for (int i = 0; i < before.length; i++) {
@@ -25,6 +28,9 @@ public class FillVerticalLineCommand implements ICommand {
 
     @Override
     public boolean undo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(x, i, before[i]);
         }
@@ -33,6 +39,9 @@ public class FillVerticalLineCommand implements ICommand {
 
     @Override
     public boolean redo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         canvasOrNull.fillVerticalLine(x, c);
         return true;
     }

@@ -13,17 +13,27 @@ public class DecreasePixelCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
+        if (canvasOrNull != null) {
+            return false;
+        }
         this.canvasOrNull = canvas;
         return canvas.decreasePixel(x, y);
     }
 
     @Override
     public boolean undo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
+
         return canvasOrNull.increasePixel(x, y);
     }
 
     @Override
     public boolean redo() {
+        if (canvasOrNull == null) {
+            return false;
+        }
         return canvasOrNull.increasePixel(x, y);
     }
 }
