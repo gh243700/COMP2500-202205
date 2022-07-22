@@ -9,11 +9,8 @@ public class OverdrawAnalyzer extends Canvas{
     }
     @Override
     public void drawPixel(int x, int y, char c) {
-        if (isValidXY(x, y) == false || isValidPixel(c) == false) {
-            return;
-        }
 
-        if(canvas[x][y] == c) {
+        if(getPixel(x, y) == c) {
             return;
         }
 
@@ -27,7 +24,7 @@ public class OverdrawAnalyzer extends Canvas{
         linkedList = pixelHistory.get(vector);
         linkedList.add(c);
 
-        canvas[x][y] = c;
+        super.drawPixel(x, y, c);
     }
 
     public LinkedList<Character> getPixelHistory(int x, int y) {

@@ -1,8 +1,8 @@
 package academy.pocu.comp2500.assignment4;
 
 public class Canvas {
-    protected static final char INITIAL_PIXEL = ' ';
-    protected char[][] canvas;
+    private static final char INITIAL_PIXEL = ' ';
+    private char[][] canvas;
     public Canvas(int width, int height) {
         this.canvas = new char[width][height];
         for (int i = 0; i < getHeight(); i++) {
@@ -18,7 +18,7 @@ public class Canvas {
         return canvas.length;
     }
     public void drawPixel(int x, int y, char c) {
-        if (isValidXY(x, y) == false || isValidPixel(c) == false) {
+        if (isValidXY(x, y) == false || isValidLetter(c) == false) {
             return;
         }
 
@@ -36,7 +36,7 @@ public class Canvas {
     public boolean increasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (isBlankPixel(x, y) == true || isValidPixel((int)pixel + 1) == false) {
+        if (isBlankPixel(x, y) == true || isValidLetter((int)pixel + 1) == false) {
             return false;
         }
 
@@ -48,7 +48,7 @@ public class Canvas {
     public boolean decreasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (isBlankPixel(x, y) == true || isValidPixel((int)pixel - 1) == false) {
+        if (isBlankPixel(x, y) == true || isValidLetter((int)pixel - 1) == false) {
             return false;
         }
 
@@ -63,22 +63,19 @@ public class Canvas {
         }
 
         char pixel = getPixel(x , y);
-        pixel = (char)(0x20 | (int)pixel);
+        pixel = (char)(0xDF & (int)pixel);
         drawPixel(x, y, pixel);
     }
-
     public void toLower(int x, int y) {
         if (isValidXY(x, y) == false) {
             return;
         }
-
-        char pixel = getPixel(x , y);
-        pixel = (char)(0xDF & (int)pixel);
+        char pixel = getPixel(x, y);
+        pixel = (char)(0x20 | (int)pixel);
         drawPixel(x, y, pixel);
     }
-
     public void fillHorizontalLine(int y, char c) {
-        if(isValidY(y) == false || isValidPixel(c) == false) {
+        if(isValidY(y) == false || isValidLetter(c) == false) {
             return;
         }
 
@@ -88,12 +85,12 @@ public class Canvas {
     }
 
     public void fillVerticalLine(int x, char c) {
-        if(isValidX(x) == false || isValidPixel(c) == false) {
+        if(isValidX(x) == false || isValidLetter(c) == false) {
             return;
         }
 
         for (int i = 0; i < getHeight(); i++) {
-            drawPixel(x , i, c);
+            drawPixel(x, i, c);
         }
     }
 
@@ -132,7 +129,7 @@ public class Canvas {
         return sb.toString();
     }
 
-    protected boolean isValidPixel(int value) {
+    private boolean isValidLetter(int value) {
         if (value >= 32 && value <= 126) {
             return true;
         }
@@ -154,7 +151,7 @@ public class Canvas {
         return true;
     }
 
-    protected boolean isValidXY(int x, int y) {
+    private boolean isValidXY(int x, int y) {
         if (isValidX(x) == false || isValidY(y) == false) {
             return false;
         }
@@ -163,7 +160,7 @@ public class Canvas {
     }
 
     private boolean isBlankPixel(int x, int y) {
-        if (isValidXY(x, y) == false || getPixel(x, y) != INITIAL_PIXEL) {
+        if (getPixel(x, y) != INITIAL_PIXEL) {
             return false;
         }
         return true;

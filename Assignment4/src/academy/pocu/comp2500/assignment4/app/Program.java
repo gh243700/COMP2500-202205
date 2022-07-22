@@ -8,6 +8,19 @@ public class Program {
 	    // write your code here
         System.out.println(ClearCanvasCommand.class.getSimpleName());
 
+        {
+            Canvas canvas = new Canvas(10, 10);
+            canvas.drawPixel(0, 0, 'a');
+            System.out.println(canvas.getDrawing());
+            canvas.increasePixel(0, 0);
+            System.out.println(canvas.getDrawing());
+            assert (canvas.increasePixel(1, 1) == false);
+            canvas.toUpper(0,0);
+            assert(canvas.getPixel(0,0) == 'B');
+            canvas.fillHorizontalLine(0, 'q');
+            System.out.println(canvas.getDrawing());
+        }
+
         Canvas canvas = new Canvas(10, 10);
         ICommand iCommand0 = new DrawPixelCommand(0, 0, '*');
         ICommand iCommand1 = new DrawPixelCommand(1, 2, '$');
