@@ -1,22 +1,22 @@
 package academy.pocu.comp2500.assignment4;
 
 public class Canvas {
-    private static final char INITIAL_PIXEL = ' ';
-    private char[][] canvas;
-
+    protected static final char INITIAL_PIXEL = ' ';
+    protected char[][] canvas;
     public Canvas(int width, int height) {
         this.canvas = new char[width][height];
-        clear();
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                canvas[j][i] = INITIAL_PIXEL;
+            }
+        }
     }
-
     public int getWidth() {
         return canvas[0].length;
     }
-
     public int getHeight() {
         return canvas.length;
     }
-
     public void drawPixel(int x, int y, char c) {
         if (isValidXY(x, y) == false || isValidPixel(c) == false) {
             return;
@@ -100,7 +100,7 @@ public class Canvas {
     public void clear() {
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                canvas[j][i] = INITIAL_PIXEL;
+                drawPixel(j, i, INITIAL_PIXEL);
             }
         }
     }
@@ -132,7 +132,7 @@ public class Canvas {
         return sb.toString();
     }
 
-    private boolean isValidPixel(int value) {
+    protected boolean isValidPixel(int value) {
         if (value >= 32 && value <= 126) {
             return true;
         }
@@ -154,7 +154,7 @@ public class Canvas {
         return true;
     }
 
-    private boolean isValidXY(int x, int y) {
+    protected boolean isValidXY(int x, int y) {
         if (isValidX(x) == false || isValidY(y) == false) {
             return false;
         }
