@@ -16,7 +16,7 @@ public class Program {
             System.out.println(canvas.getDrawing());
             canvas.increasePixel(0, 0);
             System.out.println(canvas.getDrawing());
-            assert (canvas.increasePixel(1, 1) == false);
+            assert (canvas.increasePixel(1, 1) == true);
             canvas.toUpper(0,0);
             assert(canvas.getPixel(0,0) == 'B');
             canvas.fillHorizontalLine(0, 'q');

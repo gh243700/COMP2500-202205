@@ -36,7 +36,7 @@ public class Canvas {
     public boolean increasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (isBlankPixel(x, y) == true || isValidLetter((int)pixel + 1) == false) {
+        if (isValidLetter((int)pixel + 1) == false) {
             return false;
         }
 
@@ -48,7 +48,7 @@ public class Canvas {
     public boolean decreasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (isBlankPixel(x, y) == true || isValidLetter((int)pixel - 1) == false) {
+        if (isValidLetter((int)pixel - 1) == false) {
             return false;
         }
 
@@ -156,13 +156,6 @@ public class Canvas {
             return false;
         }
 
-        return true;
-    }
-
-    private boolean isBlankPixel(int x, int y) {
-        if (getPixel(x, y) != INITIAL_PIXEL) {
-            return false;
-        }
         return true;
     }
 
