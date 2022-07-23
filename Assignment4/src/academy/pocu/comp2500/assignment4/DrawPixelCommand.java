@@ -5,7 +5,6 @@ public class DrawPixelCommand implements ICommand{
     private int y;
     private char c;
     private Canvas canvasOrNull;
-
     private char cBackup;
 
     public DrawPixelCommand(int x, int y, char c) {

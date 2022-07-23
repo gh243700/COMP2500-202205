@@ -29,7 +29,10 @@ public class Program {
         ICommand iCommand2 = new DrawPixelCommand(0, 1, '&');
 
         CommandHistoryManager cm = new CommandHistoryManager(canvas);
+
         cm.execute(iCommand0);
+        assert (cm.redo() == false);
+        assert(cm.undo() == true);
         System.out.println(canvas.getDrawing());
         cm.execute(iCommand1);
         System.out.println(canvas.getDrawing());
@@ -44,7 +47,6 @@ public class Program {
         System.out.println(canvas.getDrawing());
 
         ICommand iCommand3 = new DrawPixelCommand(1, 0, '^');
-
         cm.undo();
         cm.undo();
         cm.execute(iCommand3);
