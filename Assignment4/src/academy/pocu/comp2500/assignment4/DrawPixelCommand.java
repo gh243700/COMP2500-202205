@@ -5,8 +5,9 @@ public class DrawPixelCommand implements ICommand{
     private int y;
     private char c;
     private Canvas canvasOrNull;
+    private boolean isUndoPossible = true;
 
-    private boolean isUndoCalled;
+    private boolean isRedoPossible = true;
     private char cBackup;
 
     public DrawPixelCommand(int x, int y, char c) {
@@ -26,26 +27,29 @@ public class DrawPixelCommand implements ICommand{
         if (canvas.getPixel(x, y) == cBackup) {
             return false;
         }
-
         return true;
     }
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null) {
+        if (canvasOrNull == null || !isUndoPossible) {
             return false;
         }
-        isUndoCalled = true;
         canvasOrNull.drawPixel(x , y, cBackup);
+        isUndoPossible = false;
+        isRedoPossible = true;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null || !isRedoPossible ) {
             return false;
         }
+
         canvasOrNull.drawPixel(x, y, c);
+        isUndoPossible = true;
+        isRedoPossible = false;
         return true;
     }
 }
