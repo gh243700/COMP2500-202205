@@ -7,7 +7,8 @@ public class FillHorizontalLineCommand implements ICommand {
     private char[] before;
     private Canvas canvasOrNull;
 
-    private boolean isUndoCalled;
+    private boolean isUndoPossible = true;
+    private boolean isRedoPossible;
     public FillHorizontalLineCommand(int y, char c) {
         this.y = y;
         this.c = c;
@@ -29,22 +30,27 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null) {
+        if (canvasOrNull == null || !isUndoPossible) {
             return false;
         }
-        isUndoCalled = true;
+
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(i, y, before[i]);
         }
+
+        isUndoPossible = false;
+        isRedoPossible = true;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null || !isRedoPossible) {
             return false;
         }
         canvasOrNull.fillHorizontalLine(y, c);
+        isUndoPossible = true;
+        isRedoPossible = false;
         return true;
     }
 }

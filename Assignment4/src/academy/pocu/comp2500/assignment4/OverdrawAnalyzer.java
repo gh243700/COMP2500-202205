@@ -2,15 +2,24 @@ package academy.pocu.comp2500.assignment4;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-public class OverdrawAnalyzer extends Canvas{
+
+public class OverdrawAnalyzer extends Canvas {
     private HashMap<Vector, LinkedList<Character>> pixelHistory = new HashMap<>();
+
     public OverdrawAnalyzer(int width, int height) {
         super(width, height);
     }
+
     @Override
     public void drawPixel(int x, int y, char c) {
 
-        if(getPixel(x, y) == c) {
+        if (getPixel(x, y) == c) {
+            return;
+        }
+
+        super.drawPixel(x, y, c);
+
+        if (c != getPixel(x, y)) {
             return;
         }
 
@@ -23,14 +32,12 @@ public class OverdrawAnalyzer extends Canvas{
         }
         linkedList = pixelHistory.get(vector);
         linkedList.add(c);
-
-        super.drawPixel(x, y, c);
     }
 
     public LinkedList<Character> getPixelHistory(int x, int y) {
         Vector vector = new Vector(x, y);
         LinkedList<Character> linkedList;
-        if(!pixelHistory.containsKey(vector)) {
+        if (!pixelHistory.containsKey(vector)) {
             linkedList = new LinkedList<>();
             return linkedList;
         }
@@ -45,7 +52,16 @@ public class OverdrawAnalyzer extends Canvas{
         }
 
         LinkedList<Character> characters = pixelHistory.get(vector);
-        return characters.size() - 1;
+        return characters.size();
+    }
+
+    public int getOverdrawCount() {
+        int result = 0;
+        for (LinkedList<Character> linkedList : pixelHistory.values()) {
+            result += linkedList.size();
+        }
+
+        return result;
     }
 
 }

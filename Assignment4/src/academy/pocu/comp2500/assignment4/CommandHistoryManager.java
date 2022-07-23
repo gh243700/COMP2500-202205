@@ -4,19 +4,22 @@ import java.util.ArrayList;
 
 public class CommandHistoryManager {
     private Canvas canvas;
+    private String sBackup;
     private ArrayList<ICommand> executedCommands = new ArrayList<>();
     private ArrayList<ICommand> undoneCommands = new ArrayList<>();
 
-    public CommandHistoryManager(Canvas canvas) {
+    public CommandHistoryManager(Canvas canvas)
+    {
         this.canvas = canvas;
+        sBackup = canvas.getDrawing();
     }
-
     public boolean execute(ICommand iCommand) {
-        if (iCommand.execute(canvas) == false) {
+        if (!sBackup.equals(canvas.getDrawing()) || iCommand.execute(canvas) == false) {
             return false;
         }
-        undoneCommands.removeAll(undoneCommands);
         executedCommands.add(iCommand);
+        undoneCommands.removeAll(undoneCommands);
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -29,30 +32,37 @@ public class CommandHistoryManager {
     }
 
     public boolean undo() {
-        if (canUndo() == false) {
+        if (!sBackup.equals(canvas.getDrawing()) || canUndo() == false) {
             return false;
         }
         int index = executedCommands.size() - 1;
         ICommand iCommand = executedCommands.get(index);
+
         if (iCommand.undo() == false) {
             return false;
         }
+
         executedCommands.remove(index);
         undoneCommands.add(iCommand);
+        sBackup = canvas.getDrawing();
         return true;
     }
 
     public boolean redo() {
-        if (canRedo() == false) {
+        if (!sBackup.equals(canvas.getDrawing()) || canRedo() == false) {
             return false;
         }
         int index = undoneCommands.size() - 1;
         ICommand iCommand = undoneCommands.get(index);
-        if (iCommand.redo() == false) {
+
+        undoneCommands.remove(index);
+
+        if (!iCommand.redo()) {
             return false;
         }
-        undoneCommands.remove(index);
+
         executedCommands.add(iCommand);
+        sBackup = canvas.getDrawing();
         return true;
     }
 }

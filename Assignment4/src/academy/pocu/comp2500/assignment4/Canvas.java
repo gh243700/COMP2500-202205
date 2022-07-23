@@ -3,6 +3,7 @@ package academy.pocu.comp2500.assignment4;
 public class Canvas {
     private static final char INITIAL_PIXEL = ' ';
     private char[][] canvas;
+
     public Canvas(int width, int height) {
         this.canvas = new char[width][height];
         for (int i = 0; i < getHeight(); i++) {
@@ -11,12 +12,15 @@ public class Canvas {
             }
         }
     }
+
     public int getWidth() {
         return canvas.length;
     }
+
     public int getHeight() {
         return canvas[0].length;
     }
+
     public void drawPixel(int x, int y, char c) {
         if (isValidXY(x, y) == false || isValidLetter(c) == false) {
             return;
@@ -36,11 +40,11 @@ public class Canvas {
     public boolean increasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (pixel == Character.MAX_VALUE || isValidLetter((int)pixel + 1) == false) {
+        if (pixel == Character.MAX_VALUE || isValidLetter((int) pixel + 1) == false) {
             return false;
         }
 
-        pixel = (char)((int)pixel + 1);
+        pixel = (char) ((int) pixel + 1);
         drawPixel(x, y, pixel);
         return true;
     }
@@ -48,11 +52,11 @@ public class Canvas {
     public boolean decreasePixel(int x, int y) {
         char pixel = getPixel(x, y);
 
-        if (pixel == Character.MAX_VALUE || isValidLetter((int)pixel - 1) == false) {
+        if (pixel == Character.MAX_VALUE || isValidLetter((int) pixel - 1) == false) {
             return false;
         }
 
-        pixel = (char)((int)pixel - 1);
+        pixel = (char) ((int) pixel - 1);
         drawPixel(x, y, pixel);
         return true;
     }
@@ -62,30 +66,42 @@ public class Canvas {
             return;
         }
 
-        char pixel = getPixel(x , y);
-        pixel = (char)(0xDF & (int)pixel);
+        char pixel = getPixel(x, y);
+        /*
+        if (pixel < 0x61 || pixel > 0x7A) {
+            return;
+        }
+        */
+        pixel = (char) (0xDF & (int) pixel);
         drawPixel(x, y, pixel);
     }
+
     public void toLower(int x, int y) {
         if (isValidXY(x, y) == false) {
             return;
         }
         char pixel = getPixel(x, y);
-        pixel = (char)(0x20 | (int)pixel);
+        /*
+        if (pixel < 0x41 || pixel > 0x5A) {
+            return;
+        }
+        */
+        pixel = (char) (0x20 | (int) pixel);
         drawPixel(x, y, pixel);
     }
+
     public void fillHorizontalLine(int y, char c) {
-        if(isValidY(y) == false || isValidLetter(c) == false) {
+        if (isValidY(y) == false || isValidLetter(c) == false) {
             return;
         }
 
         for (int i = 0; i < getWidth(); i++) {
-            drawPixel(i , y, c);
+            drawPixel(i, y, c);
         }
     }
 
     public void fillVerticalLine(int x, char c) {
-        if(isValidX(x) == false || isValidLetter(c) == false) {
+        if (isValidX(x) == false || isValidLetter(c) == false) {
             return;
         }
 

@@ -6,8 +6,8 @@ public class FillVerticalLineCommand implements ICommand {
     private char c;
     private Canvas canvasOrNull;
     private char before[];
-
-    private boolean isUndoCalled;
+    private boolean isUndoPossible = true;
+    private boolean isRedoPossible;
     public FillVerticalLineCommand(int x, char c) {
         this.x = x;
         this.c = c;
@@ -24,28 +24,30 @@ public class FillVerticalLineCommand implements ICommand {
             before[i] = canvas.getPixel(x, i);
         }
         canvas.fillVerticalLine(x, c);
-
         return true;
     }
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null) {
+        if (canvasOrNull == null || !isUndoPossible) {
             return false;
         }
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(x, i, before[i]);
         }
-        isUndoCalled = true;
+        isUndoPossible = false;
+        isRedoPossible = true;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null || !isRedoPossible) {
             return false;
         }
         canvasOrNull.fillVerticalLine(x, c);
+        isUndoPossible = true;
+        isRedoPossible = false;
         return true;
     }
 }
