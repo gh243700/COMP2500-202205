@@ -5,6 +5,8 @@ public class DrawPixelCommand implements ICommand{
     private int y;
     private char c;
     private Canvas canvasOrNull;
+
+    private boolean isUndoCalled;
     private char cBackup;
 
     public DrawPixelCommand(int x, int y, char c) {
@@ -33,13 +35,14 @@ public class DrawPixelCommand implements ICommand{
         if (canvasOrNull == null) {
             return false;
         }
+        isUndoCalled = true;
         canvasOrNull.drawPixel(x , y, cBackup);
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null) {
+        if (canvasOrNull == null || !isUndoCalled) {
             return false;
         }
         canvasOrNull.drawPixel(x, y, c);

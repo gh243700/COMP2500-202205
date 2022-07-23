@@ -6,6 +6,7 @@ public class IncreasePixelCommand implements ICommand {
     private int y;
     private Canvas canvasOrNull;
 
+    private boolean isUndoCalled;
     public IncreasePixelCommand(int x, int y) {
         this.x = x;
         this.y = y;
@@ -25,12 +26,13 @@ public class IncreasePixelCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
+        isUndoCalled = true;
         return canvasOrNull.decreasePixel(x, y);
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null) {
+        if (canvasOrNull == null || !isUndoCalled) {
             return false;
         }
         return canvasOrNull.increasePixel(x, y);
