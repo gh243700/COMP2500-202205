@@ -32,7 +32,7 @@ public class DrawPixelCommand implements ICommand{
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null || !isUndoPossible) {
+        if (canvasOrNull == null || !isUndoPossible || c != canvasOrNull.getPixel(x, y)) {
             return false;
         }
         canvasOrNull.drawPixel(x , y, cBackup);
