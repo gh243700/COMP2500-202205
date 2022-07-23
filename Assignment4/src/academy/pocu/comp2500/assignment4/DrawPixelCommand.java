@@ -43,7 +43,7 @@ public class DrawPixelCommand implements ICommand{
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isRedoPossible ) {
+        if (canvasOrNull == null || !isRedoPossible) {
             return false;
         }
 
