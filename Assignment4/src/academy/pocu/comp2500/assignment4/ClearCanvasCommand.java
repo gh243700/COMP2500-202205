@@ -13,8 +13,8 @@ public class ClearCanvasCommand implements ICommand {
 
         canvasOrNull = canvas;
         cBackupOrNull = new char[canvas.getWidth()][canvas.getHeight()];
-        for (int i = 0; i < cBackupOrNull.length; i++) {
-            for (int j = 0; j < cBackupOrNull[0].length; j++) {
+        for (int i = 0; i < cBackupOrNull[0].length; i++) {
+            for (int j = 0; j < cBackupOrNull.length; j++) {
                 cBackupOrNull[j][i] = canvas.getPixel(j, i);
             }
         }
@@ -29,8 +29,8 @@ public class ClearCanvasCommand implements ICommand {
         }
         isUndoCalled = true;
 
-        for (int i = 0; i < cBackupOrNull.length; i++) {
-            for (int j = 0; j < cBackupOrNull[0].length; j++) {
+        for (int i = 0; i < cBackupOrNull[0].length; i++) {
+            for (int j = 0; j < cBackupOrNull.length; j++) {
                 canvasOrNull.drawPixel(j, i, cBackupOrNull[j][i]);
             }
         }
