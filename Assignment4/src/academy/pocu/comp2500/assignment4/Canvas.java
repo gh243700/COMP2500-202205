@@ -64,6 +64,10 @@ public class Canvas {
 
         char pixel = getPixel(x, y);
 
+        if (pixel < 0x61 || pixel > 0x7A) {
+            return;
+        }
+
         pixel = (char)(0xDF & (int)pixel);
 
 
@@ -76,6 +80,10 @@ public class Canvas {
 
 
         char pixel = getPixel(x, y);
+
+        if (pixel < 0x41 || pixel > 0x5A) {
+            return;
+        }
 
 
         pixel = (char)(0x20 | (int)pixel);
