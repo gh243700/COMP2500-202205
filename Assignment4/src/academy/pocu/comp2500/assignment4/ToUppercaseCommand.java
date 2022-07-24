@@ -5,7 +5,8 @@ public class ToUppercaseCommand implements ICommand {
     private int y;
     private Canvas canvasOrNull;
 
-    private boolean isUndoCalled;
+    private boolean isUndoPossible = true;
+    private boolean isRedoPossible;
 
     public ToUppercaseCommand(int x, int y) {
         this.x = x;
@@ -27,16 +28,26 @@ public class ToUppercaseCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        isUndoCalled = true;
+        if(!isUndoPossible) {
+            return false;
+        }
+        isUndoPossible = false;
+        isRedoPossible = true;
         canvasOrNull.toLower(x, y);
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null) {
             return false;
         }
+
+        if (!isRedoPossible) {
+            return false;
+        }
+        isUndoPossible = true;
+        isRedoPossible = false;
         canvasOrNull.toUpper(x, y);
         return true;
     }

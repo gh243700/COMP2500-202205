@@ -7,7 +7,8 @@ public class FillHorizontalLineCommand implements ICommand {
     private char[] before;
     private Canvas canvasOrNull;
 
-    private boolean isUndoCalled;
+    private boolean isUndoPossible = true;
+    private boolean isRedoPossible;
     public FillHorizontalLineCommand(int y, char c) {
         this.y = y;
         this.c = c;
@@ -32,7 +33,11 @@ public class FillHorizontalLineCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        isUndoCalled = true;
+        if(!isUndoPossible) {
+            return false;
+        }
+        isUndoPossible = false;
+        isRedoPossible = true;
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(i, y, before[i]);
         }
@@ -41,9 +46,14 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null) {
             return false;
         }
+        if (!isRedoPossible) {
+            return false;
+        }
+        isUndoPossible = true;
+        isRedoPossible = false;
         canvasOrNull.fillHorizontalLine(y, c);
         return true;
     }

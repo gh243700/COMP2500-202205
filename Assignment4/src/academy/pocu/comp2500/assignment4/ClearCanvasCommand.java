@@ -4,7 +4,9 @@ public class ClearCanvasCommand implements ICommand {
     private char[][] cBackupOrNull;
     private Canvas canvasOrNull;
 
-    private boolean isUndoCalled;
+    private boolean isUndoPossible = true;
+    private boolean isRedoPossible;
+
     @Override
     public boolean execute(Canvas canvas) {
         if (canvasOrNull != null) {
@@ -27,8 +29,12 @@ public class ClearCanvasCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        isUndoCalled = true;
 
+        if(!isUndoPossible) {
+            return false;
+        }
+        isUndoPossible = false;
+        isRedoPossible = true;
         for (int i = 0; i < cBackupOrNull[0].length; i++) {
             for (int j = 0; j < cBackupOrNull.length; j++) {
                 canvasOrNull.drawPixel(j, i, cBackupOrNull[j][i]);
@@ -39,11 +45,15 @@ public class ClearCanvasCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null) {
             return false;
         }
-
+        if (!isRedoPossible) {
+            return false;
+        }
         canvasOrNull.clear();
+        isUndoPossible = true;
+        isRedoPossible = false;
         return true;
     }
 }

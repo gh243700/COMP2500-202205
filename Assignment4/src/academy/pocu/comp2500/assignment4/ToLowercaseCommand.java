@@ -6,7 +6,8 @@ public class ToLowercaseCommand implements ICommand {
     private int y;
     private Canvas canvasOrNull;
 
-    private boolean isUndoCalled;
+    private boolean isUndoPossible = true;
+    private boolean isRedoPossible;
 
     public ToLowercaseCommand(int x, int y) {
         this.x = x;
@@ -29,17 +30,26 @@ public class ToLowercaseCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        isUndoCalled = true;
+        if(!isUndoPossible) {
+            return false;
+        }
+        isUndoPossible = false;
+        isRedoPossible = true;
         canvasOrNull.toUpper(x, y);
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isUndoCalled) {
+        if (canvasOrNull == null) {
             return false;
         }
-        canvasOrNull.toUpper(x, y);
+        if (!isRedoPossible) {
+            return false;
+        }
+        isUndoPossible = true;
+        isRedoPossible = false;
+        canvasOrNull.toLower(x, y);
         return true;
     }
 
