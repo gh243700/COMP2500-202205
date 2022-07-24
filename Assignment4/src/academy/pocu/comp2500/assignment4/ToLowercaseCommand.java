@@ -21,6 +21,10 @@ public class ToLowercaseCommand implements ICommand {
         if (canvasOrNull != null || canvas.getPixel(x, y) == Character.MAX_VALUE) {
             return false;
         }
+        char pixel = canvas.getPixel(x, y);
+        if (pixel < 0x41 || pixel > 0x5A) {
+            return false;
+        }
 
         canvasOrNull = canvas;
         canvas.toLower(x, y);

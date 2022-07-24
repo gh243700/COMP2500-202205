@@ -18,6 +18,12 @@ public class ToUppercaseCommand implements ICommand {
         if (canvasOrNull != null || canvas.getPixel(x, y) == Character.MAX_VALUE) {
             return false;
         }
+        char pixel = canvas.getPixel(x, y);
+        if (pixel < 0x61 || pixel > 0x7A) {
+            return false;
+        }
+
+
         this.canvasOrNull = canvas;
         canvas.toUpper(x, y);
         sBackup = canvas.getDrawing();
