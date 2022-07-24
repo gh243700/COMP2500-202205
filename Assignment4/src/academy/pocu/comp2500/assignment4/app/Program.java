@@ -3,13 +3,20 @@ package academy.pocu.comp2500.assignment4.app;
 import academy.pocu.comp2500.assignment4.*;
 
 import java.util.ArrayList;
-
+import java.util.LinkedList;
 
 
 public class Program {
 
     public static void main(String[] args) {
 	    // write your code here
+
+        {
+            LinkedList<Character> linkedList = new LinkedList<>();
+
+
+
+        }
         Canvas canvas = new Canvas(10, 10);
         CommandHistoryManager cm = new CommandHistoryManager(canvas);
 
@@ -24,6 +31,7 @@ public class Program {
         ICommand iCommand3 = new ToUppercaseCommand(0, 1);
         cm.execute(iCommand3);
         assert (canvas.getPixel(0, 1) == 'A');
+        assert (cm.execute(iCommand3) == false);
 
 
         {

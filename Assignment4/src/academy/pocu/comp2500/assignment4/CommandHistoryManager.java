@@ -34,6 +34,7 @@ public class CommandHistoryManager {
         }
         int index = executedCommands.size() - 1;
         ICommand iCommand = executedCommands.get(index);
+
         if (iCommand.undo() == false) {
             return false;
         }
@@ -48,9 +49,11 @@ public class CommandHistoryManager {
         }
         int index = undoneCommands.size() - 1;
         ICommand iCommand = undoneCommands.get(index);
+
         if (iCommand.redo() == false) {
             return false;
         }
+
         undoneCommands.remove(index);
         executedCommands.add(iCommand);
         return true;

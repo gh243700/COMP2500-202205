@@ -14,9 +14,6 @@ public class OverdrawAnalyzer extends Canvas{
             return;
         }
         super.drawPixel(x, y, c);
-        if (pixel == getPixel(x, y)) {
-            return;
-        }
 
         Vector vector = new Vector(x, y);
 
@@ -26,9 +23,9 @@ public class OverdrawAnalyzer extends Canvas{
             pixelHistory.put(vector, linkedList);
         }
         linkedList = pixelHistory.get(vector);
-        linkedList.add(c);
-
-
+        if (linkedList.size() == 0 || linkedList.getLast() != c) {
+            linkedList.add(c);
+        }
     }
 
     public LinkedList<Character> getPixelHistory(int x, int y) {
