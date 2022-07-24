@@ -55,7 +55,6 @@ public class ToLowercaseCommand implements ICommand {
         }
         isUndoPossible = true;
         isRedoPossible = false;
-        cBackup = canvasOrNull.getPixel(x, y);
         canvasOrNull.toLower(x, y);
         sBackup = canvasOrNull.getDrawing();
         return true;

@@ -55,7 +55,6 @@ public class ToUppercaseCommand implements ICommand {
         }
         isUndoPossible = true;
         isRedoPossible = false;
-        cBackup = canvasOrNull.getPixel(x, y);
         canvasOrNull.toUpper(x, y);
 
         sBackup = canvasOrNull.getDrawing();
