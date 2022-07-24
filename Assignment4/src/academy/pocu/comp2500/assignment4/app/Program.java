@@ -89,30 +89,7 @@ public class Program {
             System.out.print(analyzer.getDrawing());
             System.out.println(analyzer.getPixelHistory(0, 1)); // 오류 생기는 부분 직접 입력
         }
-
-        {
-            canvas = new Canvas(20, 10);
-            CommandHistoryManager chm = new CommandHistoryManager(canvas);
-            DrawPixelCommand c1 = new DrawPixelCommand(1, 2, '1');
-            DrawPixelCommand c2 = new DrawPixelCommand(3, 5, '2');
-
-            assert (chm.execute(c1) == true);
-            assert (chm.execute(c2) == true);
-
-            assert (chm.undo() == true);
-            assert (chm.redo() == true);
-
-            assert (chm.undo() == true);
-
-            canvas.drawPixel(1, 2, '5');
-
-            assert (chm.undo() == false);
-            assert (chm.redo() == true);
-
-
-
-
-        }
+        
 
         {
             canvas = new Canvas(20, 10);
