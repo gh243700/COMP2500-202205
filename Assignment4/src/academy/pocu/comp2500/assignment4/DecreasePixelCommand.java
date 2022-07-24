@@ -1,11 +1,13 @@
 package academy.pocu.comp2500.assignment4;
 
 public class DecreasePixelCommand implements ICommand {
+
     private Canvas canvasOrNull;
     private int x;
     private int y;
-    private boolean isUndoPossible = true;
-    private boolean isRedoPossible;
+
+    private boolean isUndoCalled;
+
     public DecreasePixelCommand(int x, int y) {
         this.x = x;
         this.y = y;
@@ -13,33 +15,27 @@ public class DecreasePixelCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (canvasOrNull != null || !canvas.decreasePixel(x, y)) {
+        if (canvasOrNull != null) {
             return false;
         }
-
         this.canvasOrNull = canvas;
-        return true;
+        return canvas.decreasePixel(x, y);
     }
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null || !isUndoPossible) {
+        if (canvasOrNull == null) {
             return false;
         }
-        canvasOrNull.increasePixel(x, y);
-        isUndoPossible = false;
-        isRedoPossible = true;
-        return true;
+        isUndoCalled = true;
+        return canvasOrNull.increasePixel(x, y);
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isRedoPossible) {
+        if (canvasOrNull == null || !isUndoCalled) {
             return false;
         }
-        canvasOrNull.decreasePixel(x, y);
-        isUndoPossible = true;
-        isRedoPossible = false;
-        return true;
+        return canvasOrNull.increasePixel(x, y);
     }
 }

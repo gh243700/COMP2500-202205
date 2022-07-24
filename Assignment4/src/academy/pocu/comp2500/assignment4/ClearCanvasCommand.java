@@ -3,8 +3,8 @@ package academy.pocu.comp2500.assignment4;
 public class ClearCanvasCommand implements ICommand {
     private char[][] cBackupOrNull;
     private Canvas canvasOrNull;
-    private boolean isUndoPossible = true;
-    private boolean isRedoPossible;
+
+    private boolean isUndoCalled;
     @Override
     public boolean execute(Canvas canvas) {
         if (canvasOrNull != null) {
@@ -13,8 +13,8 @@ public class ClearCanvasCommand implements ICommand {
 
         canvasOrNull = canvas;
         cBackupOrNull = new char[canvas.getWidth()][canvas.getHeight()];
-        for (int i = 0; i < cBackupOrNull[0].length; i++) {
-            for (int j = 0; j < cBackupOrNull.length; j++) {
+        for (int i = 0; i < cBackupOrNull.length; i++) {
+            for (int j = 0; j < cBackupOrNull[0].length; j++) {
                 cBackupOrNull[j][i] = canvas.getPixel(j, i);
             }
         }
@@ -24,30 +24,26 @@ public class ClearCanvasCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null || !isUndoPossible) {
+        if (canvasOrNull == null) {
             return false;
         }
+        isUndoCalled = true;
 
-        for (int i = 0; i < cBackupOrNull[0].length; i++) {
-            for (int j = 0; j < cBackupOrNull.length; j++) {
+        for (int i = 0; i < cBackupOrNull.length; i++) {
+            for (int j = 0; j < cBackupOrNull[0].length; j++) {
                 canvasOrNull.drawPixel(j, i, cBackupOrNull[j][i]);
             }
         }
-        isUndoPossible = false;
-        isRedoPossible = true;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isRedoPossible) {
+        if (canvasOrNull == null || !isUndoCalled) {
             return false;
         }
 
         canvasOrNull.clear();
-
-        isUndoPossible = true;
-        isRedoPossible = false;
         return true;
     }
 }

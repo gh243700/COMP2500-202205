@@ -5,48 +5,41 @@ public class ToLowercaseCommand implements ICommand {
     private int x;
     private int y;
     private Canvas canvasOrNull;
-    private boolean isUndoPossible = true;
-    private boolean isRedoPossible;
+
+    private boolean isUndoCalled;
 
     public ToLowercaseCommand(int x, int y) {
         this.x = x;
         this.y = y;
     }
+
     @Override
     public boolean execute(Canvas canvas) {
         if (canvasOrNull != null || canvas.getPixel(x, y) == Character.MAX_VALUE) {
             return false;
         }
 
-        if (canvas.getPixel(x, y) < 0x41 || canvas.getPixel(x, y) > 0x5A) {
-            return false;
-        }
-
-        canvas.toLower(x, y);
         canvasOrNull = canvas;
-
+        canvas.toLower(x, y);
         return true;
     }
 
     @Override
     public boolean undo() {
-        if (canvasOrNull == null || !isUndoPossible) {
+        if (canvasOrNull == null) {
             return false;
         }
+        isUndoCalled = true;
         canvasOrNull.toUpper(x, y);
-        isUndoPossible = false;
-        isRedoPossible = true;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canvasOrNull == null || !isRedoPossible) {
+        if (canvasOrNull == null || !isUndoCalled) {
             return false;
         }
-        canvasOrNull.toLower(x, y);
-        isUndoPossible = true;
-        isRedoPossible = false;
+        canvasOrNull.toUpper(x, y);
         return true;
     }
 
