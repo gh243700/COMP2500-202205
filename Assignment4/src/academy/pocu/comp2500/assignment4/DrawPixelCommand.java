@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment4;
 
-public class DrawPixelCommand implements ICommand{
+public class DrawPixelCommand implements ICommand {
     private int x;
     private int y;
     private char c;
@@ -35,12 +35,12 @@ public class DrawPixelCommand implements ICommand{
             return false;
         }
 
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = false;
         isRedoPossible = true;
-        canvasOrNull.drawPixel(x , y, cBackup);
+        canvasOrNull.drawPixel(x, y, cBackup);
         sBackup = canvasOrNull.getDrawing();
         return true;
     }

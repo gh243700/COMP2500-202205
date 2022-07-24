@@ -9,6 +9,7 @@ public class FillVerticalLineCommand implements ICommand {
     private String sBackup;
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
+
     public FillVerticalLineCommand(int x, char c) {
         this.x = x;
         this.c = c;
@@ -34,7 +35,7 @@ public class FillVerticalLineCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         for (int i = 0; i < before.length; i++) {

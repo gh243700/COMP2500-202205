@@ -35,7 +35,7 @@ public class ToLowercaseCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = false;

@@ -10,6 +10,7 @@ public class ToUppercaseCommand implements ICommand {
     private String sBackup;
 
     private char cBackup;
+
     public ToUppercaseCommand(int x, int y) {
         this.x = x;
         this.y = y;
@@ -33,7 +34,7 @@ public class ToUppercaseCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
 

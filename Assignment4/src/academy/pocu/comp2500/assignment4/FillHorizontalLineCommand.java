@@ -10,6 +10,7 @@ public class FillHorizontalLineCommand implements ICommand {
     private String sBackup;
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
+
     public FillHorizontalLineCommand(int y, char c) {
         this.y = y;
         this.c = c;
@@ -36,7 +37,7 @@ public class FillHorizontalLineCommand implements ICommand {
             return false;
         }
 
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = false;

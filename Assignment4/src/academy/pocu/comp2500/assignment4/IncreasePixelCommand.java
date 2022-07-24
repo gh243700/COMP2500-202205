@@ -9,6 +9,7 @@ public class IncreasePixelCommand implements ICommand {
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
     private String sBackup;
+
     public IncreasePixelCommand(int x, int y) {
         this.x = x;
         this.y = y;
@@ -32,7 +33,7 @@ public class IncreasePixelCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         if (!canvasOrNull.decreasePixel(x, y)) {

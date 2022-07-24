@@ -34,7 +34,7 @@ public class ClearCanvasCommand implements ICommand {
             return false;
         }
 
-        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+        if (!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
 
