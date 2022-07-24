@@ -19,7 +19,7 @@ public class DrawPixelCommand implements ICommand{
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (canvasOrNull != null) {
+        if (canvasOrNull != null || canvas.getPixel(x, y) == Character.MAX_VALUE) {
             return false;
         }
         this.canvasOrNull = canvas;
