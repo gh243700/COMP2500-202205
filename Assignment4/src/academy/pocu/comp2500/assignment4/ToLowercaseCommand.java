@@ -22,7 +22,7 @@ public class ToLowercaseCommand implements ICommand {
             return false;
         }
         char pixel = canvas.getPixel(x, y);
-        if (pixel < 0x41 || pixel > 0x5A) {
+        if ((pixel < 0x61 || pixel > 0x7A) && (pixel < 0x41 || pixel > 0x5A)) {
             return false;
         }
 
