@@ -9,6 +9,7 @@ public class ToLowercaseCommand implements ICommand {
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
 
+    private char cBackup;
     private String sBackup;
 
     public ToLowercaseCommand(int x, int y) {
@@ -21,12 +22,9 @@ public class ToLowercaseCommand implements ICommand {
         if (canvasOrNull != null || canvas.getPixel(x, y) == Character.MAX_VALUE) {
             return false;
         }
-        char pixel = canvas.getPixel(x, y);
-        if ((pixel < 0x61 || pixel > 0x7A) && (pixel < 0x41 || pixel > 0x5A)) {
-            return false;
-        }
 
         canvasOrNull = canvas;
+        cBackup = canvas.getPixel(x, y);
         canvas.toLower(x, y);
         sBackup = canvas.getDrawing();
         return true;
@@ -42,7 +40,7 @@ public class ToLowercaseCommand implements ICommand {
         }
         isUndoPossible = false;
         isRedoPossible = true;
-        canvasOrNull.toUpper(x, y);
+        canvasOrNull.drawPixel(x, y, cBackup);
         sBackup = canvasOrNull.getDrawing();
         return true;
     }
@@ -57,6 +55,7 @@ public class ToLowercaseCommand implements ICommand {
         }
         isUndoPossible = true;
         isRedoPossible = false;
+        cBackup = canvasOrNull.getPixel(x, y);
         canvasOrNull.toLower(x, y);
         sBackup = canvasOrNull.getDrawing();
         return true;
