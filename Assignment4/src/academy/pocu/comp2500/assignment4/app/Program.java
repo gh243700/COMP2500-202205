@@ -89,7 +89,7 @@ public class Program {
             System.out.print(analyzer.getDrawing());
             System.out.println(analyzer.getPixelHistory(0, 1)); // 오류 생기는 부분 직접 입력
         }
-        
+
 
         {
             canvas = new Canvas(20, 10);

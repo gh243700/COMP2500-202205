@@ -6,7 +6,6 @@ public class DrawPixelCommand implements ICommand{
     private char c;
     private Canvas canvasOrNull;
     private boolean isUndoPossible = true;
-
     private boolean isRedoPossible = true;
     private char cBackup;
 

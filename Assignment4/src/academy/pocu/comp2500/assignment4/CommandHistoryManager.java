@@ -20,6 +20,7 @@ public class CommandHistoryManager {
         }
         undoneCommands.removeAll(undoneCommands);
         executedCommands.add(iCommand);
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -42,6 +43,7 @@ public class CommandHistoryManager {
         }
         executedCommands.remove(index);
         undoneCommands.add(iCommand);
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -56,6 +58,7 @@ public class CommandHistoryManager {
         }
         undoneCommands.remove(index);
         executedCommands.add(iCommand);
+        sBackup = canvas.getDrawing();
         return true;
     }
 }
