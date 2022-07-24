@@ -25,9 +25,6 @@ public class DrawPixelCommand implements ICommand{
         this.canvasOrNull = canvas;
         cBackup = canvas.getPixel(x, y);
         canvas.drawPixel(x, y, c);
-        if (canvas.getPixel(x, y) == cBackup) {
-            return false;
-        }
         sBackup = canvas.getDrawing();
         return true;
     }

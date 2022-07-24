@@ -20,9 +20,13 @@ public class DecreasePixelCommand implements ICommand {
         if (canvasOrNull != null) {
             return false;
         }
+        if (!canvas.decreasePixel(x, y)) {
+            return false;
+        }
+
         this.canvasOrNull = canvas;
         sBackup = canvas.getDrawing();
-        return canvas.decreasePixel(x, y);
+        return true;
     }
 
     @Override
@@ -33,9 +37,7 @@ public class DecreasePixelCommand implements ICommand {
         if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
-        if (!canvasOrNull.increasePixel(x, y)) {
-            return false;
-        }
+        canvasOrNull.increasePixel(x, y);
 
         isUndoPossible = false;
         isRedoPossible = true;
