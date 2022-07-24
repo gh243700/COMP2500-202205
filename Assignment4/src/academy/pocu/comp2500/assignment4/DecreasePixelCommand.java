@@ -8,6 +8,7 @@ public class DecreasePixelCommand implements ICommand {
 
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
+    private String sBackup;
 
     public DecreasePixelCommand(int x, int y) {
         this.x = x;
@@ -20,6 +21,7 @@ public class DecreasePixelCommand implements ICommand {
             return false;
         }
         this.canvasOrNull = canvas;
+        sBackup = canvas.getDrawing();
         return canvas.decreasePixel(x, y);
     }
 
@@ -28,12 +30,17 @@ public class DecreasePixelCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible) {
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
+        if (!canvasOrNull.increasePixel(x, y)) {
+            return false;
+        }
+
         isUndoPossible = false;
         isRedoPossible = true;
-        return canvasOrNull.increasePixel(x, y);
+        sBackup = canvasOrNull.getDrawing();
+        return true;
     }
 
     @Override
@@ -41,11 +48,13 @@ public class DecreasePixelCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = true;
         isRedoPossible = false;
-        return canvasOrNull.decreasePixel(x, y);
+        canvasOrNull.decreasePixel(x, y);
+        sBackup = canvasOrNull.getDrawing();
+        return true;
     }
 }

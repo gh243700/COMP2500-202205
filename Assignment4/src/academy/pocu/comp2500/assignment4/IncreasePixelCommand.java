@@ -8,6 +8,7 @@ public class IncreasePixelCommand implements ICommand {
 
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
+    private String sBackup;
     public IncreasePixelCommand(int x, int y) {
         this.x = x;
         this.y = y;
@@ -18,8 +19,12 @@ public class IncreasePixelCommand implements ICommand {
         if (canvasOrNull != null) {
             return false;
         }
+        if (!canvas.increasePixel(x, y)) {
+            return false;
+        }
         this.canvasOrNull = canvas;
-        return canvas.increasePixel(x, y);
+        sBackup = canvas.getDrawing();
+        return true;
     }
 
     @Override
@@ -27,12 +32,17 @@ public class IncreasePixelCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible) {
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
+        if (!canvasOrNull.decreasePixel(x, y)) {
+            return false;
+        }
+
         isUndoPossible = false;
         isRedoPossible = true;
-        return canvasOrNull.decreasePixel(x, y);
+        sBackup = canvasOrNull.getDrawing();
+        return true;
     }
 
     @Override
@@ -40,12 +50,13 @@ public class IncreasePixelCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = true;
         isRedoPossible = false;
-
-        return canvasOrNull.increasePixel(x, y);
+        canvasOrNull.increasePixel(x, y);
+        sBackup = canvasOrNull.getDrawing();
+        return true;
     }
 }

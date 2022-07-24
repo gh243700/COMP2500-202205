@@ -7,20 +7,16 @@ public class CommandHistoryManager {
     private ArrayList<ICommand> executedCommands = new ArrayList<>();
     private ArrayList<ICommand> undoneCommands = new ArrayList<>();
 
-    private String sBackup;
-
     public CommandHistoryManager(Canvas canvas) {
         this.canvas = canvas;
-        sBackup = canvas.getDrawing();
     }
 
     public boolean execute(ICommand iCommand) {
-        if (!sBackup.equals(canvas.getDrawing()) || iCommand.execute(canvas) == false) {
+        if (iCommand.execute(canvas) == false) {
             return false;
         }
         undoneCommands.removeAll(undoneCommands);
         executedCommands.add(iCommand);
-        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -33,7 +29,7 @@ public class CommandHistoryManager {
     }
 
     public boolean undo() {
-        if (!sBackup.equals(canvas.getDrawing()) || canUndo() == false) {
+        if (canUndo() == false) {
             return false;
         }
         int index = executedCommands.size() - 1;
@@ -43,12 +39,11 @@ public class CommandHistoryManager {
         }
         executedCommands.remove(index);
         undoneCommands.add(iCommand);
-        sBackup = canvas.getDrawing();
         return true;
     }
 
     public boolean redo() {
-        if (!sBackup.equals(canvas.getDrawing()) || canRedo() == false) {
+        if (canRedo() == false) {
             return false;
         }
         int index = undoneCommands.size() - 1;
@@ -58,7 +53,6 @@ public class CommandHistoryManager {
         }
         undoneCommands.remove(index);
         executedCommands.add(iCommand);
-        sBackup = canvas.getDrawing();
         return true;
     }
 }

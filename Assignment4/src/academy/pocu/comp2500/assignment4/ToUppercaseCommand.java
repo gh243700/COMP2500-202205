@@ -7,7 +7,7 @@ public class ToUppercaseCommand implements ICommand {
 
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
-
+    private String sBackup;
     public ToUppercaseCommand(int x, int y) {
         this.x = x;
         this.y = y;
@@ -20,6 +20,7 @@ public class ToUppercaseCommand implements ICommand {
         }
         this.canvasOrNull = canvas;
         canvas.toUpper(x, y);
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -28,12 +29,14 @@ public class ToUppercaseCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible) {
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
+
         isUndoPossible = false;
         isRedoPossible = true;
         canvasOrNull.toLower(x, y);
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 
@@ -43,12 +46,14 @@ public class ToUppercaseCommand implements ICommand {
             return false;
         }
 
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = true;
         isRedoPossible = false;
         canvasOrNull.toUpper(x, y);
+
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 }

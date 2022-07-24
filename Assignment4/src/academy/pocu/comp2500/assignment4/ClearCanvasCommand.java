@@ -7,6 +7,8 @@ public class ClearCanvasCommand implements ICommand {
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
 
+    private String sBackup;
+
     @Override
     public boolean execute(Canvas canvas) {
         if (canvasOrNull != null) {
@@ -20,7 +22,9 @@ public class ClearCanvasCommand implements ICommand {
                 cBackupOrNull[j][i] = canvas.getPixel(j, i);
             }
         }
+
         canvas.clear();
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -30,9 +34,10 @@ public class ClearCanvasCommand implements ICommand {
             return false;
         }
 
-        if(!isUndoPossible) {
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
+
         isUndoPossible = false;
         isRedoPossible = true;
         for (int i = 0; i < cBackupOrNull[0].length; i++) {
@@ -40,6 +45,9 @@ public class ClearCanvasCommand implements ICommand {
                 canvasOrNull.drawPixel(j, i, cBackupOrNull[j][i]);
             }
         }
+
+
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 
@@ -48,12 +56,16 @@ public class ClearCanvasCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
+
         canvasOrNull.clear();
         isUndoPossible = true;
         isRedoPossible = false;
+
+        sBackup = canvasOrNull.getDrawing();
+
         return true;
     }
 }

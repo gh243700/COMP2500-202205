@@ -7,6 +7,7 @@ public class FillHorizontalLineCommand implements ICommand {
     private char[] before;
     private Canvas canvasOrNull;
 
+    private String sBackup;
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
     public FillHorizontalLineCommand(int y, char c) {
@@ -25,6 +26,7 @@ public class FillHorizontalLineCommand implements ICommand {
             before[i] = canvas.getPixel(i, y);
         }
         canvas.fillHorizontalLine(y, c);
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -33,7 +35,8 @@ public class FillHorizontalLineCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if(!isUndoPossible) {
+
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = false;
@@ -41,6 +44,7 @@ public class FillHorizontalLineCommand implements ICommand {
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(i, y, before[i]);
         }
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 
@@ -49,12 +53,13 @@ public class FillHorizontalLineCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = true;
         isRedoPossible = false;
         canvasOrNull.fillHorizontalLine(y, c);
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 }

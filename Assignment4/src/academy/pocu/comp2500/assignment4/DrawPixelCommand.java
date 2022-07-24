@@ -9,6 +9,8 @@ public class DrawPixelCommand implements ICommand{
     private boolean isRedoPossible;
     private char cBackup;
 
+    private String sBackup;
+
     public DrawPixelCommand(int x, int y, char c) {
         this.x = x;
         this.y = y;
@@ -26,6 +28,7 @@ public class DrawPixelCommand implements ICommand{
         if (canvas.getPixel(x, y) == cBackup) {
             return false;
         }
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -35,13 +38,13 @@ public class DrawPixelCommand implements ICommand{
             return false;
         }
 
-        if(!isUndoPossible) {
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = false;
         isRedoPossible = true;
         canvasOrNull.drawPixel(x , y, cBackup);
-
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 
@@ -51,7 +54,7 @@ public class DrawPixelCommand implements ICommand{
             return false;
         }
 
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = true;
@@ -59,6 +62,7 @@ public class DrawPixelCommand implements ICommand{
 
         canvasOrNull.drawPixel(x, y, c);
 
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 }

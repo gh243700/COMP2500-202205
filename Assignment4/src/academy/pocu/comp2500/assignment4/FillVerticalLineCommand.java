@@ -6,7 +6,7 @@ public class FillVerticalLineCommand implements ICommand {
     private char c;
     private Canvas canvasOrNull;
     private char before[];
-
+    private String sBackup;
     private boolean isUndoPossible = true;
     private boolean isRedoPossible;
     public FillVerticalLineCommand(int x, char c) {
@@ -25,7 +25,7 @@ public class FillVerticalLineCommand implements ICommand {
             before[i] = canvas.getPixel(x, i);
         }
         canvas.fillVerticalLine(x, c);
-
+        sBackup = canvas.getDrawing();
         return true;
     }
 
@@ -34,14 +34,16 @@ public class FillVerticalLineCommand implements ICommand {
         if (canvasOrNull == null) {
             return false;
         }
+        if(!isUndoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
+            return false;
+        }
         for (int i = 0; i < before.length; i++) {
             canvasOrNull.drawPixel(x, i, before[i]);
         }
-        if(!isUndoPossible) {
-            return false;
-        }
+
         isUndoPossible = false;
         isRedoPossible = true;
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 
@@ -51,13 +53,14 @@ public class FillVerticalLineCommand implements ICommand {
             return false;
         }
 
-        if (!isRedoPossible) {
+        if (!isRedoPossible || !sBackup.equals(canvasOrNull.getDrawing())) {
             return false;
         }
         isUndoPossible = true;
         isRedoPossible = false;
 
         canvasOrNull.fillVerticalLine(x, c);
+        sBackup = canvasOrNull.getDrawing();
         return true;
     }
 }
