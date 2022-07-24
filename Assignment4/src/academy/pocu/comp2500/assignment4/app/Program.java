@@ -10,30 +10,21 @@ public class Program {
 
     public static void main(String[] args) {
 	    // write your code here
-
         Canvas canvas = new Canvas(10, 10);
-        ICommand iCommand0 = new FillHorizontalLineCommand(0, 'A');
-        ICommand iCommand1 = new FillHorizontalLineCommand(1, 'B');
-        ICommand iCommand2 = new FillHorizontalLineCommand(2, 'C');
-        ICommand iCommand3 = new FillHorizontalLineCommand(3, 'D');
-        ICommand iCommand4 = new FillHorizontalLineCommand(4, 'F');
-
-
         CommandHistoryManager cm = new CommandHistoryManager(canvas);
+
+        ICommand iCommand0 = new DrawPixelCommand(0, 0, 'A');
         cm.execute(iCommand0);
+        ICommand iCommand1 = new ToLowercaseCommand(0, 0);
         cm.execute(iCommand1);
+        assert (canvas.getPixel(0, 0) == 'a');
+
+        ICommand iCommand2 = new DrawPixelCommand(0, 1, 'a');
         cm.execute(iCommand2);
+        ICommand iCommand3 = new ToUppercaseCommand(0, 1);
         cm.execute(iCommand3);
-        System.out.println(canvas.getDrawing());
-        cm.undo();
-        System.out.println(canvas.getDrawing());
-        cm.undo();
-        System.out.println(canvas.getDrawing());
-        cm.redo();
-        System.out.println(canvas.getDrawing());
-        cm.execute(iCommand4);
-        System.out.println(canvas.getDrawing());
-        assert (cm.redo() == false);
+        assert (canvas.getPixel(0, 1) == 'A');
+
 
         {
             OverdrawAnalyzer analyzer = new OverdrawAnalyzer(6, 6);

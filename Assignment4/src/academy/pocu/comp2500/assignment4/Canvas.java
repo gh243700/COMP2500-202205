@@ -62,11 +62,14 @@ public class Canvas {
             return;
         }
 
-        char pixel = getPixel(x , y);
-        pixel = (char)(0xDF & (int)pixel);
+        char pixel = getPixel(x, y);
+
         if (pixel < 0x61 || pixel > 0x7A) {
             return;
         }
+
+        pixel = (char)(0xDF & (int)pixel);
+
 
         drawPixel(x, y, pixel);
     }
