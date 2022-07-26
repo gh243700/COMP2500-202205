@@ -63,8 +63,12 @@ public class App {
             for (int i = 0; i < warehouseProduct.size(); i++) {
                 if (warehouseProduct.get(i).getId() == product.getId()) {
                     b = true;
-                    if (wallet.withdraw(product.getPrice())) {
-                        warehouse.removeProduct(product.getId());
+                    try {
+                        if (wallet.withdraw(product.getPrice())) {
+                            warehouse.removeProduct(product.getId());
+                        }
+                    } catch (OverflowException e) {
+                        throw e;
                     }
                     break;
                 }
