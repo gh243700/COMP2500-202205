@@ -36,7 +36,7 @@ public class App {
 
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.printf("%d. %-18s%2d" + System.lineSeparator(),i + 1, product.getName(), product.getPrice());
+                out.printf("%d. %-18s%2d" + System.lineSeparator(),i + 1, product.getName(), product.getPrice());
             }
 
             MyInteger myInteger = new MyInteger();
