@@ -4,10 +4,11 @@ import academy.pocu.comp2500.lab11.pocu.User;
 import academy.pocu.comp2500.lab11.pocu.Wallet;
 
 public class SafeWallet extends Wallet {
+
+    private OverflowException overflowExceptionOrNull;
     public SafeWallet(User user) throws IllegalAccessException {
         super(user);
     }
-
     @Override
     public boolean deposit(int amount) {
 
@@ -16,9 +17,18 @@ public class SafeWallet extends Wallet {
         }
 
         if (getAmount() <= 0) {
-            throw new OverflowException("amount overflow");
+            overflowExceptionOrNull = new OverflowException("amount overflow");
+            throw overflowExceptionOrNull;
         }
 
         return true;
+    }
+
+    @Override
+    public boolean withdraw(int amount) {
+        if (overflowExceptionOrNull != null) {
+            throw overflowExceptionOrNull;
+        }
+        return super.withdraw(amount);
     }
 }

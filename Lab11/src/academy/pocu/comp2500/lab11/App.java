@@ -24,15 +24,11 @@ public class App {
             throw e;
         }
 
-        try {
-            buyProductFromWarehouse(wallet, warehouseType, in, out);
-        } catch (ProductNotFoundException e) {
-            throw e;
-        }
 
+        buyProductFromWarehouse(wallet, warehouseType, in, out);
     }
 
-    private void buyProductFromWarehouse(Wallet wallet, WarehouseType warehouseType, BufferedReader in, PrintStream out) throws ProductNotFoundException{
+    private void buyProductFromWarehouse(Wallet wallet, WarehouseType warehouseType, BufferedReader in, PrintStream out) {
 
         Warehouse warehouse = new Warehouse(warehouseType);
 
@@ -74,7 +70,7 @@ public class App {
                 }
             }
 
-            if (!b) {
+            if (b == false) {
                 throw new ProductNotFoundException("product not found");
             }
         }
