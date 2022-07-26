@@ -20,11 +20,8 @@ public class App {
             throw e;
         } catch (Exception e) {
             throw (RuntimeException) e;
-        }
-
-        if (wallet == null) {
+        } finally {
             err.printf("%s", "AUTH_ERROR");
-            return;
         }
 
         buyProductFromWarehouse(wallet, warehouseType, in, out);
