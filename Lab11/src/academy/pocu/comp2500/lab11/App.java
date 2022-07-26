@@ -10,10 +10,9 @@ public class App {
 
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
         WarehouseType warehouseType = getWarehouseTypeOrNull(in, out);
-        if(warehouseType == null) {
+        if (warehouseType == null) {
             return;
         }
-
         Wallet wallet;
         try {
             wallet = new SafeWallet(new User());
@@ -21,8 +20,11 @@ public class App {
             throw e;
         } catch (Exception e) {
             throw (RuntimeException) e;
-        } finally {
+        }
+
+        if (wallet == null) {
             err.printf("%s", "AUTH_ERROR");
+            return;
         }
 
         buyProductFromWarehouse(wallet, warehouseType, in, out);
@@ -36,13 +38,10 @@ public class App {
             out.printf("BALANCE: %d" + System.lineSeparator(), wallet.getAmount());
             out.printf("PRODUCT_LIST: Choose the product you want to buy!" + System.lineSeparator());
             ArrayList<Product> products = warehouse.getProducts();
-            if (products.size() == 0) {
-                //throw new ProductNotFoundException("product not found");
-            }
-
+            int size = products.size();
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                out.printf("%d. %-18s%2d" + System.lineSeparator(),i + 1, product.getName(), product.getPrice());
+                out.printf("%d. %-18s%2d" + System.lineSeparator(), i + 1, product.getName(), product.getPrice());
             }
 
             MyInteger myInteger = new MyInteger();
@@ -61,29 +60,28 @@ public class App {
                 continue;
             }
 
+            if (products.size() != size) {
+                throw new ProductNotFoundException("product not found");
+            }
+
             Product product = products.get(myInteger.getValue() - 1);
             ArrayList<Product> warehouseProduct = warehouse.getProducts();
-            boolean isSuccess = false;
+
             for (int i = 0; i < warehouseProduct.size(); i++) {
-                if(warehouseProduct.get(i).getId() == product.getId()) {
+                if (warehouseProduct.get(i).getId() == product.getId()) {
                     if (wallet.withdraw(product.getPrice())) {
                         warehouse.removeProduct(product.getId());
-                        isSuccess = true;
+                        continue;
                     }
                     break;
                 }
             }
-            if (isSuccess) {
-                continue;
-            }
-
-            //throw new ProductNotFoundException("product not found");
         }
     }
 
     private WarehouseType getWarehouseTypeOrNull(BufferedReader in, PrintStream out) {
         while (true) {
-            out.printf("%s"+System.lineSeparator(), "WAREHOUSE: Choose your warehouse!");
+            out.printf("%s" + System.lineSeparator(), "WAREHOUSE: Choose your warehouse!");
             out.printf("%s", warehouseTypesToString());
             MyInteger myInteger = new MyInteger();
             String input;
@@ -102,7 +100,7 @@ public class App {
             }
             WarehouseType[] warehouseTypes = WarehouseType.values();
             for (int i = 0; i < warehouseTypes.length; i++) {
-                if(i + 1 == myInteger.getValue()) {
+                if (i + 1 == myInteger.getValue()) {
                     return warehouseTypes[i];
                 }
             }
@@ -125,7 +123,7 @@ public class App {
         StringBuilder sb = new StringBuilder();
 
         int i = 0;
-        for(WarehouseType wt : WarehouseType.values()) {
+        for (WarehouseType wt : WarehouseType.values()) {
             sb.append(++i);
             sb.append(". ");
             sb.append(wt.toString());
