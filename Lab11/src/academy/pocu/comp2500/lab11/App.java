@@ -13,10 +13,16 @@ public class App {
         if(warehouseType == null) {
             return;
         }
-        Wallet wallet = getWalletByDepartmentOrNull(new User());
-        if (wallet == null) {
+
+        Wallet wallet;
+        try {
+            wallet = new SafeWallet(new User());
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw (RuntimeException) e;
+        } finally {
             err.printf("%s", "AUTH_ERROR");
-            return;
         }
 
         buyProductFromWarehouse(wallet, warehouseType, in, out);
@@ -74,19 +80,6 @@ public class App {
             //throw new ProductNotFoundException("product not found");
         }
     }
-
-    private Wallet getWalletByDepartmentOrNull(User user) {
-        Wallet wallet;
-        try {
-            wallet = new SafeWallet(user);
-        } catch (RuntimeException e) {
-            throw e;
-        } catch (Exception e) {
-            throw (RuntimeException) e;
-        }
-        return wallet;
-    }
-
 
     private WarehouseType getWarehouseTypeOrNull(BufferedReader in, PrintStream out) {
         while (true) {
