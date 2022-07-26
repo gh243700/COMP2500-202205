@@ -62,7 +62,7 @@ public class App {
                 continue;
             }
 
-            if (products.size() != size) {
+            if (warehouse.getProducts().size() != size) {
                 throw new ProductNotFoundException("product not found");
             }
 
