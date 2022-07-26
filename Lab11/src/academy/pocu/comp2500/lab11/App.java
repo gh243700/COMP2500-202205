@@ -13,7 +13,15 @@ public class App {
         if(warehouseType == null) {
             return;
         }
-        Wallet wallet = getWalletByDepartmentOrNull(new User());
+        Wallet wallet;
+        try {
+            wallet = new SafeWallet(new User());
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw (RuntimeException) e;
+        }
+
         if (wallet == null) {
             err.printf("%s", "AUTH_ERROR");
             return;
@@ -30,10 +38,7 @@ public class App {
             out.printf("BALANCE: %d" + System.lineSeparator(), wallet.getAmount());
             out.printf("PRODUCT_LIST: Choose the product you want to buy!" + System.lineSeparator());
             ArrayList<Product> products = warehouse.getProducts();
-            if (products.size() == 0) {
-                //throw new ProductNotFoundException("product not found");
-            }
-
+            int size = products.size();
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
                 out.printf("%d. %-18s%2d" + System.lineSeparator(),i + 1, product.getName(), product.getPrice());
@@ -55,38 +60,24 @@ public class App {
                 continue;
             }
 
+            if (products.size() != size) {
+                throw new ProductNotFoundException("product not found");
+            }
+
             Product product = products.get(myInteger.getValue() - 1);
             ArrayList<Product> warehouseProduct = warehouse.getProducts();
-            boolean isSuccess = false;
+
             for (int i = 0; i < warehouseProduct.size(); i++) {
                 if(warehouseProduct.get(i).getId() == product.getId()) {
                     if (wallet.withdraw(product.getPrice())) {
                         warehouse.removeProduct(product.getId());
-                        isSuccess = true;
+                        continue;
                     }
                     break;
                 }
             }
-            if (isSuccess) {
-                continue;
-            }
-
-            //throw new ProductNotFoundException("product not found");
         }
     }
-
-    private Wallet getWalletByDepartmentOrNull(User user) {
-        Wallet wallet;
-        try {
-            wallet = new SafeWallet(user);
-        } catch (RuntimeException e) {
-            throw e;
-        } catch (Exception e) {
-            throw (RuntimeException) e;
-        }
-        return wallet;
-    }
-
 
     private WarehouseType getWarehouseTypeOrNull(BufferedReader in, PrintStream out) {
         while (true) {

@@ -30,7 +30,7 @@ public class Program {
         App app = new App();
         app.run(reader, printStream, errStream);
 
-
+        System.out.printf("");
 
     }
 }
