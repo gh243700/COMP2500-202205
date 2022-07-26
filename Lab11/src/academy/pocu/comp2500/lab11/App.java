@@ -30,6 +30,9 @@ public class App {
             out.printf("BALANCE: %d" + System.lineSeparator(), wallet.getAmount());
             out.printf("PRODUCT_LIST: Choose the product you want to buy!" + System.lineSeparator());
             ArrayList<Product> products = warehouse.getProducts();
+            if (products.size() == 0) {
+                throw new ProductNotFoundException("product not found");
+            }
 
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
@@ -54,14 +57,20 @@ public class App {
 
             Product product = products.get(myInteger.getValue() - 1);
             ArrayList<Product> warehouseProduct = warehouse.getProducts();
+            boolean isSuccess = false;
             for (int i = 0; i < warehouseProduct.size(); i++) {
                 if(warehouseProduct.get(i).getId() == product.getId()) {
                     if (wallet.withdraw(product.getPrice())) {
                         warehouse.removeProduct(product.getId());
+                        isSuccess = true;
                     }
                     break;
                 }
             }
+            if (isSuccess) {
+                continue;
+            }
+
             throw new ProductNotFoundException("product not found");
         }
     }

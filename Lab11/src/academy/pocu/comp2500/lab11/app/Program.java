@@ -23,13 +23,13 @@ public class Program {
         }
         wallet.deposit(Integer.MAX_VALUE - 1);
 */
-/*
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         PrintStream printStream = new PrintStream(System.out);
         PrintStream errStream = new PrintStream(System.out);
         App app = new App();
         app.run(reader, printStream, errStream);
-*/
+
 
 
     }
