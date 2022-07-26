@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class App {
 
-    public void run(BufferedReader in, PrintStream out, PrintStream err) throws IllegalAccessException {
+    public void run(BufferedReader in, PrintStream out, PrintStream err) {
         WarehouseType warehouseType = getWarehouseTypeOrNull(in, out);
         if (warehouseType == null) {
             return;
@@ -19,9 +19,9 @@ public class App {
             wallet = new SafeWallet(new User());
         } catch (IllegalAccessException e) {
             err.printf("%s", "AUTH_ERROR");
-            throw e;
-        } catch (Exception e) {
             return;
+        } catch (Exception e) {
+            throw e;
         }
 
         buyProductFromWarehouse(wallet, warehouseType, in, out);
