@@ -21,11 +21,6 @@ public class App {
             err.printf("%s", "AUTH_ERROR");
             throw e;
         } catch (Exception e) {
-            throw e;
-        }
-
-        if (wallet == null) {
-
             return;
         }
 
