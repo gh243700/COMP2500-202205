@@ -24,8 +24,14 @@ public class App {
             throw e;
         }
 
+        try {
+            buyProductFromWarehouse(wallet, warehouseType, in, out);
+        } catch (OverflowException e) {
+            return;
+        } catch (ProductNotFoundException e) {
+            return;
+        }
 
-        buyProductFromWarehouse(wallet, warehouseType, in, out);
     }
 
     private void buyProductFromWarehouse(Wallet wallet, WarehouseType warehouseType, BufferedReader in, PrintStream out) {
