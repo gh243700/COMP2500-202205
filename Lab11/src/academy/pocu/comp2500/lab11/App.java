@@ -31,7 +31,7 @@ public class App {
             out.printf("PRODUCT_LIST: Choose the product you want to buy!" + System.lineSeparator());
             ArrayList<Product> products = warehouse.getProducts();
             if (products.size() == 0) {
-                throw new ProductNotFoundException("product not found");
+                //throw new ProductNotFoundException("product not found");
             }
 
             for (int i = 0; i < products.size(); i++) {
@@ -71,7 +71,7 @@ public class App {
                 continue;
             }
 
-            throw new ProductNotFoundException("product not found");
+            //throw new ProductNotFoundException("product not found");
         }
     }
 
