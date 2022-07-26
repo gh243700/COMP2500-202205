@@ -23,12 +23,16 @@ public class App {
         } catch (Exception e) {
             throw e;
         }
-        
 
-        buyProductFromWarehouse(wallet, warehouseType, in, out);
+        try {
+            buyProductFromWarehouse(wallet, warehouseType, in, out);
+        } catch (ProductNotFoundException e) {
+            throw e;
+        }
+
     }
 
-    private void buyProductFromWarehouse(Wallet wallet, WarehouseType warehouseType, BufferedReader in, PrintStream out) {
+    private void buyProductFromWarehouse(Wallet wallet, WarehouseType warehouseType, BufferedReader in, PrintStream out) throws ProductNotFoundException{
 
         Warehouse warehouse = new Warehouse(warehouseType);
 
@@ -69,7 +73,6 @@ public class App {
                 if (warehouseProduct.get(i).getId() == product.getId()) {
                     if (wallet.withdraw(product.getPrice())) {
                         warehouse.removeProduct(product.getId());
-                        continue;
                     }
                     break;
                 }
