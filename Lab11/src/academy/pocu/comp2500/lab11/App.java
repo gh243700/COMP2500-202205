@@ -23,6 +23,7 @@ public class App {
         } catch (Exception e) {
             throw e;
         }
+        
 
         buyProductFromWarehouse(wallet, warehouseType, in, out);
     }
