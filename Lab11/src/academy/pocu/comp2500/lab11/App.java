@@ -2,13 +2,14 @@ package academy.pocu.comp2500.lab11;
 
 import academy.pocu.comp2500.lab11.pocu.*;
 
+import javax.naming.AuthenticationException;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class App {
 
-    public void run(BufferedReader in, PrintStream out, PrintStream err) {
+    public void run(BufferedReader in, PrintStream out, PrintStream err) throws IllegalAccessException {
         WarehouseType warehouseType = getWarehouseTypeOrNull(in, out);
         if (warehouseType == null) {
             return;
@@ -16,14 +17,15 @@ public class App {
         Wallet wallet;
         try {
             wallet = new SafeWallet(new User());
-        } catch (RuntimeException e) {
+        } catch (IllegalAccessException e) {
+            err.printf("%s", "AUTH_ERROR");
             throw e;
         } catch (Exception e) {
-            throw (RuntimeException) e;
+            throw e;
         }
 
         if (wallet == null) {
-            err.printf("%s", "AUTH_ERROR");
+
             return;
         }
 
