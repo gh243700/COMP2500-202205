@@ -39,10 +39,9 @@ public class App {
         while (true) {
             out.printf("BALANCE: %d" + System.lineSeparator(), wallet.getAmount());
             out.printf("PRODUCT_LIST: Choose the product you want to buy!" + System.lineSeparator());
-            ArrayList<Product> products = warehouse.getProducts();
-            int size = products.size();
-            for (int i = 0; i < products.size(); i++) {
-                Product product = products.get(i);
+            ArrayList<Product> initProducts = new ArrayList<>(warehouse.getProducts());
+            for (int i = 0; i < initProducts.size(); i++) {
+                Product product = initProducts.get(i);
                 out.printf("%d. %-18s%2d" + System.lineSeparator(), i + 1, product.getName(), product.getPrice());
             }
 
@@ -58,24 +57,25 @@ public class App {
                 break;
             }
 
-            if (!tryParseInt(input, myInteger) || myInteger.getValue() > products.size() || myInteger.getValue() <= 0) {
+            if (!tryParseInt(input, myInteger) || myInteger.getValue() > initProducts.size() || myInteger.getValue() <= 0) {
                 continue;
             }
 
-            if (warehouse.getProducts().size() != size) {
-                throw new ProductNotFoundException("product not found");
-            }
-
-            Product product = products.get(myInteger.getValue() - 1);
+            Product product = initProducts.get(myInteger.getValue() - 1);
             ArrayList<Product> warehouseProduct = warehouse.getProducts();
-
+            boolean b = false;
             for (int i = 0; i < warehouseProduct.size(); i++) {
                 if (warehouseProduct.get(i).getId() == product.getId()) {
+                    b = true;
                     if (wallet.withdraw(product.getPrice())) {
                         warehouse.removeProduct(product.getId());
                     }
                     break;
                 }
+            }
+
+            if (!b) {
+                throw new ProductNotFoundException("product not found");
             }
         }
     }
