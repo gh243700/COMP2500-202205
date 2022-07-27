@@ -11,7 +11,7 @@ public class MyInteger {
         return value;
     }
 
-    public MyInteger(){
+    public MyInteger() {
         value = Integer.MAX_VALUE;
     }
 

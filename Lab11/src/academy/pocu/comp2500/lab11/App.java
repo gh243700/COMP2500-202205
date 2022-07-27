@@ -2,7 +2,6 @@ package academy.pocu.comp2500.lab11;
 
 import academy.pocu.comp2500.lab11.pocu.*;
 
-import javax.naming.AuthenticationException;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
