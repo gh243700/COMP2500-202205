@@ -41,7 +41,7 @@ public class App {
         while (true) {
             out.printf("BALANCE: %d" + System.lineSeparator(), wallet.getAmount());
             out.printf("PRODUCT_LIST: Choose the product you want to buy!" + System.lineSeparator());
-            ArrayList<Product> initProducts = new ArrayList<>(warehouse.getProducts());
+            ArrayList<Product> initProducts = warehouse.getProducts();
             for (int i = 0; i < initProducts.size(); i++) {
                 Product product = initProducts.get(i);
                 out.printf("%d. %-18s%2d" + System.lineSeparator(), i + 1, product.getName(), product.getPrice());
@@ -65,6 +65,7 @@ public class App {
 
             Product product = initProducts.get(myInteger.getValue() - 1);
             ArrayList<Product> warehouseProduct = warehouse.getProducts();
+
             boolean b = false;
             for (int i = 0; i < warehouseProduct.size(); i++) {
                 if (warehouseProduct.get(i).getId() == product.getId()) {
@@ -74,6 +75,9 @@ public class App {
                             warehouse.removeProduct(product.getId());
                         }
                     } catch (OverflowException e) {
+                        throw e;
+                    } catch (ProductNotFoundException e) {
+                        wallet.deposit(product.getPrice());
                         throw e;
                     }
                     break;
