@@ -28,8 +28,6 @@ public class App {
             buyProductFromWarehouse(wallet, warehouseType, in, out);
         } catch (OverflowException e) {
             return;
-        } catch (ProductNotFoundException e) {
-            return;
         }
 
     }
@@ -71,7 +69,7 @@ public class App {
                         warehouse.removeProduct(product.getId());
                     } catch (ProductNotFoundException e) {
                         wallet.deposit(product.getPrice());
-                        throw e;
+                        continue;
                     }
                 }
             } catch (OverflowException e) {
