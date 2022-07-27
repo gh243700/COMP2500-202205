@@ -10,10 +10,14 @@ public class SafeWallet extends Wallet {
     @Override
     public boolean deposit(int amount) {
         int value = getAmount();
-        if (value > value + amount) {
+        if (!super.deposit(amount)) {
+            return false;
+        }
+
+        if (value > getAmount()) {
             throw new OverflowException("amount overflow");
         }
 
-        return super.deposit(amount);
+        return true;
     }
 }
