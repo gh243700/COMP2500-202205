@@ -29,7 +29,7 @@ public class App {
         } catch (OverflowException e) {
             return;
         } catch (ProductNotFoundException e) {
-            return;
+            throw e;
         }
 
     }
