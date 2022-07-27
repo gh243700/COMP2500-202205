@@ -27,7 +27,7 @@ public class App {
         try {
             buyProductFromWarehouse(wallet, warehouseType, in, out);
         } catch (OverflowException e) {
-            return;
+            throw e;
         }
 
     }
