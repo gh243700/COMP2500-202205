@@ -29,7 +29,7 @@ public class App {
         } catch (OverflowException e) {
             return;
         } catch (ProductNotFoundException e) {
-            throw e;
+            return;
         }
 
     }
@@ -64,28 +64,18 @@ public class App {
             }
 
             Product product = initProducts.get(myInteger.getValue() - 1);
-            ArrayList<Product> warehouseProduct = warehouse.getProducts();
 
-            boolean b = false;
-            for (int i = 0; i < warehouseProduct.size(); i++) {
-                if (warehouseProduct.get(i).getId() == product.getId()) {
-                    b = true;
+            try {
+                if (wallet.withdraw(product.getPrice())) {
                     try {
-                        if (wallet.withdraw(product.getPrice())) {
-                            warehouse.removeProduct(product.getId());
-                        }
-                    } catch (OverflowException e) {
-                        throw e;
+                        warehouse.removeProduct(product.getId());
                     } catch (ProductNotFoundException e) {
                         wallet.deposit(product.getPrice());
                         throw e;
                     }
-                    break;
                 }
-            }
-
-            if (b == false) {
-                throw new ProductNotFoundException("product not found");
+            } catch (OverflowException e) {
+                throw e;
             }
         }
     }
